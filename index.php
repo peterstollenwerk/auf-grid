@@ -1,5 +1,5 @@
 <?php
-
+# set autoload psr-4 path in composer.json!
 @include_once __DIR__.'/vendor/autoload.php';
 
 // load([
