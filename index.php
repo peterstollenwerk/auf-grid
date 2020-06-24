@@ -1,8 +1,11 @@
 <?php
 
-load([
-    'auf\\plugin\\exampleclass' => 'lib/Exampleclass.php'
-], __DIR__);
+@include_once __DIR__.'/vendor/autoload.php';
+
+// load([
+//     'auf\\gridColumnPreset' => 'lib/gridColumPreset.php',
+//     'auf\\grid' => 'lib/grid.php'
+// ], __DIR__);
 
 Kirby::plugin('auf/grid', [
     'options' => [

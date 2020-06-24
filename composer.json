@@ -9,6 +9,11 @@
             "email": "peter.stollenwerk@aufdesign.de"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "auf\\": "lib/"
+        }
+    },
     "config": {
         "optimize-autoloader": true
     },
