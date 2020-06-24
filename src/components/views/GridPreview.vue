@@ -1,27 +1,13 @@
 <template>
   <div class="k-reviews">
-    {{ reviews[0] }}
+    <h1>columnCount: {{columnCount}}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      reviews: [],
-    };
-  },
-  created() {
-    this.load();
-  },
-  methods: {
-    load() {
-      this.$api
-        .get("moviereviews")
-        .then(reviews => {
-          this.reviews = reviews;
-        });
-    }
-  }
+  props: [
+    'columnCount'
+  ],
 }
 </script>

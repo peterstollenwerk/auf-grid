@@ -8921,6 +8921,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   props: {
     after: String,
@@ -8929,7 +8931,8 @@ var _default = {
     help: String,
     label: String,
     required: Boolean,
-    value: String
+    value: String,
+    test: String
   },
   data: function data() {
     return {
@@ -8973,6 +8976,7 @@ exports.default = _default;
       }
     },
     [
+      _vm._v("\n\n  Test Prop: " + _vm._s(_vm.test) + "\n\n  "),
       _c("k-input", {
         attrs: {
           options: [
@@ -9048,23 +9052,7 @@ exports.default = void 0;
 //
 //
 var _default = {
-  data: function data() {
-    return {
-      reviews: []
-    };
-  },
-  created: function created() {
-    this.load();
-  },
-  methods: {
-    load: function load() {
-      var _this = this;
-
-      this.$api.get("moviereviews").then(function (reviews) {
-        _this.reviews = reviews;
-      });
-    }
-  }
+  props: ['columnCount']
 };
 exports.default = _default;
         var $90bd51 = exports.default || module.exports;
@@ -9080,7 +9068,7 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "k-reviews" }, [
-    _vm._v("\n  " + _vm._s(_vm.reviews[0]) + "\n")
+    _c("h1", [_vm._v("columnCount: " + _vm._s(_vm.columnCount))])
   ])
 }
 var staticRenderFns = []
@@ -9122,8 +9110,6 @@ exports.default = void 0;
 
 var _GridPreview = _interopRequireDefault(require("./GridPreview.vue"));
 
-var _GridColumnField = _interopRequireDefault(require("../fields/GridColumnField.vue"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
@@ -9136,8 +9122,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 var _default = {
   components: {
-    GridPreview: _GridPreview.default,
-    GridColumnField: _GridColumnField.default
+    GridPreview: _GridPreview.default
+  },
+  data: function data() {
+    return {
+      columnCount: Number
+    };
+  },
+  created: function created() {
+    this.load();
+  },
+  methods: {
+    load: function load() {
+      var _this = this;
+
+      this.$api.get("grid/settings").then(function (settings) {
+        _this.columnCount = settings.columnCount;
+      });
+    }
   }
 };
 exports.default = _default;
@@ -9157,11 +9159,9 @@ exports.default = _default;
     "k-view",
     { staticClass: "k-grid-settings-view" },
     [
-      _c("k-header", [_vm._v("Grid Settings")]),
-      _vm._v(" "),
-      _c("grid-column-field"),
-      _vm._v(" "),
-      _c("grid-preview")
+      _c("k-header", [_vm._v("Site Grid")]),
+      _vm._v("\n  columnCount: " + _vm._s(_vm.columnCount) + "\n  "),
+      _c("grid-preview", { attrs: { columnCount: _vm.columnCount } })
     ],
     1
   )
@@ -9195,7 +9195,7 @@ render._withStripped = true
         
       }
     })();
-},{"./GridPreview.vue":"components/views/GridPreview.vue","../fields/GridColumnField.vue":"components/fields/GridColumnField.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
+},{"./GridPreview.vue":"components/views/GridPreview.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _GridColumnField = _interopRequireDefault(require("./components/fields/GridColumnField.vue"));
@@ -9213,7 +9213,7 @@ panel.plugin('auf/grid', {
     grid: {
       component: _GridSettingsView.default,
       icon: "grid",
-      label: "Grid Settings"
+      label: "Site Grid"
     }
   },
   fields: {

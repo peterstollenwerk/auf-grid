@@ -19,7 +19,7 @@ panel.plugin('auf/grid', {
     grid: {
       component: GridSettingsView,
       icon: "grid",
-      label: "Grid Settings"
+      label: "Site Grid"
     }
   },
   fields: {

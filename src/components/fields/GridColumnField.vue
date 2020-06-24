@@ -7,6 +7,8 @@
     :required="required"
   >
 
+    Test Prop: {{test}}
+
     <k-input
       v-model="value"
       :options="[
@@ -38,6 +40,7 @@ export default {
     label: String,
     required: Boolean,
     value: String,
+    test: String
   },
   data: function() {
     return {
