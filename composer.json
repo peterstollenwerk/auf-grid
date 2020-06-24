@@ -1,0 +1,27 @@
+{
+    "name": "peterstollenwerk/auf-grid",
+    "description": "auf kirby grid plugin ",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter Stollenwerk",
+            "email": "peter.stollenwerk@aufdesign.de"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true
+    },
+    "require": {
+        "getkirby/composer-installer": "^1.1"
+    },
+    "require-dev": {
+        "getkirby/cms": "^3.3",
+        "phpunit/phpunit": "^7.5",
+        "spatie/phpunit-watcher": "^1.10"
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit  --bootstrap ./tests/bootstrap.php --testdox ./tests/suites --colors=always",
+        "watch": "./vendor/bin/phpunit-watcher watch  --bootstrap ./tests/bootstrap.php --testdox ./tests/suites --colors=always"
+    }
+}

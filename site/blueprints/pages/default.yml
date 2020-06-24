@@ -1,0 +1,6 @@
+title: Default Page
+preset: page
+fields:
+  grid_column:
+    type: grid_column
+
