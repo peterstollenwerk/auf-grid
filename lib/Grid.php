@@ -2,37 +2,44 @@
 
 namespace auf;
 
+use auf\GridPreset;
 use auf\GridColumnPreset;
 use Kirby\Cms\Field;
 
 class Grid {
 
-  static $gridColumnsCount = 12;
-  static $gridMaxColumnWidthInPx = 85;
-  static $gridColumnGapsCount = 11;
-  static $gridColumnGapInPx = 16;
-  static $gridOneColumnToResponsiveBreakpoint = 600;
-  static $gridResponsiveToStaticBreakpoint = 12 * 85 + 11 * 16;
-  //
-  static $gridColumnCustomClass = 'grid__column--custom';
+  private $preset;
 
-  static $gridColumnDefaultClass = 'grid__column--default';
-  static $gridColumnDefaultStartColumnClass = 'grid__column--start-1';
-  static $gridColumnDefaultEndColumnClass = 'grid__column--end-12';
-  static $gridColumnDefaultLabel = 'Default';
-  
+  static $gridColumnCustomClass = 'grid__column--custom';
   private $gridColumnDefaultPreset;
   private $gridColumnSitePresets;
 
-  public function __construct(Field $grid_column_presets) {
-    
+  public function __construct() {
+
+    $this->preset = new GridPreset();
+
+    // $this->setGridColumnDefaultPreset();
+
+    // if($grid_column_presets) {
+    //   $this->setGridColumnSitePresets($grid_column_presets);
+    // }
+
+  }
+
+  public function preset() { 
+    return $this->preset; 
+  }
+
+  public function setGridColumnDefaultPreset() {
     $this->gridColumnDefaultPreset = new GridColumnPreset( 
-      Grid::$gridColumnDefaultClass, 
-      Grid::$gridColumnDefaultStartColumnClass, 
-      Grid::$gridColumnDefaultEndColumnClass, 
-      Grid::$gridColumnDefaultLabel
+      $gridColumnDefaultClass = 'grid__column--default',
+      $gridColumnDefaultStartColumnClass = 'grid__column--start-1',
+      $gridColumnDefaultEndColumnClass = 'grid__column--end-12',
+      $gridColumnDefaultLabel = 'Default'
     );
-    
+  }
+
+  public function setGridColumnSitePresets(Field $grid_column_presets) {
     if($grid_column_presets->isNotEmpty()) {
       $this->gridColumnSitePresets  = $grid_column_presets->toStructure();
     }
