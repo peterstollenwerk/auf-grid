@@ -3,6 +3,7 @@ watch:
     - src
     - tests
     - lib
+    - .
   fileMask: '*.php'
 notifications:
   passingTests: false

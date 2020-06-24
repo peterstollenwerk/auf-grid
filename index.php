@@ -8,7 +8,7 @@ Kirby::plugin('auf/grid', [
     'options' => [
 		'settings' => [
             'columnCount' => 12,
-            'columnWidth' => 123
+            'columnWidth' => 90
         ],
     ],
     'fields' => [
