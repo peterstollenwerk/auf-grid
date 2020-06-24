@@ -9049,10 +9049,10 @@ exports.default = void 0;
 //
 //
 //
-//
-//
 var _default = {
-  props: ['columnCount']
+  props: {
+    columnCount: Number
+  }
 };
 exports.default = _default;
         var $90bd51 = exports.default || module.exports;
@@ -9067,9 +9067,7 @@ exports.default = _default;
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "k-reviews" }, [
-    _c("h1", [_vm._v("columnCount: " + _vm._s(_vm.columnCount))])
-  ])
+  return _c("h1", [_vm._v("columnCount: " + _vm._s(_vm.columnCount))])
 }
 var staticRenderFns = []
 render._withStripped = true

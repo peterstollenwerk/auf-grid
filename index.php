@@ -1,7 +1,7 @@
 <?php
 
 load([
-    'auf\\plugin\\exampleclass' => 'classes/Exampleclass.php'
+    'auf\\plugin\\exampleclass' => 'lib/Exampleclass.php'
 ], __DIR__);
 
 Kirby::plugin('auf/grid', [

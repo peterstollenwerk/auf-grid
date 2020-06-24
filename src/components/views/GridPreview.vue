@@ -1,13 +1,11 @@
 <template>
-  <div class="k-reviews">
-    <h1>columnCount: {{columnCount}}</h1>
-  </div>
+  <h1>columnCount: {{columnCount}}</h1>
 </template>
 
 <script>
 export default {
-  props: [
-    'columnCount'
-  ],
+  props: {
+    columnCount: Number
+  }
 }
 </script>
