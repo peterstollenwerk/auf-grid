@@ -9034,7 +9034,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/views/GridSettingsView.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/views/GridPreview.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9047,7 +9047,99 @@ exports.default = void 0;
 //
 //
 //
-var _default = {};
+var _default = {
+  data: function data() {
+    return {
+      reviews: []
+    };
+  },
+  created: function created() {
+    this.load();
+  },
+  methods: {
+    load: function load() {
+      var _this = this;
+
+      this.$api.get("moviereviews").then(function (reviews) {
+        _this.reviews = reviews;
+      });
+    }
+  }
+};
+exports.default = _default;
+        var $90bd51 = exports.default || module.exports;
+      
+      if (typeof $90bd51 === 'function') {
+        $90bd51 = $90bd51.options;
+      }
+    
+        /* template */
+        Object.assign($90bd51, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "k-reviews" }, [
+    _vm._v("\n  " + _vm._s(_vm.reviews[0]) + "\n")
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$90bd51', $90bd51);
+          } else {
+            api.reload('$90bd51', $90bd51);
+          }
+        }
+
+        
+      }
+    })();
+},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/views/GridSettingsView.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _GridPreview = _interopRequireDefault(require("./GridPreview.vue"));
+
+var _GridColumnField = _interopRequireDefault(require("../fields/GridColumnField.vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  components: {
+    GridPreview: _GridPreview.default,
+    GridColumnField: _GridColumnField.default
+  }
+};
 exports.default = _default;
         var $7f88ba = exports.default || module.exports;
       
@@ -9064,7 +9156,13 @@ exports.default = _default;
   return _c(
     "k-view",
     { staticClass: "k-grid-settings-view" },
-    [_c("k-header", [_vm._v("Grid Settings")])],
+    [
+      _c("k-header", [_vm._v("Grid Settings")]),
+      _vm._v(" "),
+      _c("grid-column-field"),
+      _vm._v(" "),
+      _c("grid-preview")
+    ],
     1
   )
 }
@@ -9097,7 +9195,7 @@ render._withStripped = true
         
       }
     })();
-},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
+},{"./GridPreview.vue":"components/views/GridPreview.vue","../fields/GridColumnField.vue":"components/fields/GridColumnField.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _GridColumnField = _interopRequireDefault(require("./components/fields/GridColumnField.vue"));
