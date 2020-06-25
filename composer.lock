@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf28ab0cc1bce57f0e1d531901166bde",
+    "content-hash": "e48c3e376ff9309c909adde7fc9f5da0",
     "packages": [
         {
             "name": "getkirby/composer-installer",
@@ -431,7 +431,7 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "3.3.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
@@ -3222,7 +3222,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "getkirby/cms": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

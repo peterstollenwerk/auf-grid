@@ -11,6 +11,7 @@ class Grid {
   private $preset;
 
   static $gridColumnCustomClass = 'grid__column--custom';
+  
   private $gridColumnDefaultPreset;
   private $gridColumnSitePresets;
 
@@ -24,6 +25,10 @@ class Grid {
     //   $this->setGridColumnSitePresets($grid_column_presets);
     // }
 
+  }
+
+  static function setSettings() {
+    return 
   }
 
   public function preset() { 

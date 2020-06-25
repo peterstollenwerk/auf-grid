@@ -21,7 +21,7 @@
         "getkirby/composer-installer": "^1.1"
     },
     "require-dev": {
-        "getkirby/cms": "^3.3",
+        "getkirby/cms": "dev-master",
         "phpunit/phpunit": "^7.5",
         "spatie/phpunit-watcher": "^1.10"
     },

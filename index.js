@@ -9118,13 +9118,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
 var _default = {
   components: {
     GridPreview: _GridPreview.default
   },
   data: function data() {
     return {
-      columnCount: Number
+      columnCount: 111,
+      settings: String
     };
   },
   created: function created() {
@@ -9136,6 +9139,9 @@ var _default = {
 
       this.$api.get("grid/settings").then(function (settings) {
         _this.columnCount = settings.columnCount;
+      });
+      this.$api.get("grid/set-settings").then(function (response) {
+        _this.settings = response;
       });
     }
   }
@@ -9159,6 +9165,8 @@ exports.default = _default;
     [
       _c("k-header", [_vm._v("Site Grid")]),
       _vm._v("\n  columnCount: " + _vm._s(_vm.columnCount) + "\n  "),
+      _c("br"),
+      _vm._v("\n  settings: " + _vm._s(_vm.settings) + "\n  "),
       _c("grid-preview", { attrs: { columnCount: _vm.columnCount } })
     ],
     1
@@ -9246,7 +9254,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51698" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50034" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,11 +1,8 @@
 <?php
-# set autoload psr-4 path in composer.json!
-@include_once __DIR__.'/vendor/autoload.php';
 
-// load([
-//     'auf\\gridColumnPreset' => 'lib/gridColumPreset.php',
-//     'auf\\grid' => 'lib/grid.php'
-// ], __DIR__);
+@include_once __DIR__.'/vendor/autoload.php'; # all classes set in composer.json > psr-4 are loaded here!
+
+use auf\Grid;
 
 Kirby::plugin('auf/grid', [
     'options' => [
@@ -21,7 +18,6 @@ Kirby::plugin('auf/grid', [
             'props' => [
                 'test' => 'TEST'
             ]
-            // here we could define the backend logic for our field if needed
         ],
     ],
     'icons' => [],
@@ -31,6 +27,12 @@ Kirby::plugin('auf/grid', [
                 'pattern' => 'grid/settings',
                 'action'  => function () {
                     return option('auf.grid.settings');
+                }
+            ],
+            [
+                'pattern' => 'grid/set-settings',
+                'action'  => function () {
+                    return '123';
                 }
             ]
         ]

@@ -9,11 +9,11 @@ use PHPUnit\Framework\TestCase;
 use auf\GridPreset;
 
 final class GridPresetTest extends TestCase {
+
   public function testGridPresetParentClassIsKirbyStructureObject () 
   {
     $this->assertEquals(get_parent_class(new GridPreset()), 'Kirby\Cms\StructureObject');
   }
-
   public function testConstructsDefaultGridWhenPassingNoArguments() 
   {
     $gridPreset = new GridPreset();
