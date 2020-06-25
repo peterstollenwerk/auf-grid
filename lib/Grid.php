@@ -5,6 +5,8 @@ namespace auf;
 use auf\GridPreset;
 use auf\GridColumnPreset;
 use Kirby\Cms\Field;
+use Kirby\Cms\File;
+use Kirby\Data\Json;
 
 class Grid {
 
@@ -27,8 +29,19 @@ class Grid {
 
   }
 
+  static function getSettings() {
+    $file = kirby()->root('config') . '/auf-grid/settings.txt';
+    if(file_exists($file)) {
+      return Json::read($file);
+    }
+    return $json = Json::decode('{"info": "No configuration yet"}');
+  }
+
   static function setSettings() {
-    return 
+    $file = kirby()->root('config') . '/auf-grid/settings.txt';
+    $json = Json::decode('{"test": "TEST3"}');
+    Json::write($file, $json);
+    return $json;
   }
 
   public function preset() { 

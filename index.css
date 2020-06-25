@@ -1,1 +1,4 @@
-/* optional scoped styles for the component */
+/* optional scoped styles for the component */.k-button {
+  padding: 0.5rem;
+  border: 2px solid black;
+}

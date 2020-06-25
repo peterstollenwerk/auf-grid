@@ -9120,14 +9120,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
 var _default = {
   components: {
     GridPreview: _GridPreview.default
   },
   data: function data() {
     return {
-      columnCount: 111,
-      settings: String
+      settings: Object,
+      site: Object
     };
   },
   created: function created() {
@@ -9138,10 +9141,20 @@ var _default = {
       var _this = this;
 
       this.$api.get("grid/settings").then(function (settings) {
-        _this.columnCount = settings.columnCount;
+        _this.settings = settings;
       });
-      this.$api.get("grid/set-settings").then(function (response) {
-        _this.settings = response;
+      this.$api.site.get('title').then(function (res) {
+        _this.site = res;
+      });
+    },
+    saveSettings: function saveSettings() {
+      var _this2 = this;
+
+      console.log('saveSettings');
+      this.$api.post('grid/set-settings', {
+        test: 'mhhh'
+      }).then(function (res) {
+        _this2.site = res;
       });
     }
   }
@@ -9164,10 +9177,16 @@ exports.default = _default;
     { staticClass: "k-grid-settings-view" },
     [
       _c("k-header", [_vm._v("Site Grid")]),
-      _vm._v("\n  columnCount: " + _vm._s(_vm.columnCount) + "\n  "),
-      _c("br"),
       _vm._v("\n  settings: " + _vm._s(_vm.settings) + "\n  "),
-      _c("grid-preview", { attrs: { columnCount: _vm.columnCount } })
+      _c("br"),
+      _vm._v("\n  site: " + _vm._s(_vm.site) + "\n  "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("k-button", { on: { click: _vm.saveSettings } }, [
+        _vm._v("Save Settings")
+      ])
     ],
     1
   )
@@ -9199,9 +9218,13 @@ render._withStripped = true
         }
 
         
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
       }
     })();
-},{"./GridPreview.vue":"components/views/GridPreview.vue","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
+},{"./GridPreview.vue":"components/views/GridPreview.vue","_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _GridColumnField = _interopRequireDefault(require("./components/fields/GridColumnField.vue"));
@@ -9254,7 +9277,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50034" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56680" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

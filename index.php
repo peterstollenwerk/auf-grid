@@ -3,6 +3,8 @@
 @include_once __DIR__.'/vendor/autoload.php'; # all classes set in composer.json > psr-4 are loaded here!
 
 use auf\Grid;
+use Kirby\Data\Json;
+use PHPUnit\Util\Json as UtilJson;
 
 Kirby::plugin('auf/grid', [
     'options' => [
@@ -26,13 +28,15 @@ Kirby::plugin('auf/grid', [
             [
                 'pattern' => 'grid/settings',
                 'action'  => function () {
-                    return option('auf.grid.settings');
+                    return Grid::getSettings();
                 }
             ],
             [
                 'pattern' => 'grid/set-settings',
+                'method' => 'POST',
                 'action'  => function () {
-                    return '123';
+                    $test = $this->requestBody('test');
+                    return Json::encode($test);
                 }
             ]
         ]

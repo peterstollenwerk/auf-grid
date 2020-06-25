@@ -1,10 +1,13 @@
 <template>
   <k-view class="k-grid-settings-view">
     <k-header>Site Grid</k-header>
-    columnCount: {{columnCount}}
-    <br>
     settings: {{settings}}
-    <grid-preview :columnCount="columnCount"/>
+    <br>
+    site: {{site}}
+    <br>
+    <br>
+    <k-button @click="saveSettings">Save Settings</k-button>
+    <!-- <grid-preview :columnCount="columnCount"/> -->
   </k-view>
 </template>
 
@@ -18,8 +21,8 @@ export default {
     },
     data() {
       return {
-        columnCount: 111,
-        settings: String
+        settings: Object,
+        site: Object
       }
     },
     created() {
@@ -30,14 +33,26 @@ export default {
         this.$api
         .get("grid/settings")
         .then(settings => {
-          this.columnCount = settings.columnCount;
+          this.settings = settings;
         });
-        this.$api
-        .get("grid/set-settings")
-        .then(response => {
-          this.settings = response;
+        this.$api.site.get('title')
+        .then(res => {
+          this.site = res;
+        });
+      },
+      saveSettings() {
+        console.log('saveSettings')
+        this.$api.post('grid/set-settings', { test: 'mhhh' })
+        .then(res => {
+          this.site = res;
         });
       }
     }
 };
 </script>
+<style>
+.k-button {
+  padding: 0.5rem;
+  border: 2px solid black;
+}
+</style>
