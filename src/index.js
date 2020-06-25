@@ -1,3 +1,4 @@
+import GridColumnPresetsField from "./components/fields/GridColumnField.vue";
 import GridColumnField from "./components/fields/GridColumnField.vue";
 import GridSettingsView from "./components/views/GridSettingsView.vue";
 
@@ -23,6 +24,7 @@ panel.plugin('auf/grid', {
     }
   },
   fields: {
-    grid_column: GridColumnField
+    grid_column: GridColumnField,
+    grid_column_presets: GridColumnPresetsField
   }
 });

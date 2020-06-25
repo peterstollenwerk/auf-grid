@@ -3,26 +3,30 @@
     <k-header>Site Grid</k-header>
     settings: {{settings}}
     <br>
-    site: {{site}}
+    <br>
+    <grid-column-presets-field />
     <br>
     <br>
-    <k-button @click="saveSettings">Save Settings</k-button>
-    <!-- <grid-preview :columnCount="columnCount"/> -->
+    <grid-column-field label="Grid Column" @input="onGridColumnInput" />
+    <k-button class="auf-grid-button" @click="saveSettings">Save Settings</k-button>
   </k-view>
 </template>
 
 <script>
-import GridPreview from "./GridPreview.vue";
+import GridColumnPresetsField from "../fields/GridColumnPresetsField.vue";
+import GridColumnField from "../fields/GridColumnField.vue";
 
 export default {
 
     components: {
-        GridPreview,
+      GridColumnPresetsField,
+      GridColumnField
     },
     data() {
       return {
         settings: Object,
-        site: Object
+        gridColumnTemplate: String,
+        content: Object
       }
     },
     created() {
@@ -35,23 +39,34 @@ export default {
         .then(settings => {
           this.settings = settings;
         });
-        this.$api.site.get('title')
-        .then(res => {
-          this.site = res;
-        });
       },
       saveSettings() {
-        console.log('saveSettings')
-        this.$api.post('grid/set-settings', { test: 'mhhh' })
+        this.$api
+        .post('grid/settings', { 
+          settings: { 
+            gridColumnTemplate: this.gridColumnTemplate
+          } })
         .then(res => {
-          this.site = res;
+          this.settings = res;
+          this.$store.dispatch("notification/success", {
+            type: "success",
+            message: "Grid Settings Saved! : )",
+            timeout: 1000
+          });
+        })
+        .catch(err => {
+          console.log(err);
         });
+      },
+      onGridColumnInput (value) {
+        this.gridColumnTemplate = value;
+        this.saveSettings()
       }
     }
 };
 </script>
 <style>
-.k-button {
+.auf-grid-button {
   padding: 0.5rem;
   border: 2px solid black;
 }

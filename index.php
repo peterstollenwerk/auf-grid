@@ -24,21 +24,24 @@ Kirby::plugin('auf/grid', [
     ],
     'icons' => [],
     'api' => [
-        'routes' => [
-            [
-                'pattern' => 'grid/settings',
-                'action'  => function () {
-                    return Grid::getSettings();
-                }
-            ],
-            [
-                'pattern' => 'grid/set-settings',
-                'method' => 'POST',
-                'action'  => function () {
-                    $test = $this->requestBody('test');
-                    return Json::encode($test);
-                }
-            ]
-        ]
+        'routes' => function ($kirby) {
+            return [
+                [
+                    'pattern' => 'grid/settings',
+                    'method' => 'GET',
+                    'action'  => function () {
+                        return Grid::getSettings();
+                    }
+                ],
+                [
+                    'pattern' => 'grid/settings',
+                    'method' => 'POST',
+                    'action'  => function () {
+                        $settings = $this->requestBody('settings');
+                        return Grid::setSettings($settings);
+                    }
+                ]
+            ];
+        }
     ]
 ]);

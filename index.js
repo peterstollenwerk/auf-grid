@@ -9038,7 +9038,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/views/GridPreview.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/fields/GridColumnPresetsField.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9049,25 +9049,97 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   props: {
-    columnCount: Number
+    after: String,
+    before: String,
+    disabled: Boolean,
+    help: String,
+    label: String,
+    required: Boolean,
+    value: String
+  },
+  data: function data() {
+    return {
+      counter: 1
+    };
+  },
+  created: function created() {},
+  computed: {},
+  methods: {
+    onChange: function onChange(value) {
+      this.$emit("input", value);
+    }
   }
 };
 exports.default = _default;
-        var $90bd51 = exports.default || module.exports;
+        var $15bfa4 = exports.default || module.exports;
       
-      if (typeof $90bd51 === 'function') {
-        $90bd51 = $90bd51.options;
+      if (typeof $15bfa4 === 'function') {
+        $15bfa4 = $15bfa4.options;
       }
     
         /* template */
-        Object.assign($90bd51, (function () {
+        Object.assign($15bfa4, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("columnCount: " + _vm._s(_vm.columnCount))])
+  return _c(
+    "k-field",
+    {
+      staticClass: "auf-grid-column-presets-field",
+      attrs: {
+        disabled: _vm.disabled,
+        help: _vm.help,
+        label: _vm.label,
+        required: _vm.required
+      }
+    },
+    [
+      _c("k-structure-field", {
+        attrs: {
+          required: false,
+          label: "Grid Column Presets",
+          name: "grid_column_presets",
+          help: "",
+          fields: _vm.fields
+        },
+        on: { input: _vm.input },
+        model: {
+          value: _vm.value,
+          callback: function($$v) {
+            _vm.value = $$v
+          },
+          expression: "value"
+        }
+      }),
+      _vm._v("\n\n  " + _vm._s(_vm.store) + "\n\n")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -9089,16 +9161,20 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$90bd51', $90bd51);
+            api.createRecord('$15bfa4', $15bfa4);
           } else {
-            api.reload('$90bd51', $90bd51);
+            api.reload('$15bfa4', $15bfa4);
           }
         }
 
         
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
       }
     })();
-},{"vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/views/GridSettingsView.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/views/GridSettingsView.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9106,7 +9182,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _GridPreview = _interopRequireDefault(require("./GridPreview.vue"));
+var _GridColumnPresetsField = _interopRequireDefault(require("../fields/GridColumnPresetsField.vue"));
+
+var _GridColumnField = _interopRequireDefault(require("../fields/GridColumnField.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9123,14 +9201,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
 var _default = {
   components: {
-    GridPreview: _GridPreview.default
+    GridColumnPresetsField: _GridColumnPresetsField.default,
+    GridColumnField: _GridColumnField.default
   },
   data: function data() {
     return {
       settings: Object,
-      site: Object
+      gridColumnTemplate: String,
+      content: Object
     };
   },
   created: function created() {
@@ -9143,19 +9224,29 @@ var _default = {
       this.$api.get("grid/settings").then(function (settings) {
         _this.settings = settings;
       });
-      this.$api.site.get('title').then(function (res) {
-        _this.site = res;
-      });
     },
     saveSettings: function saveSettings() {
       var _this2 = this;
 
-      console.log('saveSettings');
-      this.$api.post('grid/set-settings', {
-        test: 'mhhh'
+      this.$api.post('grid/settings', {
+        settings: {
+          gridColumnTemplate: this.gridColumnTemplate
+        }
       }).then(function (res) {
-        _this2.site = res;
+        _this2.settings = res;
+
+        _this2.$store.dispatch("notification/success", {
+          type: "success",
+          message: "Grid Settings Saved! : )",
+          timeout: 1000
+        });
+      }).catch(function (err) {
+        console.log(err);
       });
+    },
+    onGridColumnInput: function onGridColumnInput(value) {
+      this.gridColumnTemplate = value;
+      this.saveSettings();
     }
   }
 };
@@ -9179,14 +9270,25 @@ exports.default = _default;
       _c("k-header", [_vm._v("Site Grid")]),
       _vm._v("\n  settings: " + _vm._s(_vm.settings) + "\n  "),
       _c("br"),
-      _vm._v("\n  site: " + _vm._s(_vm.site) + "\n  "),
-      _c("br"),
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _c("k-button", { on: { click: _vm.saveSettings } }, [
-        _vm._v("Save Settings")
-      ])
+      _c("grid-column-presets-field"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("grid-column-field", {
+        attrs: { label: "Grid Column" },
+        on: { input: _vm.onGridColumnInput }
+      }),
+      _vm._v(" "),
+      _c(
+        "k-button",
+        { staticClass: "auf-grid-button", on: { click: _vm.saveSettings } },
+        [_vm._v("Save Settings")]
+      )
     ],
     1
   )
@@ -9224,7 +9326,7 @@ render._withStripped = true
       
       }
     })();
-},{"./GridPreview.vue":"components/views/GridPreview.vue","_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
+},{"../fields/GridColumnPresetsField.vue":"components/fields/GridColumnPresetsField.vue","../fields/GridColumnField.vue":"components/fields/GridColumnField.vue","_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _GridColumnField = _interopRequireDefault(require("./components/fields/GridColumnField.vue"));
@@ -9246,7 +9348,8 @@ panel.plugin('auf/grid', {
     }
   },
   fields: {
-    grid_column: _GridColumnField.default
+    grid_column: _GridColumnField.default,
+    grid_column_presets: _GridColumnField.default
   }
 });
 },{"./components/fields/GridColumnField.vue":"components/fields/GridColumnField.vue","./components/views/GridSettingsView.vue":"components/views/GridSettingsView.vue"}],"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
