@@ -1,0 +1,37 @@
+type: fields
+fields:
+
+  grid_settings_headline:
+    label: Grid Settings
+    type: headline
+
+  grid_column_presets:
+    label: Grid Column Presets
+    type: structure
+    columns:
+      grid_column_class:
+        width: 1/4
+      grid_column_label:
+        width: 1/4
+      grid_column_start_class:
+        width: 1/4
+      grid_column_end_class:
+        width: 1/4
+        # before: "span"
+    fields:
+      grid_column_class:
+        type: text
+        label: Grid Column Class
+        help: use a unique name
+        width: 1/4
+      grid_column_label:
+        type: text
+        label: Grid Column Label
+        width: 1/4
+      grid_column_start_class:
+        extends: auf_grid/fields/grid_column_start_class
+        width: 1/4
+      grid_column_end_class:
+        extends: auf_grid/fields/grid_column_end_class
+        width: 1/4
+        # before: span

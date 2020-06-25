@@ -12,10 +12,10 @@ final class GridColumnPresetTest extends TestCase {
   public function getPreset() 
   {
     return $this->preset = new GridColumnPreset(
-      $uid = 'test', 
-      $gridColumnStart = 'grid__column--start-1', 
-      $gridColumnEnd = 'grid__column--end-12', 
-      $label = 'GridColumnTestPreset'
+      'grid__column--test', 
+      'grid__column--start-1', 
+      'grid__column--end-12', 
+      'GridColumnTestPreset'
     );
   }
   public function testGridColumnPresetParentClassIsKirbyStructureObject () 
@@ -24,18 +24,18 @@ final class GridColumnPresetTest extends TestCase {
   }
   public function testGridColumnPresetUidIsCorrect () 
   { 
-    $this->assertEquals($this->getPreset()->uid()->value(), 'test'); 
+    $this->assertEquals($this->getPreset()->grid_column_class()->value(), 'grid__column--test'); 
   }
   public function testGridColumnPresetGridColumnStartIsCorrect () 
   { 
-    $this->assertEquals($this->getPreset()->grid_column_start()->value(), 'grid__column--start-1'); 
+    $this->assertEquals($this->getPreset()->grid_column_start_class()->value(), 'grid__column--start-1'); 
   }
   public function testGridColumnPresetGridColumnEndIsCorrect () 
   { 
-    $this->assertEquals($this->getPreset()->grid_column_end()->value(), 'grid__column--end-12'); 
+    $this->assertEquals($this->getPreset()->grid_column_end_class()->value(), 'grid__column--end-12'); 
   }
   public function testGridColumnPresetGridColumnLabelIsCorrect () 
   { 
-    $this->assertEquals($this->getPreset()->label()->value(), 'GridColumnTestPreset'); 
+    $this->assertEquals($this->getPreset()->grid_column_label()->value(), 'GridColumnTestPreset'); 
   }
 }

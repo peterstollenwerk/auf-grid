@@ -1,3 +1,9 @@
 title: Site
-preset: pages
+# preset: pages
 unlisted: true
+
+tabs:
+  settings:
+    sections:
+      grid_settings: auf_grid/grid_settings
+  preview:

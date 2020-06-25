@@ -1,1 +1,36 @@
 Title: WTF
+
+----
+
+Grid-column-presets:
+
+- 
+  grid_column_class: grid__column--full
+  grid_column_label: Full
+  grid_column_start_class: grid__column--start-margin-left
+  grid_column_end_class: grid__column--end-margin-right
+- 
+  grid_column_class: grid__column--large
+  grid_column_label: Large
+  grid_column_start_class: grid__column--start-1
+  grid_column_end_class: grid__column--end-12
+- 
+  grid_column_class: grid__column--medium
+  grid_column_label: Medium
+  grid_column_start_class: grid__column--start-2
+  grid_column_end_class: grid__column--end-11
+- 
+  grid_column_class: grid__column--small
+  grid_column_label: Small
+  grid_column_start_class: grid__column--start-3
+  grid_column_end_class: grid__column--end-10
+- 
+  grid_column_class: grid__column--main
+  grid_column_label: Main
+  grid_column_start_class: grid__column--start-6
+  grid_column_end_class: grid__column--span-7
+- 
+  grid_column_class: grid__column--aside
+  grid_column_label: Aside
+  grid_column_start_class: grid__column--start-1
+  grid_column_end_class: grid__column--span-5

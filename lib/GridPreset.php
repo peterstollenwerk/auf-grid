@@ -6,42 +6,41 @@ use Kirby\Cms\StructureObject;
 
 class GridPreset extends StructureObject {
 
-  private $columnCount;
-  private $maxColumnWidthInPx;
-  private $columnGapInPx;
-  
-  public function __construct(
-    string $uid = 'default',
-    array $options = []
-  ) {
+  public $uid;
+  public $columnCount;
+  public $maxColumnWidthInPx;
+  public $columnGapInPx;
+  public $oneColumnToResponsiveBreakpointInPx;
+  public $columnGapsCount;
+  public $responsiveToStaticBreakpointInPx;
+
+
+  public function __construct() {
     
-    $fallbackOptions = [
+    $fallbackSettings = [
+      'uid' => 'default',
       'columnCount'                         => 12,
       'maxColumnWidthInPx'                  => 90, 
       'columnGapInPx'                       => 16,
       'oneColumnToResponsiveBreakpointInPx' => 600
     ];
     
-    $defaultOptions = [
+    $configSettings = [
       'columnCount'                         => option('auf.grid.settings.columnCount'),
       'maxColumnWidthInPx'                  => option('auf.grid.settings.maxColumnWidthInPx'), 
       'columnGapInPx'                       => option('auf.grid.settings.columnGapInPx'),
       'oneColumnToResponsiveBreakpointInPx' => option('auf.grid.settings.oneColumnToResponsiveBreakpointInPx')
     ];
 
-    $options = (object)array_merge($fallbackOptions, $defaultOptions, $options);
+    $settings = (object)array_merge($fallbackSettings, $configSettings);
 
-    $this->id = $uid;
-
-    $this->content = [
-      'uid' => $uid,
-      'columnCount' => $options->columnCount,
-      'maxColumnWidthInPx' => $options->maxColumnWidthInPx,
-      'columnGapInPx' => $options->columnGapInPx,
-      'oneColumnToResponsiveBreakpointInPx' => $options->oneColumnToResponsiveBreakpointInPx,
-      'columnGapsCount' => $columnGapsCount = $options->columnCount - 1,
-      'responsiveToStaticBreakpointInPx' => $options->columnCount * $options->maxColumnWidthInPx + $columnGapsCount * $options->columnGapInPx
-    ];
+    $this->uid = $settings->uid;
+    $this->columnCount = $settings->columnCount;
+    $this->maxColumnWidthInPx = $settings->maxColumnWidthInPx;
+    $this->columnGapInPx = $settings->columnGapInPx;
+    $this->oneColumnToResponsiveBreakpointInPx = $settings->oneColumnToResponsiveBreakpointInPx;
+    $this->columnGapsCount = $columnGapsCount = $settings->columnCount - 1;
+    $this->responsiveToStaticBreakpointInPx = $settings->columnCount * $settings->maxColumnWidthInPx + $columnGapsCount * $settings->columnGapInPx;
     
   }
 

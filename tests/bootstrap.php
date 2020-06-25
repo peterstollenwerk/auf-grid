@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Data\Yaml;
+
 require_once __DIR__ . '/../kirby/bootstrap.php';
 
 # Set Roots here:
@@ -11,3 +13,4 @@ new Kirby([
     'blueprints' => __DIR__ . '/../site/blueprints'
   ]
 ]);
+

@@ -10,47 +10,29 @@ use Kirby\Data\Yaml;
 
 class Grid {
 
-  private $preset;
-
+  
   static $gridColumnCustomClass = 'grid__column--custom';
   
+  private $gridPreset;
   private $gridColumnDefaultPreset;
   private $gridColumnSitePresets;
 
-  public function __construct() {
+  public function __construct(Field $grid_column_presets = NULL) {
 
-    $this->preset = new GridPreset();
+    $this->gridPreset = new GridPreset();
 
-    // $this->setGridColumnDefaultPreset();
+    $this->setGridColumnDefaultPreset();
 
-    // if($grid_column_presets) {
-    //   $this->setGridColumnSitePresets($grid_column_presets);
-    // }
+    if($grid_column_presets) { $this->setGridColumnSitePresets($grid_column_presets); }
 
   }
 
-  static function getSettings() {
-
-    $file = kirby()->root('config') . '/auf-grid/settings.yml';
-    if(file_exists($file)) {
-      return Yaml::read($file);
-    }
-    return $json = Json::decode('{"info": "No configuration yet"}');
-  }
-
-  static function setSettings($settings) {
-    $file = kirby()->root('config') . '/auf-grid/settings.yml';
-    // Json::write($file, $settings);
-    Yaml::write($file, $settings);
-    return $settings;
-  }
-
-  public function preset() { 
-    return $this->preset; 
+  public function gridPreset() { 
+    return $this->gridPreset; 
   }
 
   public function setGridColumnDefaultPreset() {
-    $this->gridColumnDefaultPreset = new GridColumnPreset( 
+    return $this->gridColumnDefaultPreset = new GridColumnPreset( 
       $gridColumnDefaultClass = 'grid__column--default',
       $gridColumnDefaultStartColumnClass = 'grid__column--start-1',
       $gridColumnDefaultEndColumnClass = 'grid__column--end-12',
@@ -58,14 +40,14 @@ class Grid {
     );
   }
 
+  public function getGridColumnDefaultPreset() {
+    return $this->gridColumnDefaultPreset;
+  }
+
   public function setGridColumnSitePresets(Field $grid_column_presets) {
     if($grid_column_presets->isNotEmpty()) {
       $this->gridColumnSitePresets  = $grid_column_presets->toStructure();
     }
-  }
-
-  public function getGridColumnDefaultPreset() {
-    return $this->gridColumnDefaultPreset;
   }
 
   public function getGridColumnSitePresets() {
@@ -77,22 +59,23 @@ class Grid {
     return $preset ? $preset : $this->getGridColumnDefaultPreset();
   }
 
-  static function getResponsiveToStaticBreakpoint() {
-    return (Grid::$gridColumnsCount * Grid::$gridMaxColumnWidthInPx) + (Grid::$gridColumnGapsCount * Grid::$gridColumnGapInPx);
-  }
-
-  static function getGridColumnSpanWidthInPx($columnSpan) {
-    return ($columnSpan * Grid::$gridMaxColumnWidthInPx) + (($columnSpan - 1) * Grid::$gridColumnGapInPx);
+  public function getGridColumnSpanWidthInPx($columnSpan) {
+    return (
+      $columnSpan * $this->gridPreset()->maxColumnWidthInPx() + 
+      ($columnSpan - 1) * $this->gridPreset()->columnGapInPx()
+    );
   }
 
   static function getGridColumnStartEndType($gridColumnStartEndValue) {
-    if     (strpos($gridColumnStartEndValue, 'grid__column--start') !== false) { return 'col'; } 
+    if     (strpos($gridColumnStartEndValue, 'grid__column--start-margin-left') !== false) { return 'margin-left'; }
+    elseif (strpos($gridColumnStartEndValue, 'grid__column--end-margin-left') !== false) { return 'margin-left'; }
+    elseif (strpos($gridColumnStartEndValue, 'grid__column--start-margin-right') !== false) { return 'margin-right'; }
+    elseif (strpos($gridColumnStartEndValue, 'grid__column--end-margin-right') !== false) { return 'margin-right'; }
+    elseif (strpos($gridColumnStartEndValue, 'grid__column--start-auto') !== false) { return 'auto'; } 
+    elseif (strpos($gridColumnStartEndValue, 'grid__column--start') !== false) { return 'col'; } 
+    elseif (strpos($gridColumnStartEndValue, 'grid__column--end-auto') !== false) { return 'auto'; } 
     elseif (strpos($gridColumnStartEndValue, 'grid__column--end') !== false) { return 'col'; } 
     elseif (strpos($gridColumnStartEndValue, 'grid__column--span') !== false) { return 'span'; } 
-    elseif (strpos($gridColumnStartEndValue, 'grid__column--margin-left-start') !== false) { return 'margin-left'; }
-    elseif (strpos($gridColumnStartEndValue, 'grid__column--margin-left-end') !== false) { return 'margin-left'; }
-    elseif (strpos($gridColumnStartEndValue, 'grid__column--margin-right-start') !== false) { return 'margin-right'; }
-    elseif (strpos($gridColumnStartEndValue, 'grid__column--margin-right-end') !== false) { return 'margin-right'; }
     else {
       return 'auto';
     }
@@ -120,11 +103,6 @@ class Grid {
 
   static function getGridColumnSpanNumber($gridColumnStartEndValue) {
     return (int) str_replace('grid__column--span-', '', $gridColumnStartEndValue);
-  }
-
-  public function getGridColumnSpanByPreset(string $presetUid) {
-    $preset = $this->getGridColumnPreset($presetUid);
-    return $this->getGridColumnSpan($preset->grid_column_start(), $preset->grid_column_end());
   }
 
   public function getGridColumnSpan(
@@ -199,4 +177,28 @@ class Grid {
       return 1;
     }
   }
+
+
+  public function getGridColumnSpanByPreset(string $presetUid) {
+    $preset = $this->getGridColumnPreset($presetUid);
+    return $this->getGridColumnSpan($preset->grid_column_start(), $preset->grid_column_end());
+  }
+
+
+  // --------------------------------------
+
+  static function getSettings() {
+    $file = kirby()->root('config') . '/auf-grid/settings.yml';
+    if(file_exists($file)) {
+      return Yaml::read($file);
+    }
+    return Json::decode('{"info": "No configuration yet"}');
+  }
+
+  static function setSettings($settings) {
+    $file = kirby()->root('config') . '/auf-grid/settings.yml';
+    Yaml::write($file, $settings);
+    return $settings;
+  }
+
 }

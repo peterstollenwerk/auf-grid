@@ -1,0 +1,21 @@
+label: Grid
+#icon: settings
+fields:
+  grid_section_headline:
+    type: headline
+    label: Grid System
+  
+  grid_column_preset:
+    extends: auf_grid/fields/grid_column_preset
+
+  grid_column_start:
+    extends: auf_grid/fields/grid_column_start
+    width: 1/2
+    when:
+      grid_column_preset: grid__column--custom
+  
+  grid_column_end:
+    extends: auf_grid/fields/grid_column_end
+    width: 1/2
+    when:
+      grid_column_preset: grid__column--custom
