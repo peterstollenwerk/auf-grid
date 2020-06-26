@@ -8,6 +8,17 @@ $grid = new Grid($site->grid_column_presets()->toStructure());
 // var_dump($grid->getGridColumnSpanWidthInPx(3));
 ?>
 
+<style>
+  .grid {
+    background-color: hsl(25, 50%, 50%);
+  }
+  .grid > * {
+    background-color: white;
+    outline: 2px dashed black;
+  }
+</style>
+
+
 <section>
   
   <h2>Grid Column Presets Preview</h2>
@@ -23,6 +34,10 @@ $grid = new Grid($site->grid_column_presets()->toStructure());
   <h3>Grid Column Classes Style</h3>
   <pre><?= snippet('auf-grid/grid-column-classes-style'); ?></pre>
   <style><?= snippet('auf-grid/grid-column-classes-style'); ?></style>
+
+</section>
+
+<section>
 
 <?php
   

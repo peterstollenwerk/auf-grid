@@ -39,7 +39,6 @@ $styles = '
 
 .grid > * {
   grid-column: -2 / -2;
-  outline: 1px dashed black;
 }
 
 
