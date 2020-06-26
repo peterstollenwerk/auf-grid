@@ -22,7 +22,7 @@ $styles = '
   display: grid;
   grid-template-columns: 
     [margin-left-start] 1fr [margin-left-end]
-    repeat(var(--grid-column-count), [col-start] var(--grid-column-width) [col-end]) 
+    repeat(var(--grid-column-count), [col-start] minmax(0, var(--grid-column-width)) [col-end]) 
     [margin-right-start] 1fr [margin-right-end];
   grid-column-gap: var(--grid-column-gap);
   column-gap: var(--grid-column-gap);
@@ -36,6 +36,12 @@ $styles = '
   --grid-column-gap: '   . $gridPresetColumnGap . ';
   --grid-row-gap: '. $gridPresetRowGap . ';
 }
+
+.grid > * {
+  grid-column: -2 / -2;
+  outline: 1px dashed black;
+}
+
 
 ';
 ?>

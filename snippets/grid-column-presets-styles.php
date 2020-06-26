@@ -2,12 +2,19 @@
 
 use auf\Grid;
 
-$grid = new Grid($site->grid_column_preset()->toStructure());
+$grid = new Grid($site->grid_column_presets()->toStructure());
 
-$columnPresets = $grid->getGridColumnSitePresets();
-echo '<h2>ABCD</h2>';
+foreach($grid->getGridColumnSitePresets() as $preset) {
 
-foreach($columnPresets as $preset) {
+  snippet('auf-grid/grid-column-preset-style', ['preset' => $preset]);
 
 }
 ?> 
+.grid__column--main {
+  grid-column-start: col-start 6;
+  grid-column-end: col-end 12;
+}
+.grid__column--aside {
+  grid-column-start: col-start 1;
+  grid-column-end: col-end 5;
+}

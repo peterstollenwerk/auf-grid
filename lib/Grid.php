@@ -12,6 +12,79 @@ class Grid {
 
   
   static $gridColumnCustomClass = 'grid__column--custom';
+
+  static $gridColumnStartClassesCssValueMapping = [
+    
+    'grid__column--start-margin-left' => 'margin-left-start',
+    
+    'grid__column--start-1'  => 'col-start 1',
+    'grid__column--start-2'  => 'col-start 2',
+    'grid__column--start-3'  => 'col-start 3',
+    'grid__column--start-4'  => 'col-start 4',
+    'grid__column--start-5'  => 'col-start 5',
+    'grid__column--start-6'  => 'col-start 6',
+    'grid__column--start-7'  => 'col-start 7',
+    'grid__column--start-8'  => 'col-start 8',
+    'grid__column--start-9'  => 'col-start 9',
+    'grid__column--start-10' => 'col-start 10',
+    'grid__column--start-11' => 'col-start 11',
+    'grid__column--start-12' => 'col-start 12',
+    
+    'grid__column--start-margin-right' => 'margin-right-start',
+    
+    'grid__column--start-auto' => 'auto'
+  ];
+
+  static $gridColumnEndClassesCssValueMapping = [
+
+    'grid__column--end-margin-left' => 'margin-left-end',
+    
+    'grid__column--end-1'  => 'col-end 1',
+    'grid__column--end-2'  => 'col-end 2',
+    'grid__column--end-3'  => 'col-end 3',
+    'grid__column--end-4'  => 'col-end 4',
+    'grid__column--end-5'  => 'col-end 5',
+    'grid__column--end-6'  => 'col-end 6',
+    'grid__column--end-7'  => 'col-end 7',
+    'grid__column--end-8'  => 'col-end 8',
+    'grid__column--end-9'  => 'col-end 9',
+    'grid__column--end-10' => 'col-end 10',
+    'grid__column--end-11' => 'col-end 11',
+    'grid__column--end-12' => 'col-end 12',
+    
+    'grid__column--end-margin-right' => 'margin-right-end',
+    
+    'grid__column--end-auto' => 'auto',
+
+  ];
+  static $gridColumnSpanClassesCssValueMapping = [
+    
+    'grid__column--span-1' => 'span 1',
+    'grid__column--span-2' => 'span 2',
+    'grid__column--span-3' => 'span 3',
+    'grid__column--span-4' => 'span 4',
+    'grid__column--span-5' => 'span 5',
+    'grid__column--span-6' => 'span 6',
+    'grid__column--span-7' => 'span 7',
+    'grid__column--span-8' => 'span 8',
+    'grid__column--span-9' => 'span 9',
+    'grid__column--span-10' => 'span 10',
+    'grid__column--span-11' => 'span 11',
+    'grid__column--span-12' => 'span 12'
+  ];
+
+  static function gridColumnStartEndClassesCssValueMapping() {
+    return array_merge(
+      Grid::$gridColumnStartClassesCssValueMapping,
+      Grid::$gridColumnEndClassesCssValueMapping,
+      Grid::$gridColumnSpanClassesCssValueMapping
+    );
+  }
+
+  static function getCssValueForGridColumnStartEndClass($class) {
+    $classes = Grid::gridColumnStartEndClassesCssValueMapping();
+    return $classes[(string)$class];
+  }
   
   private $gridPreset;
   private $gridColumnDefaultPreset;

@@ -27,7 +27,9 @@ Kirby::plugin('auf/grid', [
     'snippets' => [
         'auf-grid/grid-preset-styles' => __DIR__ . '/snippets/grid-preset-styles.php',
         'auf-grid/grid-column-presets-styles' => __DIR__ . '/snippets/grid-column-presets-styles.php',
+        'auf-grid/grid-column-preset-style' => __DIR__ . '/snippets/grid-column-preset-style.php',
         'auf-grid/grid-column-presets-preview' => __DIR__ . '/snippets/grid-column-presets-preview.php',
+        'auf-grid/grid-column-classes-style' => __DIR__ . '/snippets/grid-column-classes-style.php',
     ],
     'fields' => [
         'grid_column' => [
@@ -45,7 +47,6 @@ Kirby::plugin('auf/grid', [
             return [
                 [
                     'pattern' => 'grid/settings',
-                    'method' => 'GET',
                     'action'  => function () {
                         return Grid::getSettings();
                     }
@@ -57,7 +58,7 @@ Kirby::plugin('auf/grid', [
                         $settings = $this->requestBody('settings');
                         return Grid::setSettings($settings);
                     }
-                ]
+                ],
             ];
         }
     ]
