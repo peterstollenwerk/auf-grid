@@ -9,3 +9,5 @@ use auf\Grid;
 $grid = new Grid();
 
 var_dump($grid);
+
+echo $test;

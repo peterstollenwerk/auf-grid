@@ -49,6 +49,7 @@ final class GridTest extends TestCase {
     $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--end-auto'), 'auto');
     $this->assertEquals(Grid::getGridColumnStartEndType('gruetze'), 'auto');
     $this->assertEquals(Grid::getGridColumnStartEndType('----------'), 'auto');
+    $this->assertEquals(Grid::getGridColumnStartEndType(), 'auto');
 
   }
 
@@ -56,11 +57,26 @@ final class GridTest extends TestCase {
     $grid = new Grid();
     $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--end-12'), option('auf.grid.settings.columnCount'));
     $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--end-3', 3), 3);
-    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--span-3', 3), 3);
+    
     $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--end-auto', 12), 12);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--span-3', 3), 3);
     $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--end-6', 12), 6);
     $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--end-margin-left', 12), 1);
     $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--end-margin-right', 12), 13);
+    
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--end-auto', 12), 12);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--span-3', 12), 3);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--end-6', 12), 6);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--end-margin-left', 12), 1);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--end-margin-right', 12), 13);
+    
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-margin-left', 'grid__column--end-auto', 12), 1);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-margin-left', 'grid__column--span-3', 12), 3);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-margin-left', 'grid__column--end-6', 12), 7);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-margin-left', 'grid__column--end-margin-left', 12), 1);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-margin-left', 'grid__column--end-margin-right', 12), 14);
+    
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-margin-right', 'grid__column--end-margin-right', 12), 1);
   }
 
 }
