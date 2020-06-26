@@ -7,13 +7,12 @@ namespace auf;
 use PHPUnit\Framework\TestCase;
 
 use auf\Grid;
-use phpDocumentor\Reflection\Types\This;
 
 final class GridTest extends TestCase {
 
   public function testConstructsGridPreset() {
     $grid = new Grid();
-    $this->assertEquals($grid->gridPreset()->uid, 'default');
+    $this->assertEquals($grid->gridPreset()->uid, 'grid--default');
   }
 
   public function testConstructsGridColumnDefaultPreset() {
@@ -23,7 +22,7 @@ final class GridTest extends TestCase {
   }
   
   public function testConstructsGridColumnSitePresets() {
-    $grid = new Grid(site()->grid_column_presets());
+    $grid = new Grid(site()->grid_column_presets()->toStructure());
     $this->assertEquals(get_class($grid->getGridColumnSitePresets()), 'Kirby\Cms\Structure');
   }
 

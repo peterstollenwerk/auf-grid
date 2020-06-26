@@ -18,7 +18,7 @@ class GridPreset extends StructureObject {
   public function __construct() {
     
     $fallbackSettings = [
-      'uid' => 'default',
+      'uid' => 'grid--default',
       'columnCount'                         => 12,
       'maxColumnWidthInPx'                  => 90, 
       'columnGapInPx'                       => 16,

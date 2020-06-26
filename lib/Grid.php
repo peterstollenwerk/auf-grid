@@ -53,16 +53,14 @@ class Grid {
     return $this->gridColumnSitePresets;
   }
 
-  public function getGridColumnPreset(string $grid_column_class = '') {
-    if($presets = $this->getGridColumnSitePresets()) {
-      $preset = $presets->findBy('grid_column_class', $grid_column_class);
-    } else {
-      return $this->getGridColumnDefaultPreset();
-    }
+
+  public function getGridColumnPresetByColumnClass(string $grid_column_class = '') {
+    $columnPreset = $this->getGridColumnSitePresets()->findBy('grid_column_class', $grid_column_class)->first();
+    return $columnPreset ? $columnPreset : $this->getGridColumnDefaultPreset();
   }
 
   public function getGridColumnSpanByPreset(string $grid_column_class = '') {
-    $preset = $this->getGridColumnPreset($grid_column_class);
+    $preset = $this->getGridColumnPresetByColumnClass($grid_column_class);
     return $this->getGridColumnSpan($preset->grid_column_start_class(), $preset->grid_column_end_class());
   }
 
@@ -188,6 +186,9 @@ class Grid {
       return 1;
     }
   }
+
+
+
 
   // --------------------------------------
 
