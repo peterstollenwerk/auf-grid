@@ -8,6 +8,7 @@ use auf\Grid;
 
 $grid = new Grid();
 
-var_dump($grid);
+var_dump($grid->getGridColumnSpanByPreset('grid__column--full'));
 
-echo $test;
+var_dump($grid->getGridColumnSpanWidthInPx(3));
+

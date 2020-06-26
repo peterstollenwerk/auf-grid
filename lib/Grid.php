@@ -4,7 +4,7 @@ namespace auf;
 
 use auf\GridPreset;
 use auf\GridColumnPreset;
-use Kirby\Cms\Field;
+use Kirby\Cms\Structure;
 use Kirby\Data\Json;
 use Kirby\Data\Yaml;
 
@@ -17,13 +17,15 @@ class Grid {
   private $gridColumnDefaultPreset;
   private $gridColumnSitePresets;
 
-  public function __construct(Field $grid_column_presets = NULL) {
+  public function __construct(Structure $grid_column_presets = NULL) {
 
     $this->gridPreset = new GridPreset();
 
     $this->setGridColumnDefaultPreset();
 
-    if($grid_column_presets) { $this->setGridColumnSitePresets($grid_column_presets); }
+    if($grid_column_presets) {
+      $this->gridColumnSitePresets  = $grid_column_presets;
+    }
 
   }
 
@@ -47,19 +49,21 @@ class Grid {
     return $this->gridColumnDefaultPreset;
   }
 
-  public function setGridColumnSitePresets(Field $grid_column_presets) {
-    if($grid_column_presets->isNotEmpty()) {
-      $this->gridColumnSitePresets  = $grid_column_presets->toStructure();
-    }
-  }
-
   public function getGridColumnSitePresets() {
     return $this->gridColumnSitePresets;
   }
 
-  public function getGridColumnPreset(string $presetUid) {
-    $preset = $this->getGridColumnSitePresets()->findBy('uid', $presetUid);
-    return $preset ? $preset : $this->getGridColumnDefaultPreset();
+  public function getGridColumnPreset(string $grid_column_class = '') {
+    if($presets = $this->getGridColumnSitePresets()) {
+      $preset = $presets->findBy('grid_column_class', $grid_column_class);
+    } else {
+      return $this->getGridColumnDefaultPreset();
+    }
+  }
+
+  public function getGridColumnSpanByPreset(string $grid_column_class = '') {
+    $preset = $this->getGridColumnPreset($grid_column_class);
+    return $this->getGridColumnSpan($preset->grid_column_start_class(), $preset->grid_column_end_class());
   }
 
   public function getGridColumnSpanWidthInPx($columnSpan) {
@@ -184,14 +188,6 @@ class Grid {
       return 1;
     }
   }
-
-
-  // NEXT
-  public function getGridColumnSpanByPreset(string $presetUid) {
-    $preset = $this->getGridColumnPreset($presetUid);
-    return $this->getGridColumnSpan($preset->grid_column_start(), $preset->grid_column_end());
-  }
-
 
   // --------------------------------------
 

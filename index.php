@@ -30,6 +30,9 @@ Kirby::plugin('auf/grid', [
             ]
         ],
     ],
+    'siteMethods' => [
+        'getGridColumnPresets' => function () { return site()->grid_column_presets()->toStructure()->first(); }
+    ],
     'icons' => [],
     'api' => [
         'routes' => function ($kirby) {
