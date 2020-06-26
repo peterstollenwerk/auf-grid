@@ -106,54 +106,59 @@ class Grid {
   }
 
   public function getGridColumnSpan(
+
     string $gridColumnStart = 'grid__column--start-1', 
     string $gridColumnEnd   = 'grid__column--end-12',
     $gridTotalColumns = NULL
+
     ) {
-
+      
     if($gridTotalColumns === NULL) {
-      $gridTotalColumns = Grid::$gridColumnsCount;
+      $gridTotalColumns = $this->gridPreset()->columnCount();
     }
-
     $startType = Grid::getGridColumnStartEndType($gridColumnStart);
     $endType   = Grid::getGridColumnStartEndType($gridColumnEnd);
     
-  
-    // NEXT: Create ALL POSSIBLE span values and 
-    // Test with real data!
-  
+    $gridColumnDefaultStartClass = $this->gridPreset()->gridColumnStartClass();
+    $gridColumnDefaultEndClass = $this->gridPreset()->gridColumnEndClass();
+
     if($startType === 'auto' && $endType === 'auto') {
-      return Grid::getGridColumnNumber(Grid::$gridColumnDefaultEndColumnClass) - Grid::getGridColumnNumber(Grid::$gridColumnDefaultStartColumnClass);
+      return Grid::getGridColumnNumber($gridColumnDefaultEndClass) - Grid::getGridColumnNumber($gridColumnDefaultStartClass) + 1;
     }
     if($startType === 'auto' && $endType === 'span') {
       return Grid::getGridColumnSpanNumber($gridColumnEnd);
     }
-    
     if($startType === 'auto' && $endType === 'col') {
       return Grid::getGridColumnNumber($gridColumnEnd);
     }
-
-    // MISSING auto / margin-left-start
-    // MISSING auto / margin-right-end
-
-    # grid-column: col-2 / col-6 => 6 - 2 => 4
-    if($startType === 'col' && $endType === 'col') {
-      return Grid::getGridColumnNumber($gridColumnEnd) - Grid::getGridColumnNumber($gridColumnStart) + 1;
+    if($startType === 'auto' && $endType === 'margin-left') {
+      return 1;
+    }
+    if($startType === 'auto' && $endType === 'margin-right') {
+      return 1;
+    }
+    # 'col'
+    if($startType === 'col' && $endType === 'auto') {
+      return (Grid::getGridColumnNumber($gridColumnDefaultEndClass) 
+        - Grid::getGridColumnNumber($gridColumnStart) - 1);
     }
     # col-4 / span-3 => 3
     if($startType === 'col' && $endType === 'span') {
       return Grid::getGridColumnSpanNumber($gridColumnEnd);
     }
+    # grid-column: col-2 / col-6 => 6 - 2 => 4
+    if($startType === 'col' && $endType === 'col') {
+      return Grid::getGridColumnNumber($gridColumnEnd) - Grid::getGridColumnNumber($gridColumnStart) + 1;
+    }
     
+    if($startType === 'col' && $endType === 'margin-left') {
+      return 1;
+    }
     # col-6 / margin-right => 12 - (6 - 1)  + 1 => 8 /// 14 - 5 - 1 => 8
     if($startType === 'col' && $endType === 'margin-right') {
       return $gridTotalColumns - (Grid::getGridColumnNumber($gridColumnStart) - 1) + 1;
     }
 
-    if($startType === 'col' && $endType === 'auto') {
-      return (Grid::getGridColumnNumber(Grid::$gridColumnDefaultEndColumnClass) 
-        - Grid::getGridColumnNumber($gridColumnStart) - 1);
-    }
 
 
     # margin-left / span-4 => 4

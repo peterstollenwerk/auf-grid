@@ -7,6 +7,7 @@ namespace auf;
 use PHPUnit\Framework\TestCase;
 
 use auf\Grid;
+use phpDocumentor\Reflection\Types\This;
 
 final class GridTest extends TestCase {
 
@@ -38,17 +39,28 @@ final class GridTest extends TestCase {
 
   public function testColumnTypeDetection() {
     $grid = new Grid();
-    $this->assertEquals($grid->getGridColumnStartEndType('grid__column--start-1'), 'col');
-    $this->assertEquals($grid->getGridColumnStartEndType('grid__column--start-margin-left'), 'margin-left');
-    $this->assertEquals($grid->getGridColumnStartEndType('grid__column--start-margin-right'), 'margin-right');
-    $this->assertEquals($grid->getGridColumnStartEndType('grid__column--start-auto'), 'auto');
-    $this->assertEquals($grid->getGridColumnStartEndType('grid__column--end-1'), 'col');
-    $this->assertEquals($grid->getGridColumnStartEndType('grid__column--end-margin-left'), 'margin-left');
-    $this->assertEquals($grid->getGridColumnStartEndType('grid__column--end-margin-right'), 'margin-right');
-    $this->assertEquals($grid->getGridColumnStartEndType('grid__column--end-auto'), 'auto');
-    $this->assertEquals($grid->getGridColumnStartEndType('gruetze'), 'auto');
-    $this->assertEquals($grid->getGridColumnStartEndType('----------'), 'auto');
+    $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--start-1'), 'col');
+    $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--start-margin-left'), 'margin-left');
+    $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--start-margin-right'), 'margin-right');
+    $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--start-auto'), 'auto');
+    $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--end-1'), 'col');
+    $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--end-margin-left'), 'margin-left');
+    $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--end-margin-right'), 'margin-right');
+    $this->assertEquals(Grid::getGridColumnStartEndType('grid__column--end-auto'), 'auto');
+    $this->assertEquals(Grid::getGridColumnStartEndType('gruetze'), 'auto');
+    $this->assertEquals(Grid::getGridColumnStartEndType('----------'), 'auto');
 
+  }
+
+  public function testGetGridColumnSpan() {
+    $grid = new Grid();
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--end-12'), option('auf.grid.settings.columnCount'));
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-1', 'grid__column--end-3', 3), 3);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--span-3', 3), 3);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--end-auto', 12), 1);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--end-6', 12), 6);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--end-margin-left', 12), 1);
+    $this->assertEquals($grid->getGridColumnSpan('grid__column--start-auto', 'grid__column--end-margin-right', 12), 1);
   }
 
 }
