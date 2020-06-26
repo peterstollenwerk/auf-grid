@@ -30,6 +30,9 @@ class Grid {
   public function gridPreset() { 
     return $this->gridPreset; 
   }
+  public function gridColumnDefaultPreset() { 
+    return $this->gridColumnDefaultPreset; 
+  }
 
   public function setGridColumnDefaultPreset() {
     return $this->gridColumnDefaultPreset = new GridColumnPreset( 
@@ -72,8 +75,8 @@ class Grid {
     elseif (strpos($gridColumnStartEndValue, 'grid__column--start-margin-right') !== false) { return 'margin-right'; }
     elseif (strpos($gridColumnStartEndValue, 'grid__column--end-margin-right') !== false) { return 'margin-right'; }
     elseif (strpos($gridColumnStartEndValue, 'grid__column--start-auto') !== false) { return 'auto'; } 
-    elseif (strpos($gridColumnStartEndValue, 'grid__column--start') !== false) { return 'col'; } 
     elseif (strpos($gridColumnStartEndValue, 'grid__column--end-auto') !== false) { return 'auto'; } 
+    elseif (strpos($gridColumnStartEndValue, 'grid__column--start') !== false) { return 'col'; } 
     elseif (strpos($gridColumnStartEndValue, 'grid__column--end') !== false) { return 'col'; } 
     elseif (strpos($gridColumnStartEndValue, 'grid__column--span') !== false) { return 'span'; } 
     else {
@@ -119,8 +122,8 @@ class Grid {
     $startType = Grid::getGridColumnStartEndType($gridColumnStart);
     $endType   = Grid::getGridColumnStartEndType($gridColumnEnd);
     
-    $gridColumnDefaultStartClass = $this->gridPreset()->gridColumnStartClass();
-    $gridColumnDefaultEndClass = $this->gridPreset()->gridColumnEndClass();
+    $gridColumnDefaultStartClass = $this->gridColumnDefaultPreset()->gridColumnStartClass();
+    $gridColumnDefaultEndClass = $this->gridColumnDefaultPreset()->gridColumnEndClass();
 
     if($startType === 'auto' && $endType === 'auto') {
       return Grid::getGridColumnNumber($gridColumnDefaultEndClass) - Grid::getGridColumnNumber($gridColumnDefaultStartClass) + 1;
@@ -135,12 +138,14 @@ class Grid {
       return 1;
     }
     if($startType === 'auto' && $endType === 'margin-right') {
-      return 1;
+      return 
+        Grid::getGridColumnNumber($gridColumnDefaultEndClass) - 
+        Grid::getGridColumnNumber($gridColumnDefaultStartClass) + 1 + 1;
     }
     # 'col'
     if($startType === 'col' && $endType === 'auto') {
-      return (Grid::getGridColumnNumber($gridColumnDefaultEndClass) 
-        - Grid::getGridColumnNumber($gridColumnStart) - 1);
+      return Grid::getGridColumnNumber($gridColumnDefaultEndClass)
+        - Grid::getGridColumnNumber($gridColumnStart) - 1;
     }
     # col-4 / span-3 => 3
     if($startType === 'col' && $endType === 'span') {
