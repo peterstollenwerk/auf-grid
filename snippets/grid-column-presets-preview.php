@@ -13,7 +13,7 @@ $grid = new Grid($site->grid_column_presets()->toStructure());
   <h2>Grid Column Presets Preview</h2>
 
   <h3>Grid Preset Styles</h3>
-  <pre><?= snippet('auf-grid/grid-preset-styles'); ?></pre>
+  <pre><?//= snippet('auf-grid/grid-preset-styles'); ?></pre>
   <style><?= snippet('auf-grid/grid-preset-styles'); ?></style>
   
   <h3>Grid Column Presets Styles</h3>

@@ -2,15 +2,12 @@
 
 use auf\Grid;
 
-$grid = new Grid();
+$grid = new Grid($site->grid_column_preset()->toStructure());
 
-$grid->getGridColumnSitePresets();
+$columnPresets = $grid->getGridColumnSitePresets();
+echo '<h2>ABCD</h2>';
 
-echo $style = '
-
-.grid__column--myPreset {
+foreach($columnPresets as $preset) {
 
 }
-
-';
-?>
+?> 
