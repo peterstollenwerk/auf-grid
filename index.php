@@ -10,7 +10,8 @@ Kirby::plugin('auf/grid', [
             'columnCount' => 12,
             'maxColumnWidthInPx' => 90,
             'columnGapInPx' => 16,
-            'oneColumnToResponsiveBreakpointInPx' => 600
+            'oneColumnToResponsiveBreakpointInPx' => 600,
+            'rowGap' => '1rem'
         ],
     ],
     'blueprints' => [
@@ -22,6 +23,11 @@ Kirby::plugin('auf/grid', [
         'auf_grid/builder/tabs/grid_component_settings' => __DIR__ . '/blueprints/builder/tabs/grid_component_settings.yml',
         'auf_grid/blueprints/builder/section' => __DIR__ . '/blueprints/builder/section.yml',
     
+    ],
+    'snippets' => [
+        'auf-grid/grid-preset-styles' => __DIR__ . '/snippets/grid-preset-styles.php',
+        'auf-grid/grid-column-presets-styles' => __DIR__ . '/snippets/grid-column-presets-styles.php',
+        'auf-grid/grid-column-presets-preview' => __DIR__ . '/snippets/grid-column-presets-preview.php',
     ],
     'fields' => [
         'grid_column' => [

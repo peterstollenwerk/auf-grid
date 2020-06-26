@@ -13,6 +13,7 @@ class GridPreset extends StructureObject {
   public $oneColumnToResponsiveBreakpointInPx;
   public $columnGapsCount;
   public $responsiveToStaticBreakpointInPx;
+  public $rowGap;
 
 
   public function __construct() {
@@ -21,15 +22,17 @@ class GridPreset extends StructureObject {
       'uid' => 'grid--default',
       'columnCount'                         => 12,
       'maxColumnWidthInPx'                  => 90, 
+      'oneColumnToResponsiveBreakpointInPx' => 600,
       'columnGapInPx'                       => 16,
-      'oneColumnToResponsiveBreakpointInPx' => 600
+      'rowGap'                              => '1rem'
     ];
     
     $configSettings = [
       'columnCount'                         => option('auf.grid.settings.columnCount'),
       'maxColumnWidthInPx'                  => option('auf.grid.settings.maxColumnWidthInPx'), 
+      'oneColumnToResponsiveBreakpointInPx' => option('auf.grid.settings.oneColumnToResponsiveBreakpointInPx'),
       'columnGapInPx'                       => option('auf.grid.settings.columnGapInPx'),
-      'oneColumnToResponsiveBreakpointInPx' => option('auf.grid.settings.oneColumnToResponsiveBreakpointInPx')
+      'rowGap'                              => option('auf.grid.settings.rowGap')
     ];
 
     $settings = (object)array_merge($fallbackSettings, $configSettings);
@@ -41,6 +44,7 @@ class GridPreset extends StructureObject {
     $this->oneColumnToResponsiveBreakpointInPx = $settings->oneColumnToResponsiveBreakpointInPx;
     $this->columnGapsCount = $columnGapsCount = $settings->columnCount - 1;
     $this->responsiveToStaticBreakpointInPx = $settings->columnCount * $settings->maxColumnWidthInPx + $columnGapsCount * $settings->columnGapInPx;
+    $this->rowGap = $settings->rowGap;
     
   }
 
