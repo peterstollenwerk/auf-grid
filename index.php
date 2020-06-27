@@ -10,8 +10,8 @@ Kirby::plugin('auf/grid', [
             'columnCount' => 12,
             'maxColumnWidthInPx' => 90,
             'columnGapInPx' => 16,
-            'oneColumnToResponsiveBreakpointInPx' => 600,
-            'rowGap' => '1rem'
+            'oneColumnToResponsiveBreakpointInPx' => 555,
+            'rowGap' => '0'
         ],
     ],
     'blueprints' => [
@@ -25,11 +25,12 @@ Kirby::plugin('auf/grid', [
     
     ],
     'snippets' => [
-        'auf-grid/grid-preset-styles' => __DIR__ . '/snippets/grid-preset-styles.php',
-        'auf-grid/grid-column-presets-styles' => __DIR__ . '/snippets/grid-column-presets-styles.php',
-        'auf-grid/grid-column-preset-style' => __DIR__ . '/snippets/grid-column-preset-style.php',
-        'auf-grid/grid-column-presets-preview' => __DIR__ . '/snippets/grid-column-presets-preview.php',
-        'auf-grid/grid-column-classes-style' => __DIR__ . '/snippets/grid-column-classes-style.php',
+        'auf-grid/grid-preview' => __DIR__ . '/snippets/grid-preview.php',
+        'auf-grid/styles-grid'                                 => __DIR__ . '/snippets/styles-grid.php',
+        'auf-grid/styles-grid-preset'                          => __DIR__ . '/snippets/styles-grid-preset.php',
+        'auf-grid/styles-grid-column-presets'                  => __DIR__ . '/snippets/styles-grid-column-presets.php',
+        'auf-grid/styles-grid-column-preset'                  => __DIR__ . '/snippets/styles-grid-column-preset.php',
+        'auf-grid/styles-grid-column-start-end-span-classes'   => __DIR__ . '/snippets/styles-grid-column-start-end-span-classes.php',
     ],
     'fields' => [
         'grid_column' => [

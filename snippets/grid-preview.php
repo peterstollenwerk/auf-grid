@@ -23,18 +23,10 @@ $grid = new Grid($site->grid_column_presets()->toStructure());
   
   <h2>Grid Column Presets Preview</h2>
 
-  <h3>Grid Preset Styles</h3>
-  <pre><?= snippet('auf-grid/grid-preset-styles'); ?></pre>
-  <style><?= snippet('auf-grid/grid-preset-styles'); ?></style>
+  <h3>Grid Styles</h3>
+  <pre><?= snippet('auf-grid/styles-grid'); ?></pre>
+  <style><?= snippet('auf-grid/styles-grid'); ?></style>
   
-  <h3>Grid Column Presets Style</h3>
-  <pre><?= snippet('auf-grid/grid-column-presets-styles'); ?></pre>
-  <style><?= snippet('auf-grid/grid-column-presets-styles'); ?></style>
-  
-  <h3>Grid Column Classes Style</h3>
-  <pre><?= snippet('auf-grid/grid-column-classes-style'); ?></pre>
-  <style><?= snippet('auf-grid/grid-column-classes-style'); ?></style>
-
 </section>
 
 <section>

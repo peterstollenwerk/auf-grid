@@ -10,6 +10,7 @@ $gridPresetColumnWidth = $gridPreset->maxColumnWidthInPx() . 'px';
 $gridPresetColumnGap = $gridPreset->columnGapInPx() . 'px';
 $gridPresetColumnCount = $gridPreset->columnCount();
 $gridPresetRowGap = $gridPreset->rowGap();
+$oneColumnToResponsiveBreakpointInPx = $gridPreset->oneColumnToResponsiveBreakpointInPx() . 'px';
 
 $styles = '
 
@@ -39,6 +40,14 @@ $styles = '
 
 .grid > * {
   grid-column: -2 / -2;
+}
+
+
+@media screen and (max-width: '.$oneColumnToResponsiveBreakpointInPx.') {
+  .grid {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 
