@@ -5,10 +5,6 @@ fields:
     label: Grid Settings
     type: headline
 
-  grid_column:
-    label: Grid Column
-    type: grid_column
-
   grid_column_presets:
     label: Grid Column Presets
     type: structure

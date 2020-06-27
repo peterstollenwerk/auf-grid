@@ -4,24 +4,16 @@
     settings: {{settings}}
     <br>
     <br>
-    <grid-column-presets-field />
     <br>
     <br>
-    <grid-column-field label="Grid Column" @input="onGridColumnInput" />
     <k-button class="auf-grid-button" @click="saveSettings">Save Settings</k-button>
   </k-view>
 </template>
 
 <script>
-import GridColumnPresetsField from "../fields/GridColumnPresetsField.vue";
-import GridColumnField from "../fields/GridColumnField.vue";
 
 export default {
 
-    components: {
-      GridColumnPresetsField,
-      GridColumnField
-    },
     data() {
       return {
         settings: Object,

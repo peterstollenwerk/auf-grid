@@ -1,6 +1,7 @@
 title: Default Page
 preset: page
 fields:
-  grid_column:
-    type: grid_column
+  grid_column_preset:
+    label: Grid Column Preset
+    type: grid_column_preset
 

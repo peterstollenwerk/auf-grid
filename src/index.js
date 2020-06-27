@@ -1,5 +1,4 @@
-import GridColumnPresetsField from "./components/fields/GridColumnField.vue";
-import GridColumnField from "./components/fields/GridColumnField.vue";
+import GridColumnPresetField from "./components/fields/GridColumnPresetField.vue";
 import GridSettingsView from "./components/views/GridSettingsView.vue";
 
 const GridIcon = `
@@ -20,11 +19,10 @@ panel.plugin('auf/grid', {
     grid: {
       component: GridSettingsView,
       icon: "grid",
-      label: "Site Grid"
+      label: "Grid"
     }
   },
   fields: {
-    grid_column: GridColumnField,
-    grid_column_presets: GridColumnPresetsField
+    grid_column_preset: GridColumnPresetField
   }
 });
