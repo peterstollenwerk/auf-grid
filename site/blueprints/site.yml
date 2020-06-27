@@ -3,7 +3,14 @@ title: Site
 unlisted: true
 
 tabs:
+  pages:
+    sections:
+      subpages: 
+        headline: Pages
+        type: pages
+        info: "[{{ page.intendedTemplate }}-template]"
+        empty: No subpages yet
+
   settings:
     sections:
       grid_settings: auf_grid/grid_settings
-  preview:

@@ -2,4 +2,4 @@ Title: AUF Grid
 
 ----
 
-Grid-column: aside
+Grid-column: main
