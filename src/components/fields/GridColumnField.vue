@@ -7,23 +7,15 @@
     :required="required"
   >
 
-    Test Prop: {{test}}
-
     <k-input
       v-model="value"
-      :options="[
-          { value: 'main', text: 'Main' },
-          { value: 'aside', text: 'Aside' },
-          { value: 'custom', text: 'Custom...' }
-      ]"
+      :options="options"
       name="grid__column__class"
       type="select"
       theme="field"
       @input="onChange"
 
     />
-    <div v-if="isCustom">Custom Column! ; )</div>
-    <p>Counter: {{ counter }}</p>
 
   </k-field>
 
@@ -40,20 +32,31 @@ export default {
     label: String,
     required: Boolean,
     value: String,
-    test: String
   },
   data: function() {
     return {
-      counter: 1
+      gridColumnCustomPreset: { 
+        grid_column_class: "grid__column--custom", 
+        grid_column_label: "Custom..."},
+      options: []
     }
   },
-  computed: {
-    isCustom: function() {
-      this.counter += 1;
-      return this.value === 'custom';
-    }
+  created() {
+    this.load();
   },
   methods: {
+    load() {
+      this.$api.site.get()
+        .then(res => {
+          const gridColumnPresets = res.content.grid_column_presets;
+          gridColumnPresets.push(this.gridColumnCustomPreset);
+          const options = [];
+          gridColumnPresets.forEach(preset => {
+            options.push({value: preset.grid_column_class, text: preset.grid_column_label});
+          });
+          this.options = options;
+        });
+    },
     onChange(value) {
       this.$emit("input", value);
     }
