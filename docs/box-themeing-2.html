@@ -1,0 +1,584 @@
+<html>
+
+<header>
+<style>
+
+* {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+* > * + * {
+  margin-top: 2rem;
+}
+body {
+  margin-top: initial;
+}
+.page {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+* > h1 + h2,
+* > h1 + h3,
+* > h2 + h3,
+* > h2 + h1,
+* > h3 + h1,
+* > h3 + h2,
+* > h4 + h2 {
+  margin-top: 1rem;
+}
+
+section > h2:first-child {
+  text-transform: uppercase;
+  font-size: smaller;
+  border-bottom: 1px solid black;
+  padding-top: 1rem;
+}
+
+/* nice list-styling:
+https://stackoverflow.com/questions/10405945/html-ordered-list-1-1-1-2-nested-counters-and-scope-not-working
+*/
+
+ol > * {
+}
+
+ol {
+  counter-reset: item;
+}
+
+li {
+  display: block;
+  padding-left: 2rem;
+}
+li:before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+  display: inline-block;
+  width: 2rem;
+  margin-left: -2rem;
+  font-size: smaller;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+figcaption {
+  margin-top: initial;
+  font-size: smaller;
+}
+.font-size--x-small {
+  font-size: 0.618rem;
+}
+.font-size--small {
+  font-size: 1rem;
+}
+.font-size--medium {
+  font-size: 1.618rem;
+}
+.font-size--large {
+  font-size: 2.618rem;
+}
+
+/* =============================== */
+/* COLORS */
+
+/* =============================== */
+/* THEMES */
+
+.theme--day {
+  --color: hsl(205, 10%, 10%);
+  --border-color: black; /* TODO: Check if we can use variables --color here! */
+  --outline-color: black;
+  --background-color: white;
+  --page-background-color-1: hsl(25, 10%, 95%);
+  --page-background-color-2: hsl(25, 10%, 75%);
+}
+
+.theme--orange-black {
+  --color: hsl(25, 100%, 50%);
+  --border-color: hsl(25, 100%, 50%);
+  --outline-color: hsl(25, 100%, 50%);
+  --background-color: hsla(25, 10%, 5%, 0.5);
+}
+
+/*  PASSING DOWN THE VARIABLES */
+
+* {
+  color: var(--color);
+  border-color: var(--border-color);
+  outline-color: var(--outline-color);
+  /* 
+    use background-color in combination 
+    with .box and boxes 
+  */
+}
+
+[class*="theme--"].page {
+  background-color: var(--page-background-color-1, red);
+  background: linear-gradient(
+    to bottom,
+    var(--page-background-color-1) 0%,
+    var(--page-background-color-2) 100%
+  );
+}
+
+.box,
+.boxes > * {
+  padding: 1rem;
+  background-color: var(--background-color);
+}
+.box > * + *,
+.boxes > * > * + * {
+  margin-top: 1rem;
+}
+
+.box--border,
+.boxes--border > * {
+  border: 0.5rem solid var(--border-color);
+}
+.box--outset,
+.boxes--outset > * {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+.box--outset--image > .image {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+.box--outset--image > .image:first-child {
+  margin-top: -1rem;
+}
+
+/* =============================== */
+/* BAKCGROUNDS & GRID UNDERLAY */
+
+* {
+  position: relative;
+}
+* > * {
+  z-index: +1;
+}
+* > .background {
+  z-index: 0;
+  background-color: yellow;
+}
+* > .background,
+* > .background + * {
+  /* remove * > * + * {margin-top: ?}; */
+  margin-top: initial;
+}
+
+/* =============================== */
+/* GRID */
+
+:root {
+  --grid-template-columns: repeat(12, [col-start] minmax(0, 50px) [col-end]);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr var(--grid-template-columns) 1fr;
+  column-gap: 1rem;
+}
+.grid > * {
+  grid-column-start: col-start 5;
+  grid-column-end: col-end 12;
+}
+.grid > .grid {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+.grid__column--full,
+.grid--columns--full > * {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+.grid__column--large,
+.grid--columns--large > * {
+  grid-column-start: col-start 1;
+  grid-column-end: col-end 12;
+}
+
+.grid__column--end-margin-right {
+  grid-column-start: col-start 3;
+  grid-column-end: -1;
+}
+
+.inline-grid {
+  /* Reset inline-grid */
+  grid-column-start: col-start 1;
+  grid-column-end: col-end 12;
+
+  display: grid;
+  grid-template-columns: var(--grid-template-columns);
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+.inline-grid > * {
+  margin-top: initial;
+  grid-column-start: auto;
+  grid-column-end: span 4;
+}
+.inline-grid.inline-grid--items-span-1 > * {
+  grid-column-end: span 1;
+}
+.inline-grid.inline-grid--items-span-2 > * {
+  grid-column-end: span 2;
+}
+.inline-grid.inline-grid--items-span-3 > * {
+  grid-column-end: span 3;
+}
+.inline-grid.inline-grid--items-span-4 > * {
+  grid-column-end: span 4;
+}
+.inline-grid.inline-grid--items-span-5 > * {
+  grid-column-end: span 5;
+}
+.inline-grid.inline-grid--items-span-6 > * {
+  grid-column-end: span 6;
+}
+.inline-grid.inline-grid--items-span-7 > * {
+  grid-column-end: span 7;
+}
+.inline-grid.inline-grid--items-span-8 > * {
+  grid-column-end: span 8;
+}
+
+.grid > *,
+.inline-grid > * {
+  outline: 0px dashed black;
+}
+
+/* This makes inline boxes text align vertically with grid items text */
+
+/* 
+.grid > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.grid > .inline-grid.boxes {
+  padding-left: initial;
+  padding-right: initial;
+}
+*/
+
+/* =============================== */
+/* GRID UNDERLAY */
+
+.grid--overlay {
+  display: grid !important;
+  display: none !important;
+  margin-top: initial;
+  z-index: -1;
+  text-align: center;
+  font-weight: bold;
+  color: fuchsia;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.grid--overlay > * {
+  padding: 0;
+  margin: 0;
+  color: fuchsia;
+  outline: fuchsia 1px dashed;
+  margin-top: initial;
+  grid-column-start: auto;
+  grid-column-end: span 1;
+}
+
+/* ++++++++++++++++++++++++++++ */
+/* Grid Layouts */
+
+blockquote.grid {
+  grid-template-rows: 1fr;
+}
+blockquote.grid > * {
+  margin-top: initial;
+  grid-row: 1;
+}
+blockquote.grid > .overlay {
+  background-color: var(--background-color);
+}
+blockquote > figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+blockquote > .text {
+  text-align: left;
+  justify-self: center;
+  align-self: center;
+  padding: 1rem;
+}
+
+.grid-layout--twisted-cards > * {
+  margin-top: initial;
+}
+.grid-layout--twisted-cards > figure {
+  grid-column-start: col-start 4;
+  grid-column-end: col-end 11;
+  margin-bottom: -1rem;
+}
+.grid-layout--twisted-cards > .background {
+  grid-column-start: col-start 3;
+  grid-column-end: col-end 10;
+  height: 8rem;
+  margin-top: -3rem;
+  margin-bottom: -4rem;
+}
+.grid-layout--twisted-cards > *:not(figure) {
+  grid-column-start: col-start 2;
+  grid-column-end: col-end 9;
+}
+
+/* ============================================= */
+/* ONE COLUMN LAYOUT */
+
+@media screen and (max-width: 666px) {
+  :root {
+    --page-margin-left: 2rem;
+    --page-margin-right: 2rem;
+  }
+
+  .page {
+    padding-left: var(--page-margin-left);
+    padding-right: var(--page-margin-right);
+  }
+
+  .grid__column--full {
+    margin-left: calc(var(--page-margin-left) * -1);
+    margin-right: calc(var(--page-margin-right) * -1);
+  }
+  .grid__column--start-margin-left {
+    margin-left: calc(var(--page-margin-left) * -1);
+  }
+  .grid__column--end-margin-right {
+    margin-right: calc(var(--page-margin-right) * -1);
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .grid > .grid {
+    margin-left: initial;
+    margin-right: initial;
+  }
+
+  .inline-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .inline-grid > *:not(:first-child) {
+    --row-gap: 1rem;
+    margin-top: var(--row-gap, inherit);
+  }
+
+  .box {
+    padding-left: var(--page-margin-left);
+    padding-right: var(--page-margin-right);
+  }
+
+  .box.box--outset {
+    margin-left: initial;
+    margin-right: initial;
+  }
+}
+
+
+</style>
+</header>
+<body class="page theme--day">
+  <body class="page theme--day">
+    <main class="grid">
+
+      <figure class="grid__column--end-margin-right" style="grid-column-start: col-start 2;">
+        <div style="max-height: 50vh; overflow: hidden;">
+          <img src="https://cdn.prod.www.spiegel.de/images/871988d7-0001-0004-0000-000000114736_w1200_r1_fpx63.97_fpy49.98.jpg" alt="Muhammad Ali" />
+        </div>
+        <figcaption>Always wrap an image into a container, if you want to align it to the page-margin!</figcaption>
+      </figure>
+
+      <h3>Tagline</h3>
+      <h1>Theme Boxing</h1>
+      <h2>Subtitle</h2>
+
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic impedit expedita exercitationem sunt quam harum tempora, id, eveniet quae voluptatum modi commodi, autem laudantium? Magnam qui et autem totam dolorem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis hic ad corrupti temporibus dolor, reiciendis totam quaerat ex impedit molestias incidunt. Asperiores minima incidunt, voluptatum a quo ullam dolor quibusdam.</p>
+
+      <h3>A blockquote is a section, is a container, is a grid!</h3>
+      <blockquote class="grid grid--columns--full theme--orange-black">
+        <figure>
+          <img src="https://www.sportsnet.ca/wp-content/uploads/2014/12/ali_frazier.jpg" alt="Muhammad Ali" />
+        </figure>
+        <div class="overlay"></div>
+        <div class="text grid__column--large">
+          <p class="font-size--large">
+            <strong>Don´t quit.</strong><br>Suffer now and live the rest of your life as a champion.</p>
+          <p> - Muhammad Ali</p>
+        </div>
+      </blockquote>
+
+      <section class="grid">
+        <h2>Every Section needs a headline</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta earum laboriosam ipsum molestiae, sequi voluptatibus laudantium voluptatum corrupti impedit suscipit aliquam, eos magni deleniti est ipsam nobis blanditiis distinctio? Quaerat.</p>
+        <div class="inline-grid boxes">
+
+          <article>
+
+            <img src="https://cdn.prod.www.spiegel.de/images/871988d7-0001-0004-0000-000000114736_w1200_r1_fpx63.97_fpy49.98.jpg" alt="Muhammad Ali" />
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deserunt hic ad doloribus, illo fuga aspernatur asperiores libero blanditiis repellendus dolore facilis nulla incidunt dolores sunt tenetur. Inventore, cum cumque!</p>
+
+          </article>
+
+          <article class="box--outset--image">
+            <figure class="image">
+              <img src="https://cdn.prod.www.spiegel.de/images/871988d7-0001-0004-0000-000000114736_w1200_r1_fpx63.97_fpy49.98.jpg" alt="Muhammad Ali" />
+            </figure>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deserunt hic ad doloribus, illo fuga aspernatur asperiores libero blanditiis repellendus dolore facilis nulla incidunt dolores sunt tenetur. Inventore, cum cumque!</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ab eius laboriosam quaerat praesentium laudantium ipsa illo cum itaque voluptate! Molestias at quas nesciunt sit tenetur non ex ipsa eius!
+            </p>
+
+          </article>
+
+          <article>
+
+            <img class="image" src="https://cdn.prod.www.spiegel.de/images/871988d7-0001-0004-0000-000000114736_w1200_r1_fpx63.97_fpy49.98.jpg" alt="Muhammad Ali" />
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deserunt hic ad doloribus, illo fuga aspernatur asperiores libero blanditiis repellendus dolore facilis nulla incidunt dolores sunt tenetur. Inventore, cum cumque!</p>
+
+          </article>
+
+        </div>
+        <div class="spacer theme--orange-blue" style="height: 8rem; margin-top: -7rem; margin-left: -1rem; margin-right: -1rem; grid-column-start: col-start 3"></div>
+      </section>
+
+      <p class="grid__column--full" style="border-top: 1px solid black; border-bottom: 1px solid black;">
+        <code>.grid__column--full</code>
+      </p>
+
+      <figure class="grid__column--full">
+        <img src="https://specials-images.forbesimg.com/imageserve/517259310/960x0.jpg" alt="">
+      </figure>
+
+      <section class="inline-grid inline-grid--items-span-6">
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos esse consequuntur nam officia a iure ad porro, corrupti aperiam ab quasi consectetur iusto officiis, sunt laboriosam illo autem et ipsum!</p>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quod ex, voluptas numquam eaque quo obcaecati. Nulla voluptates itaque quo dolores aperiam hic deleniti aspernatur! Itaque consequuntur consequatur nam repudiandae.</p>
+      </section>
+
+      <section class="grid">
+
+        <h2>Let´s turn it around</h2>
+
+        <div class="inline-grid grid__column--large boxes">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto deserunt hic ad doloribus, illo fuga aspernatur asperiores libero blanditiis repellendus dolore facilis nulla incidunt dolores sunt tenetur. Inventore, cum cumque!</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate aperiam temporibus eius nesciunt nisi accusamus vel saepe, error quis rerum quasi deleniti neque doloribus ut a quisquam repudiandae odit magni?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt eius necessitatibus neque cumque natus unde tempora, facilis corrupti laborum dolorum inventore, corporis voluptas officia debitis commodi, fugit nostrum aperiam perferendis.</p>
+        </div>
+      </section>
+    </main>
+    <aside class="grid">
+      <section class="grid">
+        <h2>Related Articles</h2>
+        <article class="grid grid-layout--twisted-cards">
+
+          <figure>
+            <img src="https://static4.suedkurier.de/storage/image/9/8/3/0/12760389_shift-966x593-1932w_1u585F_rddIHD.jpg" alt="">
+          </figure>
+
+          <div class="background box" style="background: orange"></div>
+
+          <header class="box">
+            <h4>Tagline</h4>
+            <h2>Related Title</h2>
+            <h3>Related Subtitle</h3>
+          </header>
+
+          <p class="box">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis qui at possimus modi ipsa, delectus ut a corrupti impedit consequatur optio, cumque, omnis blanditiis quo similique obcaecati debitis illo inventore!</p>
+          <p class="box"><a href="#">Read More</a></p>
+        </article>
+        <button style="grid-column: col-start 3 / col-end 10;">All Articles</button>
+      </section>
+      <section>
+        <h2>Rules</h2>
+        <ol>
+          <li>Horizontal distributed items next to each other should be placed with .inline-grid. <br>If used in combination with .boxes, the boxes are .box--inset by default.</li>
+          <li>Vertically distributed boxes should be positioned with the .grid-class. To create ruhe for the eye, the single row .box should be set to .box--outset </li>
+          <li>* > * + * { margin-top: 2rem; } looks better than 1rem default spacings. Make shure to set headline combinations to 1rem: h1 + h2 { margin-top: 1rem; }</li>
+          <li>Colors
+          </li>
+          <ol>
+            <li>Black & White are reserved for highlighting. They preserve maximum constrast.</li>
+
+            <li>The overall page should be tinted a little bit. It´s easier for the eyes.</li>
+
+            <li>Find the minimum tint in placing a white box on the page. If you can clearly see the box, you found your minimum value.</li>
+
+            <li>The overall text should be a little desaturated to, but have enough contrast to be good readable. Start with black and desaturate to taste, but Still achieve a AAA rating for contrast.</li>
+
+            <li>To make the page background more interesting, you can use a gradient. Slowly darken the background by checking the AAA-Rating. Drop color value till the rating switches to AA. Stop. You found the second color-stop for your gradient. Use the minimunt tint page color for the first.</li>
+
+            <li>You can use a neutral grey, or tinted grey, warm and cold. What u use is up to you. Make shure you stay in the AAA-ratings. I like to use a warm-grey for the background in combination with a cool-grey for the font.</li>
+
+          </ol>
+        </ol>
+      </section>
+      <hr>
+      <section>
+        <h2>Next</h2>
+        <ol>
+          <li>[done] Create Gradient Background for .page</li>
+          <li>Implement Image .box > image</li>
+          <li>Implement Image Aspect Ratio</li>
+          <li>Implement Image Focus Point</li>
+          <li>Create Box-Themes:
+            <form action="">
+              <fieldset>
+                <label for="box-themes">Box-Themes:</label>
+                <select name="box-themes" id="box-themes">
+                  <option value="">select...</option>
+                  <option value="">Orange Box with Black Typo</option>
+                  <option value="">Black Box with White Border</option>
+                  <option value="">Custom...</option>
+                </select>
+              </fieldset>
+            </form>
+          </li>
+        </ol>
+      </section>
+    </aside>
+
+    <div class="grid grid--overlay">
+      <div></div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+      <div>10</div>
+      <div>11</div>
+      <div>12</div>
+      <div></div>
+    </div>
+
+  </body>
+
+</body>
+
+</html>
