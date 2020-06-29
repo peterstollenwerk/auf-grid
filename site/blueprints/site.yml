@@ -19,5 +19,5 @@ tabs:
         type: fields
         fields:
           grid_column_preset:
-            label: Grid Column Preset
+            label: Grid Column Preset (for testing!)
             type: grid_column_preset
