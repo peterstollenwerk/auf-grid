@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* ========================= */
+/* reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+/* ========================= */
+/* top-margins */
+:root {
+  --margin-top--default: 2em;
+}
+* + * {
+  margin-top: var(--margin-top--default);
+}
+
+body {
+  margin-top: initial;
+}
+/* ========================= */
+/* colors */
+:root {
+  --color: black;
+  --background-color: white;
+  --page-background-color: #ccc;
+
+  /* Border Styles */
+  --border-color: var(--color);
+  --border-width: 5px;
+  --border-style: solid;
+  --border-radius: 20rem;
+
+  /* Outline Styles */
+  --outline-color: var(--color);
+  --outline-width: 2px;
+  --outline-style: dashed;
+  --outline-offset: 0;
+}
+
+.theme--night {
+  --color: white;
+  --background-color: black;
+}
+.theme--orange {
+  --color: black;
+  --background-color: orange;
+}
+
+* {
+  color: var(--color);
+}
+
+body {
+  background-color: var(--page-background-color);
+}
+
+/* ========================= */
+/* typography */
+
+:root {
+  font-size: 16px;
+  font-family: Arial;
+  line-height: 1.5;
+}
+.font-size--large {
+  font-size: 1.25rem;
+}
+.font-size--small {
+  font-size: 0.75rem;
+}
+
+h2 {
+  font-size: 2em;
+}
+p {
+  font-size: 1em;
+}
+ul {
+  font-size: 1em;
+}
+
+/* ========================= */
+/* images */
+/* ========================= */
+
+img {
+  max-width: 100%;
+}
+
+.object-fit--cover,
+.object-fit--cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================= */
+/* grid */
+/* ========================= */
+:root {
+  --grid-column-gap: 1rem;
+  --grid-row-gap: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr repeat(12, [col-start] minmax(0, 50px) [col-end]) 1fr;
+  column-gap: var(--grid-column-gap);
+  row-gap: var(--grid-row-gap);
+}
+.grid--with-rows {
+  grid-template-rows: auto;
+}
+.grid.grid--with-rows > * {
+  grid-row: var(--grid-row);
+}
+.grid > * {
+  grid-column-start: col-start 6;
+  grid-column-end: col-end 12;
+}
+.grid > .grid {
+  /* always stretch nested grid out to full width to preserve column count */
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+.grid__column--start-1 {
+  grid-column-start: col-start 2;
+}
+.grid__column--start-4 {
+  grid-column-start: col-start 4;
+}
+.grid__column--start-7 {
+  grid-column-start: col-start 7;
+}
+.grid__column--end-10 {
+  grid-column-end: col-end 10;
+}
+.grid__column--end-11 {
+  grid-column-end: col-end 11;
+}
+
+.grid__column-preset--main {
+  grid-column-start: col-start 3;
+  grid-column-end: col-end 9;
+}
+
+.grid__column-preset--center {
+  grid-column-start: col-start 5;
+  grid-column-end: col-end 9;
+}
+
+.outset {
+  margin-left: calc(var(--grid-column-gap) * -1);
+  margin-right: calc(var(--grid-column-gap) * -1);
+}
+.inset {
+  margin-left: var(--grid-column-gap);
+  margin-right: var(--grid-column-gap);
+}
+
+/* ------------------------- */
+/* grid--overlay */
+
+.grid.grid--overlay,
+.grid.grid--overlay > * {
+  margin-top: initial;
+  text-align: center;
+  color: fuchsia;
+  outline: 1px dashed fuchsia;
+}
+
+.grid.grid--overlay > * {
+  grid-column-start: auto;
+  grid-column-end: span 1;
+}
+
+/* ========================= */
+/* styles */
+/* ========================= */
+/* ------------------------- */
+/* box - styles */
+/* ------------------------- */
+*.box,
+*.boxes > * {
+  --padding: 1rem;
+  padding: var(--padding);
+  background-color: var(--background-color);
+}
+.box.grid {
+  /*.grid is always full width. 
+  reset paddings to stay in the grid */
+  padding-left: 0;
+  padding-right: 0;
+}
+/* ------------------------- */
+/* border - styles */
+/* ------------------------- */
+*.border,
+*.borders > * {
+  border-style: var(--border-style, solid);
+  border-width: var(--border-width, 5px);
+  border-color: var(--border-color, magenta);
+  border-radius: var(--border-radius, 1rem);
+}
+/* ------------------------- */
+/* outline - styles */
+/* ------------------------- */
+*.outline,
+*.outlines > * {
+  outline-width: var(--outline-width, 2px);
+  outline-style: var(--outline-style, dashed);
+  outline-color: var(--outline-color, magenta);
+  outline-offset: var(--outline-offset, 0);
+}
+
+/* ========================= */
+/* content elements */
+/* ========================= */
+
+/* ------------------------- */
+/* background */
+/* ------------------------- */
+* {
+  z-index: +1;
+}
+.background {
+  z-index: 0;
+}
+/* ------------------------- */
+/* spacer */
+/* ------------------------- */
+.spacer {
+  margin-top: initial;
+  min-height: var(--min-height, 0);
+}
+.spacer + * {
+  margin-top: initial;
+}
+
+/* ========================= */
+/* flex */
+/* ========================= */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+  </style>
+</head>
+<body>
+  <div class="grid grid--overlay">
+    <div>.</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>.</div>
+  </div>
+  
+  <section class="grid grid--with-rows boxes outlines">
+  
+    <!-- 
+    Do yourself a favor:  
+    output the empty div backgrounds before the content.
+    This ensures they are in the back, and you don´t have
+    to deal with the z-index. 
+    -->
+  
+    <figure class="background object-fit--cover grid__column--start-1 grid__column--end-10" style="--grid-row: 1 / 6; --background-color: pink;">
+      <img src="https://www.gstatic.com/tv/thumb/persons/117099/117099_v9_ba.jpg" alt="">
+    </figure>
+  
+    <div class="background grid__column--start-7 grid__column--end-11" style="--grid-row: 1 / 5; --background-color: blue;">
+    </div>
+  
+    <h2 class="outline" style="--grid-row: 1">Section Label</h2>
+    <p class="box inset" style="--grid-row: 2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt nostrum minus modi commodi iusto assumenda totam dolorum, eos atque ullam, voluptatum animi fugiat ut quae non eaque, dolores ducimus obcaecati?</p>
+    <div class="spacer background theme--orange border grid__column-preset--center" style="--grid-row:3; min-height: 10rem; margin-top: -4rem; margin-bottom: -4rem;"></div>
+    <ul class="outset" style="--grid-row: 4;">
+      <li>Related Page 1</li>
+      <li>
+        <h2>Just a test</h2>
+      </li>
+      <li>Related Page 3</li>
+    </ul>
+  
+    <div class="spacer box outline flex" style="--grid-row: 5; --min-height: 6em; --background-color: red; --margin-top: 1rem; --margin-bottom: 1rem;">YES</div>
+  
+    <a style="--grid-row: 6" href="#">Link to something</a>
+  
+  </section>
+</body>
+</html>

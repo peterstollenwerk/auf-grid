@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+* + * {
+  margin-top: 2rem;
+}
+
+ul.without-bullets {
+  list-style: none;
+}
+ul.compact > * {
+  margin-top: initial;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr repeat(12, [col-start] minmax(0, 50px) [col-end]) 1fr;
+  column-gap: 1rem;
+  row-gap: 0;
+}
+.grid--with-rows {
+  grid-template-rows: auto;
+}
+.grid.grid--with-rows > * {
+  grid-row: var(--grid-row);
+}
+.grid.grid--with-rows > .background {
+  margin: initial;
+  grid-row-start: var(--grid-row-start);
+  grid-row-end: var(--grid-row-end);
+  background-color: red;
+}
+
+.grid > * {
+  z-index: +1; /* needed to set div.backgrounds to -1; */
+  grid-column-start: col-start 6;
+  grid-column-end: col-end 12;
+  outline: 1px dashed black;
+}
+.grid > .grid {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+.grid__column-template--main,
+.grid--items--columm-template--main > * {
+  grid-column-start: col-start 6;
+  grid-column-end: col-end 10;
+}
+
+.grid__column-preset--center-2 {
+  grid-column-start: col-start 5;
+  grid-column-end: col-end 9;
+}
+
+.grid.grid--overlay,
+.grid.grid--overlay > * {
+  color: fuchsia;
+  outline: 1px dashed fuchsia;
+}
+
+.grid.grid--overlay > * {
+  grid-column-start: auto;
+  grid-column-end: span 1;
+}
+
+.background {
+  z-index: -1;
+}
+
+.grid.grid-template--twisted > * {
+  grid-column-start: col-start 2;
+  grid-column-end: span 7;
+}
+.grid.grid-template--twisted > figure {
+  grid-column-start: col-start 6;
+  grid-column-end: span 7;
+  padding: initial;
+}
+.grid.grid-template--twisted > :nth-child(4) {
+  grid-column-start: col-start 3;
+}
+.grid.grid-template--twisted > .background {
+  grid-column-start: col-start 4;
+  height: 10rem;
+  margin-top: -3rem;
+  margin-bottom: -6rem;
+}
+
+:root {
+  --padding: 1rem;
+  --background-color: white;
+  --page-background-color: #ccc;
+}
+body {
+  background-color: var(--page-background-color);
+}
+
+.box,
+.boxes > * {
+  padding: var(--padding);
+  background-color: var(--background-color);
+}
+
+.boxes--compact > * {
+  margin-top: initial;
+}
+
+
+</style>
+</head>
+<body>
+  <div class="grid grid--overlay">
+    <div>.</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>.</div>
+  </div>
+  
+  <main class="grid grid--with-rows">
+    <section style="--grid-row: 1;">
+      <h2>How can we provide configurable(!) Layout-Presets to display related pages content?</h2>
+      <p>What If we create a Related Pages Layout-Presets in the site section, and use this as a configuration?</p>
+    </section>
+    <h2 style="--grid-row: 2;">Tow different presets</h2>
+    <ul style="--grid-row: 3;" class="grid">
+      <li class="grid">
+        <article class="grid boxes boxes--compact grid-template--twisted">
+          <figure><img src="" alt="Nice Pic"></figure>
+          <div class="background" style="--background-color: orange;"></div>
+          <h2>Twisted</h2>
+          <h3>Hardcoded</h3>
+          <p>This preset uses hardcoded css class <code>.grid-template--twisted</code>.<br>
+            The hardcoded preset-class could select a dedicated snippet.</p>
+          <ul class="without-bullets compact">
+            <li>+ Simple to set up</li>
+            <li>+ Simple for the backend user</li>
+            <li>- Not configurable via backend, or only for certain aspects.</li>
+          </ul>
+        </article>
+      </li>
+      <li class="grid">
+        <article class="grid grid--items--columm-template--main boxes boxes--compact" style="text-align: center;">
+          <figure style="padding: 0; grid-column-start: col-start 1; grid-column-end: span 5; align-self: center; justify-self: end; margin-right: -1rem;">
+            <img src="" alt="Great Pic">
+          </figure>
+          <div>
+            <h2>Title</h2>
+            <h3>Subtitle</h3>
+            <p>Text</p>
+          </div>
+        </article>
+      </li>
+    </ul>
+    <div class="background grid__column-preset--center-2" style="--grid-row-start: 1; --grid-row-end: span 4">bg</div>
+  </main>
+</body>
+</html>
