@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root {
+  --color: hsla(25, 100%, 5%, 1.0);
+  --background-color: hsla(325, 100%, 50%, 1.0);
+  --box-shadow-ambient-color: hsla(325, 100%, 50%, 0.5); /* this is the background-color with new alpha value! */
+  --box-shadow-color: hsla(25, 10%, 10%, 0.5);
+  --page-background-color: hsla(25, 2%, 90%, 100%);
+}
+* {
+  color: var(--color);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: +1;
+}
+* > * + * {
+  margin-top: 2em;
+}
+section {
+  margin-top: 3rem;
+}
+body {
+  background-color: var(--page-background-color);
+}
+.grid {
+  display: grid;
+  grid-template-columns:
+    minmax(1rem, 1fr) repeat(12, [col-start] minmax(0, 50px) [col-end])
+    minmax(1rem, 1fr);
+}
+.grid > * {
+  grid-column: col-start 1 / col-end 12;
+}
+.box {
+  font-size: 1rem;
+  padding: 1em;
+  background-color: var(--background-color);
+}
+
+[class*="box-shadow"] {
+  /* 
+    
+  to create realsitic shadows, we need two shadows:
+
+  1. Cast by direct light -> neutral grey
+  2. Cast by ambient light -> box background color
+  
+  */
+
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  --box-shadow-offset-x: 0;
+  --box-shadow-offset-y: 1px;
+  --box-shadow-blur-radius: 3px;
+  --box-shadow-spread-radius: 0;
+  --box-shadow-color;
+
+  --box-shadow-ambient-offset-x: 0;
+  --box-shadow-ambient-offset-y: 1px;
+  --box-shadow-ambient-blur-radius: 3px;
+  --box-shadow-ambient-spread-radius: 0;
+  --box-shadow-ambient-color; 
+
+  box-shadow: 
+    /* direct-shadow */ var(--box-shadow-offset-x)
+      var(--box-shadow-offset-y) var(--box-shadow-blur-radius)
+      var(--box-shadow-spread-radius) var(--box-shadow-color),
+    /* ambient shadow */ var(--box-shadow-ambient-offset-x)
+      var(--box-shadow-ambient-offset-y) var(--box-shadow-ambient-blur-radius)
+      var(--box-shadow-ambient-spread-radius) var(--box-shadow-ambient-color);
+}
+.box-shadow--inset {
+  box-shadow: /* direct-shadow */ inset var(--box-shadow-offset-x)
+      var(--box-shadow-offset-y) var(--box-shadow-blur-radius)
+      var(--box-shadow-spread-radius) var(--box-shadow-color),
+    /* ambient shadow */ inset var(--box-shadow-ambient-offset-x)
+      var(--box-shadow-ambient-offset-y) var(--box-shadow-ambient-blur-radius)
+      var(--box-shadow-ambient-spread-radius) var(--box-shadow-ambient-color);
+}
+
+/* Direct Light Settings */
+
+.box-shadow--level-1 {
+  /* default */
+}
+.box-shadow--level-2 {
+  --box-shadow-offset-y: 4px;
+  --box-shadow-blur-radius: 11px;
+}
+.box-shadow--level-3 {
+  --box-shadow-offset-y: 7px;
+  --box-shadow-blur-radius: 19px;
+}
+.box-shadow--level-4 {
+  --box-shadow-offset-y: 11px;
+  --box-shadow-blur-radius: 27px;
+}
+.box-shadow--level-5 {
+  --box-shadow-offset-y: 15px;
+  --box-shadow-blur-radius: 35px;
+}
+
+/* Ambient Settings */
+
+.box-shadow--level-1 {
+  --box-shadow-ambient-offset-y: 1px;
+  --box-shadow-ambient-blur-radius: 2px;
+}
+.box-shadow--level-2 {
+  --box-shadow-ambient-offset-y: 2px;
+  --box-shadow-ambient-blur-radius: 4px;
+}
+.box-shadow--level-3 {
+  --box-shadow-ambient-offset-y: 3px;
+  --box-shadow-ambient-blur-radius: 7px;
+}
+.box-shadow--level-4 {
+  --box-shadow-ambient-offset-y: 4px;
+  --box-shadow-ambient-blur-radius: 9px;
+}
+.box-shadow--level-5 {
+  --box-shadow-ambient-offset-y: 4px;
+  --box-shadow-ambient-blur-radius: 11px;
+}
+  </style>
+</head>
+<body>
+  <main class="grid">
+    <h1>Box Shadows</h1>
+    <section>
+      <h2>Default (Direct + Ambient Light)</h2>
+      <p class="box box-shadow">Level 1: Button</p>
+      <p class="box box-shadow--level-2">Level 2</p>
+      <p class="box box-shadow--level-3">Level 3: Dropdown</p>
+      <p class="box box-shadow--level-4">Level 4</p>
+      <p class="box box-shadow--level-5">Level 5: Modal</p>
+    </section>
+    <section style="--box-shadow-ambient-color: transparent;">
+      <h2>Direct Light</h2>
+      <p class="box box-shadow">Level 1</p>
+      <p class="box box-shadow--level-2">Level 2</p>
+      <p class="box box-shadow--level-3">Level 3</p>
+      <p class="box box-shadow--level-4">Level 4</p>
+      <p class="box box-shadow--level-5">Level 5</p>
+    </section>
+    <section style="--box-shadow-color: transparent;">
+      <h2>Ambient Light</h2>
+      <p class="box box-shadow box-shadow--level-1">Level 1</p>
+      <p class="box box-shadow box-shadow--level-2">Level 2</p>
+      <p class="box box-shadow box-shadow--level-3">Level 3</p>
+      <p class="box box-shadow box-shadow--level-4">Level 4</p>
+      <p class="box box-shadow box-shadow--level-5">Level 5</p>
+    </section>
+    <div class="spacer" style="height: 5rem;"></div>
+  </main>
+</body>
+</html>

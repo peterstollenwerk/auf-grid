@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    /* ========================= */
+  /* ========================= */
 /* reset */
 * {
   box-sizing: border-box;
@@ -16,9 +16,9 @@
 /* ========================= */
 /* top-margins */
 :root {
-  --margin-top--default: 2em;
+  --margin-top--default: 1rem;
 }
-* + * {
+* > * + * {
   margin-top: var(--margin-top--default);
 }
 
@@ -116,7 +116,7 @@ img {
   row-gap: var(--grid-row-gap);
 }
 .grid--with-rows {
-  grid-template-rows: auto;
+  grid-template-rows: minmax(0, auto);
 }
 .grid.grid--with-rows > * {
   grid-row: var(--grid-row);
@@ -254,6 +254,7 @@ img {
   align-content: center;
 }
 
+
   </style>
 </head>
 <body>
@@ -274,7 +275,7 @@ img {
     <div>.</div>
   </div>
   
-  <section class="grid grid--with-rows boxes outlines">
+  <section class="grid grid--with-rows boxes">
   
     <!-- 
     Do yourself a favor:  
@@ -283,25 +284,23 @@ img {
     to deal with the z-index. 
     -->
   
-    <figure class="background object-fit--cover grid__column--start-1 grid__column--end-10" style="--grid-row: 1 / 6; --background-color: pink;">
-      <img src="https://www.gstatic.com/tv/thumb/persons/117099/117099_v9_ba.jpg" alt="">
+    <figure class="background grid__column--start-1 grid__column--end-10" style="grid-row: 1 / 7; --background-color: pink; padding: 0;">
+      <img class="object-fit--cover" src="https://www.gstatic.com/tv/thumb/persons/117099/117099_v9_ba.jpg" alt="" style="position: absolute;" />
     </figure>
   
     <div class="background grid__column--start-7 grid__column--end-11" style="--grid-row: 1 / 5; --background-color: blue;">
     </div>
   
-    <h2 class="outline" style="--grid-row: 1">Section Label</h2>
-    <p class="box inset" style="--grid-row: 2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt nostrum minus modi commodi iusto assumenda totam dolorum, eos atque ullam, voluptatum animi fugiat ut quae non eaque, dolores ducimus obcaecati?</p>
-    <div class="spacer background theme--orange border grid__column-preset--center" style="--grid-row:3; min-height: 10rem; margin-top: -4rem; margin-bottom: -4rem;"></div>
-    <ul class="outset" style="--grid-row: 4;">
+    <h2 style="--grid-row: 1">Section Label</h2>
+    <p style="--grid-row: 2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt nostrum minus modi commodi iusto assumenda totam dolorum, eos atque ullam, voluptatum animi fugiat ut quae non eaque, dolores ducimus obcaecati?</p>
+    <div class="spacer theme--orange grid__column-preset--center" style="--grid-row:3; min-height: 3rem; margin-top: -1rem; margin-bottom: -1rem;"></div>
+    <ul style="--grid-row: 4;">
       <li>Related Page 1</li>
-      <li>
-        <h2>Just a test</h2>
-      </li>
+      <li>Related Page 2</li>
       <li>Related Page 3</li>
     </ul>
   
-    <div class="spacer box outline flex" style="--grid-row: 5; --min-height: 6em; --background-color: red; --margin-top: 1rem; --margin-bottom: 1rem;">YES</div>
+    <div class="spacer outline flex" style="--grid-row: 5; --min-height: 6em; --background-color: red; margin-top: 1rem; margin-bottom: 1rem;">YES</div>
   
     <a style="--grid-row: 6" href="#">Link to something</a>
   
