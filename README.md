@@ -52,6 +52,35 @@ fields:
 
 ### use in your snippet
 
+```php
+
+use auf\Grid;
+
+$grid = new Grid();
+
+$columnSpan = $grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-3');
+
+$spanWidthInPx = $grid->getGridColumnSpanWidthInPx(3);
+```
+
+If you use grid_column_presets in your site configuration, you can pass the structure field as an argument
+
+```php
+
+$grid = new Grid($site->grid_column_presets()->toStructure());
+
+$columnSpan = $grid->getGridColumnSpanByPreset('grid__column--aside');
+
+```
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 ## Todos
 
 * [ ] The grid.css should be created as a file for caching and not beeing-recreated for every page request. Perhaps this is a good 
+
+* [ ] If only one grid is used per site it would be benifitial to only create it once.
+
+* [ ] grid_start_column_classes should be created dynamically
+
+* [ ] grid_end_column_classes should be created dynamically

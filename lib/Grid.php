@@ -10,7 +10,6 @@ use Kirby\Data\Yaml;
 
 class Grid {
 
-  
   static $gridColumnCustomClass = 'grid__column--custom';
 
   static $gridColumnStartClassesCssValueMapping = [
@@ -126,15 +125,17 @@ class Grid {
     return $this->gridColumnSitePresets;
   }
 
-
   public function getGridColumnPresetByColumnClass(string $grid_column_class = '') {
-    $columnPreset = $this->getGridColumnSitePresets()->findBy('grid_column_class', $grid_column_class)->first();
-    return $columnPreset ? $columnPreset : $this->getGridColumnDefaultPreset();
+    if($columnPresets = $this->getGridColumnSitePresets()) {
+      return $columnPresets->findBy('grid_column_class', $grid_column_class);
+    } else {
+      return $this->getGridColumnDefaultPreset();
+    }
   }
 
   public function getGridColumnSpanByPreset(string $grid_column_class = '') {
     $preset = $this->getGridColumnPresetByColumnClass($grid_column_class);
-    return $this->getGridColumnSpan($preset->grid_column_start_class(), $preset->grid_column_end_class());
+    return $this->getGridColumnSpanByStartAndEndColumnClasses($preset->grid_column_start_class(), $preset->grid_column_end_class());
   }
 
   public function getGridColumnSpanWidthInPx($columnSpan) {
@@ -183,7 +184,7 @@ class Grid {
     return (int) str_replace('grid__column--span-', '', $gridColumnStartEndValue);
   }
 
-  public function getGridColumnSpan(
+  public function getGridColumnSpanByStartAndEndColumnClasses(
 
     string $gridColumnStart = 'grid__column--start-1', 
     string $gridColumnEnd   = 'grid__column--end-12',
