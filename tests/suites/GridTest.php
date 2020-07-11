@@ -98,4 +98,11 @@ final class GridTest extends TestCase {
 
   }
 
+  public function testShouldReturnDefaultColumnSpanIfPresetIsNotExistent() {
+    $presets = site()->grid_column_presets()->toStructure();
+    $grid = new Grid($presets);
+    $columnSpan = $grid->getGridColumnSpanByPreset('grid__column--DOES_NOT_EXIST');
+    $this->assertEquals($columnSpan, 12);
+  }
+
 }

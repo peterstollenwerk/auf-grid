@@ -127,10 +127,9 @@ class Grid {
 
   public function getGridColumnPresetByColumnClass(string $grid_column_class = '') {
     if($columnPresets = $this->getGridColumnSitePresets()) {
-      return $columnPresets->findBy('grid_column_class', $grid_column_class);
-    } else {
-      return $this->getGridColumnDefaultPreset();
+      $preset = $columnPresets->findBy('grid_column_class', $grid_column_class);
     }
+    return $preset ? $preset : $this->getGridColumnDefaultPreset();
   }
 
   public function getGridColumnSpanByPreset(string $grid_column_class = '') {
