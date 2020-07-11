@@ -60,7 +60,7 @@
 
 <style>
   .grid {
-    background-color: hsl(25, 50%, 50%);
+    background-color: hsl(25, 00%, 50%);
   }
   .grid > * {
     background-color: white;

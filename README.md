@@ -73,6 +73,13 @@ $columnSpan = $grid->getGridColumnSpanByPreset('grid__column--aside');
 
 ```
 
+### Test the grid
+
+The plugin sets up a custom route with a virtual testpage at:
+
+http://localhost:8888/grid-tests
+
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 ## Todos

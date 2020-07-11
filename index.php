@@ -57,5 +57,23 @@ Kirby::plugin('auf/grid', [
                 ],
             ];
         }
+    ],
+    'templates' => [
+        'grid-tests' => __DIR__ . '/templates/grid-tests.php',
+    ],
+    'routes' => [
+        [
+          'pattern' => 'grid-tests',
+          'action'  => function () {
+                return Page::factory([
+                    'slug' => 'grid-tests',
+                    'template' => 'grid-tests',
+                    'model' => 'grid-tests',
+                    'content' => [
+                        'title' => 'Grid Tests',
+                    ]
+                ]);
+          }
+        ]
     ]
 ]);
