@@ -15,13 +15,11 @@ Kirby::plugin('auf/grid', [
         ],
     ],
     'blueprints' => [
-    
         'auf_grid/grid_settings' => __DIR__ . '/blueprints/grid_settings.yml',
         'auf_grid/fields/grid_column_start_class' => __DIR__ . '/blueprints/fields/grid_column_start_class.yml',
         'auf_grid/fields/grid_column_end_class' => __DIR__ . '/blueprints/fields/grid_column_end_class.yml',
-        'auf_grid/builder/tabs/grid_component_settings' => __DIR__ . '/blueprints/builder/tabs/grid_component_settings.yml',
+        'auf_grid/fieldgroup/grid_component_settings' => __DIR__ . '/blueprints/fieldgroup/grid_component_settings.yml',
         'auf_grid/blueprints/builder/section' => __DIR__ . '/blueprints/builder/section.yml',
-    
     ],
     'snippets' => [
         'auf-grid/grid-preview' => __DIR__ . '/snippets/grid-preview.php',

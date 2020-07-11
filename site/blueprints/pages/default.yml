@@ -1,7 +1,4 @@
 title: Default Page
 preset: page
 fields:
-  grid_column_preset:
-    label: Grid Column Preset
-    type: grid_column_preset
-
+  grid_component_settings: auf_grid/fieldgroup/grid_component_settings

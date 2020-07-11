@@ -2,4 +2,16 @@ Title: AUF Grid
 
 ----
 
+Grid-column-preset: 
+
+----
+
+Grid-column-start-class: 
+
+----
+
+Grid-column-end-class: 
+
+----
+
 Grid-column: 
