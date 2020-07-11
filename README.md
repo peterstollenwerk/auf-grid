@@ -52,10 +52,6 @@ fields:
 
 ### use in your snippet
 
-
-
-
-
 ## Todos
 
-* [ ] The grid.css should be created as a file for caching and not beeing-recreated for every page request.
+* [ ] The grid.css should be created as a file for caching and not beeing-recreated for every page request. Perhaps this is a good 
