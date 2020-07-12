@@ -84,7 +84,7 @@ http://yourdomain.com/grid-tests
 ### Grid--Overlay
 
 To check if everything is in perfect grid-condition you can show a little grid-overlay by adding the hash '#grid' behind your url.
-For this to work, you need to include the grid-overlay-snippet before the <body>-tag.
+For this to work, you need to include the grid-overlay-snippet before the body-tag.
 
 template.php
 ```php
@@ -106,9 +106,9 @@ template.php
 
 * [X] ~~*Create Nice Create-Grid-Panel-View*~~ [2020-07-12]
 
-* [ ] Create Image test page
+* [X] ~~*Create Image test page*~~ [2020-07-12]
 
-* [ ] Create Grid Overlay Snippet
+* [X] ~~*Create Grid Overlay Snippet*~~ [2020-07-12]
 
 * [ ] Implement Inline Grid Classes
 
