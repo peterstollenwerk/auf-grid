@@ -23,6 +23,7 @@ Kirby::plugin('auf/grid', [
     ],
     'snippets' => [
         'auf-grid/grid-preview' => __DIR__ . '/snippets/grid-preview.php',
+        'auf-grid/grid-overlay' => __DIR__ . '/snippets/grid-overlay.php',
     ],
     'fields' => [
         'grid_column_preset' => [

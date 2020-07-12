@@ -9,12 +9,9 @@
       * + * {
         margin-top: 1rem;
       }
-      .grid {
-          background-color: hsl(25, 00%, 50%);
-        }
       .grid > *:not(.grid) {
-        background-color: white;
-        outline: 2px dashed black;
+        background-color: hsla(25, 100%, 00%, 0.25);
+        outline: 1px dashed black;
       }
       section {
         margin-top: 3rem;
@@ -24,5 +21,6 @@
   <body class="grid">
     <h1><?= $page->title() ?></h1>
     <?= snippet('auf-grid/grid-preview'); ?>
+    <?= snippet('auf-grid/grid-overlay'); ?>
   </body>
 </html>

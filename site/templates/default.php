@@ -13,22 +13,10 @@
   </style>
 </head>
 <body class="grid">
-  
-
+  <?= snippet('auf-grid/grid-overlay'); ?>  
   <h1><?= $page->title() ?></h1>
   <button><a href="<?= url('grid-tests') ?>">Visit Grid Test Page</a></button>
-
-  <section>
-    <h2>Generated Grid Styles</h2>
-    <pre class="box">
-      <?php
-        use auf\GridCss;
-        $gridCss =  new GridCss($site->grid_column_presets()->toStructure());
-      ?>
-      <?= $gridCss; ?>
-    </pre>
-  </section>
-
-
+  <hr>
+  <a href="<?= url('#grid') ?>">Show Grid: Simply add #grid behind the url</a>
 </body>
 </html>

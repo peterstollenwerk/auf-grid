@@ -108,7 +108,7 @@
   </div>
 </section>
 <!-- ============================================= -->
-<section>
+<section class="grid">
   <h3>Custom Column Start- & End Class Matrix</h3>
   <?php 
     $startClasses = Grid::$gridColumnStartClassesCssValueMapping;
@@ -117,7 +117,7 @@
   <div class="grid">
     <?php foreach($startClasses as $startClass => $value): ?>
       <?php foreach($endClasses as $endClass => $value): ?>
-        <div class="<?= $startClass ?> <?= $endClass ?>">
+        <div class="<?= $startClass ?> <?= $endClass ?>" style="overflow: hidden;">
           .<?= $startClass ?> 
           <br>
           .<?= $endClass ?>
