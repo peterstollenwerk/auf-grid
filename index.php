@@ -3,10 +3,11 @@
 @include_once __DIR__.'/vendor/autoload.php'; # all classes set in composer.json > psr-4 are loaded here!
 
 use auf\Grid;
+use Kirby\Cms\Page;
 
 Kirby::plugin('auf/grid', [
     'options' => [
-		'settings' => [
+        'settings' => [
             'columnCount' => 12,
             'maxColumnWidthInPx' => 90,
             'columnGapInPx' => 16,
@@ -52,7 +53,10 @@ Kirby::plugin('auf/grid', [
                     'method' => 'POST',
                     'action'  => function () {
                         $settings = $this->requestBody('settings');
-                        return Grid::setSettings($settings);
+                        Grid::setSettings($settings);
+                        $gridColumnPresets = $this->site()->grid_column_presets()->toStructure();
+                        Grid::writeCssFile($gridColumnPresets);
+                        return $settings;
                     }
                 ],
             ];

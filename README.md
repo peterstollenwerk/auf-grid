@@ -8,9 +8,10 @@ Include the generated grid styles in the head of your document:
 
 ```php
 <style>
-  <?= snippet('auf-grid/styles-grid'); ?>
+  <?= css('assets/css/auf-grid.css') ?>
 </style>
 ```
+After you changed the grid settings, you have to regenerate the file in the Grid dedicated panel view;
 
 ### Grid Column Presets Site Setup
 

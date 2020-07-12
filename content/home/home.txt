@@ -2,15 +2,15 @@ Title: AUF Grid
 
 ----
 
-Grid-column-preset: 
+Grid-column-preset: grid__column--custom
 
 ----
 
-Grid-column-start-class: 
+Grid-column-start-class: grid__column--start-7
 
 ----
 
-Grid-column-end-class: 
+Grid-column-end-class: grid__column--end-5
 
 ----
 

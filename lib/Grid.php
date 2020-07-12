@@ -4,9 +4,11 @@ namespace auf;
 
 use auf\GridPreset;
 use auf\GridColumnPreset;
+use Kirby\Cms\File;
 use Kirby\Cms\Structure;
 use Kirby\Data\Json;
 use Kirby\Data\Yaml;
+use Kirby\Toolkit\F;
 
 class Grid {
 
@@ -277,6 +279,12 @@ class Grid {
     $file = kirby()->root('config') . '/auf-grid/settings.yml';
     Yaml::write($file, $settings);
     return $settings;
+  }
+  
+  static function writeCssFile($gridColumnPresets = NULL) {
+    $file = kirby()->root('assets') . '/css/auf-grid.css';
+    $grid = new GridCss($gridColumnPresets);
+    F::write($file, $grid->css());
   }
 
 }
