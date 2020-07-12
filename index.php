@@ -23,11 +23,6 @@ Kirby::plugin('auf/grid', [
     ],
     'snippets' => [
         'auf-grid/grid-preview' => __DIR__ . '/snippets/grid-preview.php',
-        'auf-grid/styles-grid'                               => __DIR__ . '/snippets/styles-grid.php',
-        'auf-grid/styles-grid-preset'                        => __DIR__ . '/snippets/styles-grid-preset.php',
-        'auf-grid/styles-grid-column-presets'                => __DIR__ . '/snippets/styles-grid-column-presets.php',
-        'auf-grid/styles-grid-column-preset'                 => __DIR__ . '/snippets/styles-grid-column-preset.php',
-        'auf-grid/styles-grid-column-start-end-span-classes' => __DIR__ . '/snippets/styles-grid-column-start-end-span-classes.php'
     ],
     'fields' => [
         'grid_column_preset' => [
