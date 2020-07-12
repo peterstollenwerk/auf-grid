@@ -1,12 +1,15 @@
 <section>
-  <h2>Generated Grid Styles</h2>
-  <pre class="box">
-    <?php
-      use auf\GridCss;
-      $gridCss =  new GridCss($site->grid_column_presets()->toStructure());
-    ?>
-    <?= $gridCss; ?>
-  </pre>
+  <details>
+    <summary style="padding: 1rem; cursor: pointer;">Show Generated Grid Styles</summary>
+    <h2>Generated Grid Styles</h2>
+    <pre class="box">
+      <?php
+        use auf\GridCss;
+        $gridCss =  new GridCss($site->grid_column_presets()->toStructure());
+      ?>
+      <?= $gridCss; ?>
+    </pre>
+  </details>
 </section>
 <!-- ============================================= -->
 <section>

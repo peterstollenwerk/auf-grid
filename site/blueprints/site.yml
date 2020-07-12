@@ -12,13 +12,7 @@ tabs:
         empty: No subpages yet
 
 
-  settings:
+  grid_settings:
+    label: Grid Settings
     sections:
-      grid_settings: auf_grid/grid_settings
-  
-  files:
-    sections:
-      files: 
-        headline: Grid Test Files
-        # https://getkirby.com/docs/reference/panel/sections/files
-    
+      grid_settings: auf_grid/grid_settings    
