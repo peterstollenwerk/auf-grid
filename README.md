@@ -81,6 +81,21 @@ The plugin sets up a custom route with a virtual testpage at:
 http://yourdomain.com/grid-tests
 
 
+### Grid--Overlay
+
+To check if everything is in perfect grid-condition you can show a little grid-overlay by adding the hash '#grid' behind your url.
+For this to work, you need to include the grid-overlay-snippet before the <body>-tag.
+
+template.php
+```php
+<body class="grid">
+  <h1><?= $page->title() ?></h1>
+  <a href="<?= url('#grid') ?>">Show Grid: Simply add #grid behind the url to show a grid-overlay</a>
+  <?= snippet('auf-grid/grid-overlay'); ?>
+</body>
+```
+
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 ## Todos
