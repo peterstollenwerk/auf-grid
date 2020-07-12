@@ -70,6 +70,11 @@ class GridCss extends Grid {
     grid-column-end: col-end 12;
   }
 
+  .grid > .grid {
+    grid-column-start: 1; 
+    grid-column-end: -1;
+  }
+
   @media screen and (max-width: '.$oneColumnToResponsiveBreakpointInPx.') {
     .grid {
       display: flex;

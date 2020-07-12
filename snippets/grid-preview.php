@@ -1,4 +1,3 @@
-<!-- ============================================= -->
 <section>
   <h2>Grid Column Presets of this Site</h2>
   <style>
@@ -27,7 +26,7 @@
         <td><?= $preset->grid_column_end_class(); ?></td>
       </tr>
     <?php endforeach?>
-    </table>
+  </table>
 </section>
 <!-- ============================================= -->
 <section>
@@ -53,37 +52,15 @@
       <td><?= $grid->getGridColumnSpanWidthInPx($grid->getGridColumnSpanByPreset('grid__column--DOES_NOT_EXIST')) ?></td>
     </tr>
   </table>
-
-</section>
-
-
-
-<style>
-  .grid {
-    background-color: hsl(25, 00%, 50%);
-  }
-  .grid > * {
-    background-color: white;
-    outline: 2px dashed black;
-  }
-</style>
-
-<h2>Grid Column Presets Preview</h2>
-<!-- ============================================= -->
-<!-- Grid Styles: Start  -->
-<section>
-  <h3>Grid Styles</h3>
-  <pre><?= snippet('auf-grid/styles-grid'); ?></pre>
-  <style><?= snippet('auf-grid/styles-grid'); ?></style>
 </section>
 <!-- ============================================= -->
-<!-- Grid Presets. Start -->
-<section>
+<section class="grid">
+  <h2>Grid Presets Preview</h2>
   <?php
     $columnPresets = $grid->getGridColumnSitePresets();
     $gridPreset = $grid->gridPreset();
   ?>
-  <h3>Grid Column Presets: .<?= $gridPreset->uid() ?></h3>
+  <h3>Grid Preset: .<?= $gridPreset->uid() ?></h3>
   <div class="grid <?= $gridPreset->uid() ?>">
     <?php foreach($columnPresets as $columnPreset): ?>
 
@@ -99,28 +76,22 @@
   </div>
 </section>
 <!-- ============================================= -->
-<!-- Grid Column Starts: Start -->
 <section>
-
   <h3>Custom Column Start- & End Class Matrix</h3>
   <?php 
     $startClasses = Grid::$gridColumnStartClassesCssValueMapping;
     $endClasses = Grid::$gridColumnEndClassesCssValueMapping;
   ?>
   <div class="grid">
-
     <?php foreach($startClasses as $startClass => $value): ?>
-
       <?php foreach($endClasses as $endClass => $value): ?>
-
         <div class="<?= $startClass ?> <?= $endClass ?>">
           .<?= $startClass ?> 
           <br>
           .<?= $endClass ?>
         </div>
-
       <?php endforeach?>
-
     <?php endforeach?>
   </div>
 </section>
+<!-- ============================================= -->

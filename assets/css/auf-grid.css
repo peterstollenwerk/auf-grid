@@ -46,8 +46,13 @@
   }
 
   .grid > * {
-    grid-column-start: col-start 5; 
-    grid-column-end: col-end 11;
+    grid-column-start: col-start 1; 
+    grid-column-end: col-end 12;
+  }
+
+  .grid > .grid {
+    grid-column-start: 1; 
+    grid-column-end: -1;
   }
 
   @media screen and (max-width: 600px) {
