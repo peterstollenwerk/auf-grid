@@ -59,7 +59,6 @@ class Grid {
 
   ];
   static $gridColumnSpanClassesCssValueMapping = [
-    
     'grid__column--span-1' => 'span 1',
     'grid__column--span-2' => 'span 2',
     'grid__column--span-3' => 'span 3',

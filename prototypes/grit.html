@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  grid-sizing: border-box;
+}
+* + * {
+  margin-top: 1rem;
+}
+ul {
+  list-style: none;
+}
+img {
+  max-width: 100%;
+  display: block;
+  background-color: #ccc;
+}
+/* -------------------------------------- */
+/* --variables */
+
+:root {
+  --grid-columns-count: 12;
+  --grid-column-max-width: 45px;
+  --grid-padding: 1rem;
+  --grid-column-gap: 8px;
+  --grid-row-gap: 16px;
+}
+/* -------------------------------------- */
+/* grid */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    [margin-left-start] 1fr [margin-left-end]
+    repeat(
+      var(--grid-columns-count),
+      [col-start] minmax(0, var(--grid-column-max-width)) [col-end]
+    )
+    [margin-right-start] 1fr [margin-right-end];
+  grid-template-rows: auto;
+  grid-column-gap: var(--grid-column-gap);
+}
+.grid > * {
+  padding: var(--grid-padding);
+  outline: 1px dashed black;
+  grid-column-start: col-start 5;
+  grid-column-end: col-end 11;
+  grid-row: var(--grid-row);
+}
+.grid > .grid {
+  padding: initial;
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+
+/* -------------------------------------- */
+/* align self */
+
+.align-self--start {
+  align-self: start;
+}
+.align-self--center {
+  align-self: center;
+}
+.align-self--end {
+  align-self: end;
+}
+.justify-self--start {
+  justify-self: start;
+}
+.justify-self--center {
+  justify-self: center;
+}
+.justify-self--end {
+  justify-self: end;
+}
+
+/* -------------------------------------- */
+/* inline-grid */
+
+.inline-grid {
+  padding: initial;
+  display: inline-grid;
+  grid-template-columns: repeat(
+    var(--grid-columns-count),
+    [col-start] minmax(0, var(--grid-column-max-width)) [col-end]
+  );
+  grid-column-gap: var(--grid-column-gap);
+  grid-row-gap: var(--grid-row-gap);
+}
+.inline-grid > * {
+  padding: var(--grid-padding);
+  margin-top: initial;
+  outline: 1px dashed red;
+}
+.grid > .inline-grid {
+  grid-column-start: margin-left-end;
+  grid-column-end: margin-right-start;
+}
+.inline-grid--items--span-2 > * {
+  grid-column-end: span 2;
+}
+.inline-grid--items--span-3 > * {
+  grid-column-end: span 3;
+}
+.inline-grid--items--span-4 > * {
+  grid-column-end: span 4;
+}
+.inline-grid--items--span-5 > * {
+  grid-column-end: span 5;
+}
+.inline-grid--items--span-6 > * {
+  grid-column-end: span 6;
+}
+.inline-grid--items--span-7 > * {
+  grid-column-end: span 7;
+}
+/* -------------------------------------- */
+/* column presets */
+
+.grid__column--small,
+.grid__column--small.inline-grid {
+  --grid-columns-count: 8;
+  grid-column-start: col-start 3;
+  grid-column-end: col-end 10;
+}
+.grid__column--aside,
+.grid__column--aside.inline-grid {
+  --grid-columns-count: 5;
+  grid-column-start: col-start 1;
+  grid-column-end: col-end 5;
+}
+.grid__column--main,
+.grid__column--main.inline-grid {
+  --grid-columns-count: 6;
+  grid-column-start: col-start 6;
+  grid-column-end: col-end 12;
+}
+
+/* -------------------------------------- */
+/* outset */
+.outset {
+  margin-right: calc(var(--grid-column-gap) * -1);
+  margin-left: calc(var(--grid-column-gap) * -1);
+}
+.outset--right {
+  margin-right: calc(var(--grid-column-gap) * -1);
+}
+.outset--left {
+  margin-left: calc(var(--grid-column-gap) * -1);
+}
+
+/* -------------------------------------- */
+/* outset-figure */
+.outset--figure {
+  padding: initial;
+}
+.outset--figure > *:not(img) {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* -------------------------------------- */
+/* outset-figures */
+.outset--figures figure {
+  margin-right: -1rem;
+  margin-left: -1rem;
+}
+.outset--figures figure > img:first-child {
+  margin-top: -1rem;
+}
+.outset--figures figure > img:last-child {
+  margin-bottom: -1rem;
+}
+.outset--figures figcaption {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* -------------------------------------- */
+/* align items */
+
+.align-items--start {
+  align-items: start;
+}
+.align-items--center {
+  align-items: center;
+}
+.align-items--end {
+  align-items: end;
+}
+/* -------------------------------------- */
+/* justify items */
+
+.justify-items--start {
+  justify-items: start;
+}
+.justify-items--center {
+  justify-items: center;
+}
+.justify-items--end {
+  justify-items: end;
+}
+
+/* -------------------------------------- */
+/* box */
+
+.box,
+.boxes > * {
+  background-color: black;
+  color: white;
+}
+
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <h1>Title</h1>
+    <div class="inline-grid">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+      <div>10</div>
+      <div>11</div>
+      <div>12</div>
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+      <div>10</div>
+      <div>11</div>
+      <div>12</div>
+    </div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque ex esse excepturi error modi. Sunt voluptates ab quam non nobis dolore exercitationem placeat nisi temporibus minima? Est aperiam aspernatur cupiditate.</p>
+  
+    <section class="grid">
+      <div class="background grid__column--small" style="background-color: red; --grid-row: 1 / 4;"></div>
+      <h2 style="--grid-row: 1;">Gallery</h2>
+      <ul style="--grid-row: 2;" class="align-items--start inline-grid inline-grid--items--span-3 outset--figures boxes">
+        <li>
+          <figure>
+            <img src="https://i.pinimg.com/originals/c4/9e/3e/c49e3ea192db263f0c36b46ddbb1c346.jpg" alt="img-1" />
+            <figcaption>Image 1</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure>
+            <figcaption>Image 2</figcaption>
+            <img src="https://i.pinimg.com/originals/c4/9e/3e/c49e3ea192db263f0c36b46ddbb1c346.jpg" alt="img-2" />
+          </figure>
+        </li>
+        <li>
+          <figure><img src="https://i.pinimg.com/originals/c4/9e/3e/c49e3ea192db263f0c36b46ddbb1c346.jpg" alt="img-3" />
+            <figcaption>Image 3</figcaption>
+          </figure>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </li>
+        <li>
+          <figure><img src="https://i.pinimg.com/originals/c4/9e/3e/c49e3ea192db263f0c36b46ddbb1c346.jpg" alt="img-4" />
+            <figcaption>Image 4</figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure><img src="https://i.pinimg.com/originals/c4/9e/3e/c49e3ea192db263f0c36b46ddbb1c346.jpg" alt="img-4" />
+            <figcaption>Image 4</figcaption>
+          </figure>
+        </li>
+      </ul>
+      <p style="--grid-row: 3;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore facilis ipsum nam magnam, totam molestias unde cumque perspiciatis! Eligendi sint, velit cumque non a impedit. Culpa velit voluptate necessitatibus ab?</p>
+    </section>
+  
+    <p class="box">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta impedit ea maiores optio assumenda distinctio dolorem nemo voluptas fugit molestiae. Ad at nam doloribus omnis rem quasi minima sunt fugit!</p>
+    <aside class="grid__column--aside">
+      <h2>Aside</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, nesciunt beatae incidunt ratione minima distinctio asperiores architecto aspernatur vero, exercitationem facere earum optio error ea deserunt voluptates eius aut odit.</p>
+    </aside>
+    <p class="grid__column--main align-self--center justify-self--center">align-self: center;</p>
+  
+    <section class="grid">
+      <h2>Gallery</h2>
+      <ul class="grid__column--small inline-grid inline-grid--items--span-2">
+        <li>
+          <figure><img src="" alt="img-1" /></figure>
+        </li>
+        <li>
+          <figure><img src="" alt="img-2" /></figure>
+        </li>
+        <li>
+          <figure><img src="" alt="img-3" /></figure>
+        </li>
+        <li>
+          <figure><img src="" alt="img-4" /></figure>
+        </li>
+        <li>
+          <figure><img src="" alt="img-5" /></figure>
+        </li>
+        <li>
+          <figure><img src="" alt="img-6" /></figure>
+        </li>
+        <li>
+          <figure><img src="" alt="img-7" /></figure>
+        </li>
+        <li>
+          <figure><img src="" alt="img-8" /></figure>
+        </li>
+      </ul>
+    </section>
+  
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis doloremque atque obcaecati. Vero laborum quibusdam atque eveniet obcaecati quidem labore optio voluptates, dolorem repellendus dicta soluta facilis dolor deleniti error.</p>
+  
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur voluptatibus commodi quia earum corrupti eum quos cum ducimus dolores saepe corporis laudantium repellat, odio placeat consequatur ipsa eius consectetur sint!</p>
+  
+    <p class="grid__column--aside align-self--start box outset--right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur maiores quam enim corporis odit atque eum id assumenda expedita labore fuga recusandae inventore voluptate, pariatur reiciendis consequuntur commodi natus laborum!</p>
+  
+    <figure class="grid__column--main outset--figure"><img src="https://i.pinimg.com/originals/c4/9e/3e/c49e3ea192db263f0c36b46ddbb1c346.jpg" alt="img-4" />
+      <figcaption>Image 4</figcaption>
+    </figure>
+  
+  </div>
+</body>
+</html>

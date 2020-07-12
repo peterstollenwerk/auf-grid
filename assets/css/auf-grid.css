@@ -228,50 +228,62 @@
       grid-column-end: auto;
   }
 
+  .grid--items--span-1 > *,
   .grid__column--span-1 {
       grid-column-end: span 1;
   }
 
+  .grid--items--span-2 > *,
   .grid__column--span-2 {
       grid-column-end: span 2;
   }
 
+  .grid--items--span-3 > *,
   .grid__column--span-3 {
       grid-column-end: span 3;
   }
 
+  .grid--items--span-4 > *,
   .grid__column--span-4 {
       grid-column-end: span 4;
   }
 
+  .grid--items--span-5 > *,
   .grid__column--span-5 {
       grid-column-end: span 5;
   }
 
+  .grid--items--span-6 > *,
   .grid__column--span-6 {
       grid-column-end: span 6;
   }
 
+  .grid--items--span-7 > *,
   .grid__column--span-7 {
       grid-column-end: span 7;
   }
 
+  .grid--items--span-8 > *,
   .grid__column--span-8 {
       grid-column-end: span 8;
   }
 
+  .grid--items--span-9 > *,
   .grid__column--span-9 {
       grid-column-end: span 9;
   }
 
+  .grid--items--span-10 > *,
   .grid__column--span-10 {
       grid-column-end: span 10;
   }
 
+  .grid--items--span-11 > *,
   .grid__column--span-11 {
       grid-column-end: span 11;
   }
 
+  .grid--items--span-12 > *,
   .grid__column--span-12 {
       grid-column-end: span 12;
   }

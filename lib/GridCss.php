@@ -159,8 +159,10 @@ class GridCss extends Grid {
       $endClassesCss = $endClassesCss . $endClass;
     }
     # ---------- span classes  (secondary end-classes)----------------------------
+    $i = 1;
     foreach($spanClasses as $class => $value) {
       $spanClass = ('
+  .grid--items--span-'.$i++.' > *,
   .'.$class. ' {
       grid-column-end: ' . $value. ';
   }
@@ -175,6 +177,8 @@ class GridCss extends Grid {
       $endClassesCss;
   }
 
+  
+
   public function footerCss() {
     return ('
   /* Grid // @supports end */
@@ -186,9 +190,10 @@ class GridCss extends Grid {
   public function css() {
     return 
       $this->headerCss() . 
+      # GRID
       $this->gridPresetCss() . 
       $this->gridColumnPresetsCss() . 
-      $this->gridColumnStartEndClassesCss() . 
+      $this->gridColumnStartEndClassesCss() .
       $this->footerCss();
   }
 

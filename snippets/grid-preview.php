@@ -1,5 +1,5 @@
 <section>
-  <details>
+  <details open>
     <summary style="padding: 1rem; cursor: pointer;">Show Generated Grid Styles</summary>
     <h2>Generated Grid Styles</h2>
     <pre class="box">
