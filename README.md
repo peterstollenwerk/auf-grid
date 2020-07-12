@@ -93,9 +93,10 @@ http://yourdomain.com/grid-tests
 
 * [ ] Create Image test page
 
+* [ ] Create Grid Overlay Snippet
+
 * [ ] Implement Inline Grid Classes
 
 * [ ] Implement justify and align classes
-
 
 * [ ] grid_start/end_column_classes should be created dynamically in a custom field

@@ -20,13 +20,13 @@
 
   <section>
     <h2>Generated Grid Styles</h2>
-  <pre class="box">
-    <?php
-      use auf\GridCss;
-      $gridCss =  new GridCss($site->grid_column_presets()->toStructure());
-    ?>
-    <?= $gridCss; ?>
-  </pre>
+    <pre class="box">
+      <?php
+        use auf\GridCss;
+        $gridCss =  new GridCss($site->grid_column_presets()->toStructure());
+      ?>
+      <?= $gridCss; ?>
+    </pre>
   </section>
 
 

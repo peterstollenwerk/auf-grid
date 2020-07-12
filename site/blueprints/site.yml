@@ -11,6 +11,14 @@ tabs:
         info: "[{{ page.intendedTemplate }}-template]"
         empty: No subpages yet
 
+
   settings:
     sections:
       grid_settings: auf_grid/grid_settings
+  
+  files:
+    sections:
+      files: 
+        headline: Grid Test Files
+        # https://getkirby.com/docs/reference/panel/sections/files
+    

@@ -1,4 +1,34 @@
 <section>
+  <h2>Generated Grid Styles</h2>
+  <pre class="box">
+    <?php
+      use auf\GridCss;
+      $gridCss =  new GridCss($site->grid_column_presets()->toStructure());
+    ?>
+    <?= $gridCss; ?>
+  </pre>
+</section>
+<!-- ============================================= -->
+<section>
+  <h2>Grid Images</h2>
+  <style>
+    img { display: block; }
+    </style>
+  <?php
+    use auf\Grid;
+    use Kirby\Cms\Asset;
+    
+    $grid = new Grid();
+    $columns = 12;
+    $asset = new Asset("assets/images/grid-test-1.jpg");
+
+    for ($i=1; $i <= $columns; $i++) { 
+      echo $asset->resize($grid->getGridColumnSpanWidthInPx($i));
+    }
+  ?>
+</section>
+<!-- ============================================= -->
+<section>
   <h2>Grid Column Presets of this Site</h2>
   <style>
     table {
@@ -32,7 +62,6 @@
 <section>
   <h2>Getting Column Span Of A Preset</h2>
   <?php 
-    use auf\Grid;
     $grid = new Grid($site->grid_column_presets()->toStructure());
   ?>
   <table>
