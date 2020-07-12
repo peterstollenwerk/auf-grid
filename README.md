@@ -78,17 +78,23 @@ $columnSpan = $grid->getGridColumnSpanByPreset('grid__column--aside');
 
 The plugin sets up a custom route with a virtual testpage at:
 
-http://localhost:8888/grid-tests
+http://yourdomain.com/grid-tests
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 ## Todos
 
-* [ ] The grid.css should be created as a file for caching and not beeing-recreated for every page request. Perhaps this is a good 
+* [X] ~~*The grid.css should be created as a file for caching and not beeing-recreated for every page request. Perhaps this is a good*~~ [2020-07-12] 
 
-* [ ] If only one grid is used per site it would be benifitial to only create it once.
+* [ ] Clean up test page
 
-* [ ] grid_start_column_classes should be created dynamically
+* [ ] Create Image test page
 
-* [ ] grid_end_column_classes should be created dynamically
+* [ ] Implement Inline Grid Classes
+
+* [ ] Implement justify and align classes
+
+* [ ] Create Nice Create-Grid-Panel-View
+
+* [ ] grid_start/end_column_classes should be created dynamically in a custom field
