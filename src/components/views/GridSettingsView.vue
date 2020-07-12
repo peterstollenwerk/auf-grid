@@ -1,12 +1,21 @@
 <template>
   <k-view class="k-grid-settings-view">
     <k-header>Site Grid</k-header>
-    settings: {{settings}}
+
+    <div v-for="(value, name) in preset" class="auf-setting">
+      <input type="text" :value="value" disabled></input>
+      <label for="">{{ name }}</label>
+      <br>
+      <br>
+    </div>
+
     <br>
     <br>
+    <k-button class="auf-grid-button" @click="saveSettings">Generate CSS</k-button>
     <br>
     <br>
-    <k-button class="auf-grid-button" @click="saveSettings">Save Settings</k-button>
+    <p>Clicking this button will generate a new css file 
+      located at 'assets/auf-grid.css' based on the settings above.</p>
   </k-view>
 </template>
 
@@ -16,7 +25,7 @@ export default {
 
     data() {
       return {
-        settings: Object,
+        preset: Object,
         gridColumnTemplate: String,
         content: Object
       }
@@ -29,7 +38,7 @@ export default {
         this.$api
         .get("grid/settings")
         .then(settings => {
-          this.settings = settings;
+          this.preset = settings.preset;
         });
       },
       saveSettings() {
@@ -61,5 +70,8 @@ export default {
 .auf-grid-button {
   padding: 0.5rem;
   border: 2px solid black;
+}
+.auf-setting > * {
+  padding: 0.5rem;
 }
 </style>

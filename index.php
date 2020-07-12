@@ -40,6 +40,8 @@ Kirby::plugin('auf/grid', [
                 [
                     'pattern' => 'grid/settings',
                     'action'  => function () {
+                        $grid = new Grid();
+                        return ['preset' => $grid->gridPreset()];
                         return Grid::getSettings();
                     }
                 ],

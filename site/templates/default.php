@@ -15,9 +15,11 @@
 <body class="grid">
   
 
-  <h1 class="box"><?= $page->title() ?></h1>
-  <button><a href="<?= url('grid-tests') ?>">Grid Tests</a></button>
+  <h1><?= $page->title() ?></h1>
+  <button><a href="<?= url('grid-tests') ?>">Visit Grid Test Page</a></button>
 
+  <section>
+    <h2>Generated Grid Styles</h2>
   <pre class="box">
     <?php
       use auf\GridCss;
@@ -25,6 +27,7 @@
     ?>
     <?= $gridCss; ?>
   </pre>
+  </section>
 
 
 </body>

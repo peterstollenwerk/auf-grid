@@ -89,12 +89,13 @@ http://yourdomain.com/grid-tests
 
 * [X] ~~*Clean up test page*~~ [2020-07-12]
 
+* [X] ~~*Create Nice Create-Grid-Panel-View*~~ [2020-07-12]
+
 * [ ] Create Image test page
 
 * [ ] Implement Inline Grid Classes
 
 * [ ] Implement justify and align classes
 
-* [ ] Create Nice Create-Grid-Panel-View
 
 * [ ] grid_start/end_column_classes should be created dynamically in a custom field
