@@ -87,7 +87,7 @@ http://yourdomain.com/grid-tests
 
 * [X] ~~*The grid.css should be created as a file for caching and not beeing-recreated for every page request. Perhaps this is a good*~~ [2020-07-12] 
 
-* [ ] Clean up test page
+* [X] ~~*Clean up test page*~~ [2020-07-12]
 
 * [ ] Create Image test page
 
