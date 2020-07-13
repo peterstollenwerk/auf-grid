@@ -1,15 +1,95 @@
+<?php
+  use auf\Grid;
+  use auf\GridCss;
+  use Kirby\Cms\Asset;
+?>
 <section>
-  <details open>
+  <h2>Generated Grid Styles</h2>
+  <details>
     <summary style="padding: 1rem; cursor: pointer;">Show Generated Grid Styles</summary>
-    <h2>Generated Grid Styles</h2>
     <pre class="box">
       <?php
-        use auf\GridCss;
         $gridCss =  new GridCss($site->grid_column_presets()->toStructure());
       ?>
       <?= $gridCss; ?>
     </pre>
   </details>
+</section>
+<!-- ============================================= -->
+<section class="grid">
+  <style>
+    .boxes > * {
+      padding: 1rem;
+      border: 1px solid black;
+    }
+  </style>
+  <h2>Inline Grids Tests</h2>
+  <div class="inline-grid boxes">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div>15</div>
+  </div>
+  
+
+  <h2>.inline-grid.grid__column--preset Test</h2>
+  <?php if($presets = $site->grid_column_presets()->toStructure()): ?>
+    <?php foreach($presets as $preset): ?>
+      <h3>.<?= $class = $preset->grid_column_class() ?></h3>
+      <div class="inline-grid boxes <?= $class ?>">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+      </div>
+    <?php endforeach?>
+  <?php endif?>
+
+
+
+
+  <h2>Inline Grid Items Span Test</h2>
+  <?php 
+    $grid = new Grid();
+    $classes = $grid->inlineGridItemsSpanClasses();
+  ?>
+  <?php foreach($classes as $class): ?>
+    <h3>.<?= $class ?></h3>
+    <div class="inline-grid boxes <?= $class ?>">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+      <div>10</div>
+      <div>11</div>
+      <div>12</div>
+    </div>
+  <?php endforeach?>
+
 </section>
 <!-- ============================================= -->
 <section>
@@ -18,8 +98,7 @@
     img { display: block; }
     </style>
   <?php
-    use auf\Grid;
-    use Kirby\Cms\Asset;
+    
     
     $grid = new Grid();
     $columns = 12;

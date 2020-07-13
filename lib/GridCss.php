@@ -173,15 +173,14 @@ class GridCss extends Grid {
 
     $inlineGridCss = file_get_contents('css/inline-grid.css', true);
 
+    # --------------------------------------------------------------
     $inlineGridItemsSpanClassesCss = '
   
   /* ------------------------------- */
   /* inline-grid--items--span-#       */  
   /* ------------------------------- */
     ';
-    $i = 1;
-    $columnCount = $this->columnCount();
-    for($i; $i <= $columnCount; $i++) {
+    for($i = 1; $i <= $this->columnCount(); $i++) {
       $classCss = ('
   .' . Grid::$inlineGridItemsSpanClassPrefix . $i .' > * {
     grid-column-end: span '. $i .';
@@ -189,9 +188,50 @@ class GridCss extends Grid {
       ');
       $inlineGridItemsSpanClassesCss = $inlineGridItemsSpanClassesCss . $classCss;
     }
-
     return $inlineGridCss . $inlineGridItemsSpanClassesCss;
 
+  }
+
+  public function inlineGridColumnPresetsCss() {
+    $gridColumnPresets = $this->getGridColumnSitePresets();
+
+    if(!$gridColumnPresets) {
+      return;
+    }
+
+    $css = ('
+  /* =========================== */
+  /* INLINE-GRID Column Presets */
+  /* =========================== */
+    ');
+    foreach($gridColumnPresets as $preset) {
+      $gridColumnClass = $preset->grid_column_class();
+      $gridColumnStartClass = $preset->grid_column_start_class();
+      $gridColumnEndClass = $preset->grid_column_end_class();
+      $gridColumnStartCss = Grid::getCssValueForGridColumnStartEndClass($gridColumnStartClass);
+      $gridColumnEndCss = Grid::getCssValueForGridColumnStartEndClass($gridColumnEndClass);
+      $presetColumnSpan = $this->getColumnSpanByPreset($gridColumnClass);
+      $presetCss = '';
+      if($gridColumnClass != 'grid__column--full') {
+        $presetCss = ('
+  .'.$gridColumnClass.'.inline-grid {
+    --grid-column-count: '.$presetColumnSpan.';
+    grid-column-start: '. $gridColumnStartCss .';
+    grid-column-end: '. $gridColumnEndCss . ';
+  }
+        ');
+      } else {
+        $presetCss = ('
+  .grid__column--full.inline-grid {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+        ');
+
+      }
+      $css = $css . $presetCss;
+    }
+    return $css;
   }
 
   public function mediaQueriesCss() {
@@ -225,6 +265,7 @@ class GridCss extends Grid {
       $this->gridColumnPresetsCss() . 
       $this->gridColumnStartEndClassesCss() .
       $this->inlineGridCss() .
+      $this->inlineGridColumnPresetsCss() .
       $this->mediaQueriesCss() .
       $this->footerCss();
   }

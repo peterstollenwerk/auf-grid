@@ -267,27 +267,31 @@
   }
   /* ============================== */
   /* Inline-Grid */
+  /* ============================== */
 
   .inline-grid {
     --grid-row-gap: var(--grid-column-gap);
-    padding: initial;
     display: inline-grid;
-    grid-template-columns: repeat(var(--grid-columns-count), 
+    grid-template-columns: repeat(var(--grid-column-count), 
       [col-start] minmax(0, var(--grid-column-max-width)) [col-end]);
     grid-column-gap: var(--grid-column-gap);
     grid-row-gap: var(--grid-row-gap);
   }
   .inline-grid > * {
-    padding: var(--grid-padding);
     margin-top: initial;
   }
   .grid > .inline-grid {
     grid-column-start: margin-left-end;
     grid-column-end: margin-right-start;
   }
+
+  .grid__column--full.inline-grid { 
+    grid-template-columns: repeat(var(--grid-column-count), 
+    [col-start] 1fr [col-end]);
+  }
   
   /* ------------------------------- */
-  /* inline-grid--items-span-#       */  
+  /* inline-grid--items--span-#       */  
   /* ------------------------------- */
     
   .inline-grid--items--span-1 > * {
@@ -338,9 +342,49 @@
     grid-column-end: span 12;
   }
       
-  
   /* =========================== */
+  /* INLINE-GRID Column Presets */
+  /* =========================== */
+    
+  .grid__column--full.inline-grid {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+        
+  .grid__column--large.inline-grid {
+    --grid-column-count: 12;
+    grid-column-start: col-start 1;
+    grid-column-end: col-end 12;
+  }
+        
+  .grid__column--medium.inline-grid {
+    --grid-column-count: 10;
+    grid-column-start: col-start 2;
+    grid-column-end: col-end 11;
+  }
+        
+  .grid__column--small.inline-grid {
+    --grid-column-count: 8;
+    grid-column-start: col-start 3;
+    grid-column-end: col-end 10;
+  }
+        
+  .grid__column--aside.inline-grid {
+    --grid-column-count: 5;
+    grid-column-start: col-start 1;
+    grid-column-end: span 5;
+  }
+        
+  .grid__column--main.inline-grid {
+    --grid-column-count: 7;
+    grid-column-start: col-start 6;
+    grid-column-end: span 7;
+  }
+        
+  
+  /* ============================== */
   /* MEDIA-QUERIES */
+  /* ============================== */
 
   @media screen and (max-width: 600px) {
     .grid {
