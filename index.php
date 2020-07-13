@@ -4,6 +4,7 @@
 
 use auf\Grid;
 use Kirby\Cms\Page;
+use Kirby\Data\Json;
 
 Kirby::plugin('auf/grid', [
     'options' => [
@@ -12,7 +13,7 @@ Kirby::plugin('auf/grid', [
             'maxColumnWidthInPx' => 90,
             'columnGapInPx' => 16,
             'oneColumnToResponsiveBreakpointInPx' => 600,
-            'rowGap' => '0'
+            'rowGap' => '0',
         ],
     ],
     'blueprints' => [
@@ -27,7 +28,14 @@ Kirby::plugin('auf/grid', [
     ],
     'fields' => [
         'grid_column_preset' => [
+            'props' => []
+        ],
+        'inline_grid_items_span_classes' => [
             'props' => [
+                'classes' => function() {
+                    $grid = new Grid();
+                    return $grid->inlineGridItemsSpanClasses();
+                }
             ]
         ],
     ],
@@ -41,7 +49,8 @@ Kirby::plugin('auf/grid', [
                 [
                     'pattern' => 'grid/settings',
                     'action'  => function () {
-                        return Grid::getSettings();
+                        $grid = new Grid();
+                        return (array)$grid;
                     }
                 ],
                 [

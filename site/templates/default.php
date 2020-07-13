@@ -53,6 +53,7 @@
   </style>
 </head>
 <body class="grid">
+
   <h1><?= $page->title() ?></h1>
   <a class="" href="<?= url('grid-tests') ?>"><button>Visit Grid Test Page</button></a>
   <a href="<?= url('#grid') ?>">Show Grid: Simply add #grid behind the url to show a grid-overlay</a>

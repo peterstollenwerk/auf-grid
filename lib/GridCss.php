@@ -45,6 +45,13 @@ class GridCss extends Grid {
     --grid-row-gap: '     .$gridPresetRowGap.';
   }
 
+  .'.$gridPresetClass.' {
+    --grid-column-count: ' . $gridPresetColumnCount . ';
+    --grid-column-width: ' . $gridPresetColumnWidth . ';
+    --grid-column-gap: '   . $gridPresetColumnGap . ';
+    --grid-row-gap: '. $gridPresetRowGap . ';
+  }
+
   .grid {
     display: grid;
     grid-template-columns: 
@@ -57,16 +64,9 @@ class GridCss extends Grid {
     row-gap: var(--grid-row-gap);
   }
 
-  .'.$gridPresetClass.' {
-    --grid-column-count: ' . $gridPresetColumnCount . ';
-    --grid-column-width: ' . $gridPresetColumnWidth . ';
-    --grid-column-gap: '   . $gridPresetColumnGap . ';
-    --grid-row-gap: '. $gridPresetRowGap . ';
-  }
-
   .grid > * {
     grid-column-start: col-start 1; 
-    grid-column-end: col-end 12;
+    grid-column-end: col-end '.$gridPresetColumnCount.';
   }
 
   .grid > .grid {

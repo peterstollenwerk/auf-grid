@@ -26,7 +26,7 @@
     $asset = new Asset("assets/images/grid-test-1.jpg");
 
     for ($i=1; $i <= $columns; $i++) { 
-      echo $asset->resize($grid->getGridColumnSpanWidthInPx($i));
+      echo $asset->resize($grid->getColumnSpanWidthInPx($i));
     }
   ?>
 </section>
@@ -75,13 +75,13 @@
     </tr>
     <tr>
       <td>grid__column--medium</td>
-      <td><?= $grid->getGridColumnSpanByPreset('grid__column--medium') ?></td>
-      <td><?= $grid->getGridColumnSpanWidthInPx($grid->getGridColumnSpanByPreset('grid__column--medium')) ?></td>
+      <td><?= $grid->getColumnSpanByPreset('grid__column--medium') ?></td>
+      <td><?= $grid->getColumnSpanWidthInPx($grid->getColumnSpanByPreset('grid__column--medium')) ?></td>
     </tr>
     <tr>
       <td>grid__column--DOES_NOT_EXIST</td>
-      <td><?= $grid->getGridColumnSpanByPreset('grid__column--DOES_NOT_EXIST'); ?></td>
-      <td><?= $grid->getGridColumnSpanWidthInPx($grid->getGridColumnSpanByPreset('grid__column--DOES_NOT_EXIST')) ?></td>
+      <td><?= $grid->getColumnSpanByPreset('grid__column--DOES_NOT_EXIST'); ?></td>
+      <td><?= $grid->getColumnSpanWidthInPx($grid->getColumnSpanByPreset('grid__column--DOES_NOT_EXIST')) ?></td>
     </tr>
   </table>
 </section>

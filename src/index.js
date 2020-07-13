@@ -1,4 +1,5 @@
 import GridColumnPresetField from "./components/fields/GridColumnPresetField.vue";
+import InlineGridItemsSpanClassesField from "./components/fields/InlineGridItemsSpanClassesField.vue";
 import GridSettingsView from "./components/views/GridSettingsView.vue";
 
 const GridIcon = `
@@ -23,6 +24,7 @@ panel.plugin('auf/grid', {
     }
   },
   fields: {
-    grid_column_preset: GridColumnPresetField
+    grid_column_preset: GridColumnPresetField,
+    inline_grid_items_span_classes: InlineGridItemsSpanClassesField
   }
 });

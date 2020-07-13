@@ -2,7 +2,7 @@ Title: AUF Grid
 
 ----
 
-Grid-column-preset: grid__column--custom
+Grid-column-preset: grid__column--full
 
 ----
 
@@ -11,6 +11,10 @@ Grid-column-start-class: grid__column--start-7
 ----
 
 Grid-column-end-class: grid__column--end-5
+
+----
+
+Inline-grid-items-span: inline-grid--items--span-3
 
 ----
 

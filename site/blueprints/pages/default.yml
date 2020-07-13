@@ -2,3 +2,5 @@ title: Default Page
 preset: page
 fields:
   grid_component_settings: auf_grid/fieldgroup/grid_component_settings
+  inline_grid_items_span: 
+    type: inline_grid_items_span_classes
