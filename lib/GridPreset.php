@@ -6,7 +6,7 @@ use Kirby\Cms\StructureObject;
 
 class GridPreset extends StructureObject {
 
-  public $uid;
+  public $id;
   public $columnCount;
   public $maxColumnWidthInPx;
   public $columnGapInPx;
@@ -19,7 +19,7 @@ class GridPreset extends StructureObject {
   public function __construct() {
     
     $fallbackSettings = [
-      'uid' => 'grid--default',
+      'id' => 'grid--default',
       'columnCount'                         => 12,
       'maxColumnWidthInPx'                  => 90, 
       'oneColumnToResponsiveBreakpointInPx' => 600,
@@ -37,14 +37,14 @@ class GridPreset extends StructureObject {
 
     $settings = (object)array_merge($fallbackSettings, $configSettings);
 
-    $this->uid = $settings->uid;
+    $this->id = $settings->id;
     $this->columnCount = $settings->columnCount;
     $this->maxColumnWidthInPx = $settings->maxColumnWidthInPx;
     $this->columnGapInPx = $settings->columnGapInPx;
     $this->oneColumnToResponsiveBreakpointInPx = $settings->oneColumnToResponsiveBreakpointInPx;
+    $this->rowGap = $settings->rowGap;
     $this->columnGapsCount = $columnGapsCount = $settings->columnCount - 1;
     $this->responsiveToStaticBreakpointInPx = $settings->columnCount * $settings->maxColumnWidthInPx + $columnGapsCount * $settings->columnGapInPx;
-    $this->rowGap = $settings->rowGap;
     
   }
 

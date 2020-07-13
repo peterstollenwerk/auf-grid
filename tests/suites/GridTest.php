@@ -10,15 +10,10 @@ use auf\Grid;
 
 final class GridTest extends TestCase {
 
-  public function testConstructsGridPreset() {
-    $grid = new Grid();
-    $this->assertEquals($grid->gridPreset()->uid, 'grid--default');
-  }
-
   public function testConstructsGridColumnDefaultPreset() {
     $grid = new Grid();
-    $this->assertEquals(get_parent_class($grid->getGridColumnDefaultPreset()), 'Kirby\Cms\StructureObject');
-    $this->assertEquals($grid->getGridColumnDefaultPreset(), 'grid__column--default');
+    $this->assertEquals(get_parent_class($grid->gridColumnDefaultPreset()), 'Kirby\Cms\StructureObject');
+    $this->assertEquals($grid->gridColumnDefaultPreset(), 'grid__column--default');
   }
   
   public function testConstructsGridColumnSitePresets() {
@@ -33,7 +28,7 @@ final class GridTest extends TestCase {
       option('auf.grid.settings.maxColumnWidthInPx') * $span + 
       option('auf.grid.settings.columnGapInPx') * ($span - 1)
     ;
-    $this->assertEquals($grid->getGridColumnSpanWidthInPx(3), $expected);
+    $this->assertEquals($grid->getColumnSpanWidthInPx(3), $expected);
   }
 
   public function testColumnTypeDetection() {
@@ -54,28 +49,28 @@ final class GridTest extends TestCase {
 
   public function testGetGridColumnSpan() {
     $grid = new Grid();
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-12'), option('auf.grid.settings.columnCount'));
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-3', 3), 3);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-12'), option('auf.grid.settings.columnCount'));
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-3', 3), 3);
     
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--end-auto', 12), 12);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--span-3', 3), 3);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--end-6', 12), 6);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--end-margin-left', 12), 1);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--end-margin-right', 12), 13);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--end-auto', 12), 12);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--span-3', 3), 3);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--end-6', 12), 6);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--end-margin-left', 12), 1);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-auto', 'grid__column--end-margin-right', 12), 13);
     
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-auto', 12), 12);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--span-3', 12), 3);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-6', 12), 6);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-margin-left', 12), 1);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-margin-right', 12), 13);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-auto', 12), 12);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--span-3', 12), 3);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-6', 12), 6);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-margin-left', 12), 1);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-margin-right', 12), 13);
     
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--end-auto', 12), 1);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--span-3', 12), 3);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--end-6', 12), 7);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--end-margin-left', 12), 1);
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--end-margin-right', 12), 14);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--end-auto', 12), 1);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--span-3', 12), 3);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--end-6', 12), 7);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--end-margin-left', 12), 1);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-left', 'grid__column--end-margin-right', 12), 14);
     
-    $this->assertEquals($grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-right', 'grid__column--end-margin-right', 12), 1);
+    $this->assertEquals($grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-margin-right', 'grid__column--end-margin-right', 12), 1);
   }
 
   public function testGetGridColumnSitePresets() {
@@ -85,15 +80,15 @@ final class GridTest extends TestCase {
     $this->assertEquals($asidePreset->grid_column_class(), 'grid__column--aside');
     
     $grid = new Grid();
-    $columnSpan = $grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-3');
+    $columnSpan = $grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-3');
     $this->assertEquals($columnSpan, 3);
-    $spanWidthInPx = $grid->getGridColumnSpanWidthInPx(3);
+    $spanWidthInPx = $grid->getColumnSpanWidthInPx(3);
     $this->assertEquals($spanWidthInPx, 302);
-    $columnSpan = $grid->getGridColumnSpanByPreset('grid__column--aside');
+    $columnSpan = $grid->getColumnSpanByPreset('grid__column--aside');
     $this->assertEquals($columnSpan, 12);
     
     $grid = new Grid($presets);
-    $columnSpan = $grid->getGridColumnSpanByPreset('grid__column--aside');
+    $columnSpan = $grid->getColumnSpanByPreset('grid__column--aside');
     $this->assertEquals($columnSpan, 5);
 
   }
@@ -101,8 +96,31 @@ final class GridTest extends TestCase {
   public function testShouldReturnDefaultColumnSpanIfPresetIsNotExistent() {
     $presets = site()->grid_column_presets()->toStructure();
     $grid = new Grid($presets);
-    $columnSpan = $grid->getGridColumnSpanByPreset('grid__column--DOES_NOT_EXIST');
+    $columnSpan = $grid->getColumnSpanByPreset('grid__column--DOES_NOT_EXIST');
     $this->assertEquals($columnSpan, 12);
+  }
+
+  public function testDefaultGetters() {
+    $grid = new Grid();
+    $this->assertEquals($grid->id(), 'grid--default');
+    $this->assertEquals($grid->columnCount(), option('auf.grid.settings.columnCount'));
+    $this->assertEquals($grid->maxColumnWidthInPx(), option('auf.grid.settings.maxColumnWidthInPx'));
+    $this->assertEquals($grid->columnGapInPx(), option('auf.grid.settings.columnGapInPx'));
+    $this->assertEquals($grid->oneColumnToResponsiveBreakpointInPx(), option('auf.grid.settings.oneColumnToResponsiveBreakpointInPx'));
+    $this->assertEquals($grid->rowGap(), option('auf.grid.settings.rowGap'));
+    $this->assertEquals($grid->columnGapsCount(), (option('auf.grid.settings.columnCount') - 1));
+    $this->assertEquals($grid->responsiveToStaticBreakpointInPx(), 12 * 90 + 11 * 16);
+  }
+
+  public function testInlineGridItemsSpanClasses() {
+    $grid = new Grid();
+    $classes = $grid->inlineGridItemsSpanClasses();
+    $this->assertEquals($classes[0], 'inline-grid--items--span-1');
+    $classes = $grid->inlineGridItemsSpanClasses('test--');
+    $this->assertEquals($classes[0], 'test--1');
+    $columnCount = option('auf.grid.settings.columnCount');
+    $classes = $grid->inlineGridItemsSpanClasses();
+    $this->assertEquals($classes[$columnCount-1], 'inline-grid--items--span-'.$columnCount);
   }
 
 }

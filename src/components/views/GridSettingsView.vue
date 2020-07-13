@@ -4,7 +4,7 @@
 
     <div v-for="(value, name) in preset" class="auf-setting">
       <input type="text" :value="value" disabled></input>
-      <label for="">{{ name }}</label>
+      <label for="">{{name}}</label>
       <br>
       <br>
     </div>
@@ -38,7 +38,7 @@ export default {
         this.$api
         .get("grid/settings")
         .then(settings => {
-          this.preset = settings.preset;
+          this.preset = settings;
         });
       },
       saveSettings() {

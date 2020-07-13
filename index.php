@@ -12,7 +12,7 @@ Kirby::plugin('auf/grid', [
             'maxColumnWidthInPx' => 90,
             'columnGapInPx' => 16,
             'oneColumnToResponsiveBreakpointInPx' => 600,
-            'rowGap' => '0'
+            'rowGap' => '0',
         ],
     ],
     'blueprints' => [
@@ -27,9 +27,20 @@ Kirby::plugin('auf/grid', [
     ],
     'fields' => [
         'grid_column_preset' => [
+            'props' => []
+        ],
+        'inline_grid_items_span_classes' => [
             'props' => [
+                'classes' => function() {
+                    $grid = new Grid();
+                    return $grid->inlineGridItemsSpanClasses();
+                }
             ]
         ],
+        'grid_align_items' => [],
+        'grid_justify_items' => [],
+        'grid_align_self' => [],
+        'grid_justify_self' => [],
     ],
     'siteMethods' => [
         'getGridColumnPresets' => function () { return site()->grid_column_presets(); }
@@ -42,8 +53,7 @@ Kirby::plugin('auf/grid', [
                     'pattern' => 'grid/settings',
                     'action'  => function () {
                         $grid = new Grid();
-                        return ['preset' => $grid->gridPreset()];
-                        return Grid::getSettings();
+                        return (array)$grid;
                     }
                 ],
                 [

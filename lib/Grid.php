@@ -11,6 +11,17 @@ use Kirby\Toolkit\F;
 
 class Grid {
 
+  static $inlineGridItemsSpanClassPrefix = 'inline-grid--items--span-';
+
+  public function inlineGridItemsSpanClasses ($prefix = NULL) {
+    $prefix = $prefix ?? Grid::$inlineGridItemsSpanClassPrefix;
+    $classes = [];
+    for($i = 1; $i <= $this->columnCount(); $i++) {
+      array_push($classes, ($prefix.$i));
+    }
+    return $classes;
+  }
+
   static $gridColumnCustomClass = 'grid__column--custom';
 
   static $gridColumnStartClassesCssValueMapping = [
@@ -85,15 +96,57 @@ class Grid {
     return $classes[(string)$class];
   }
   
-  private $gridPreset;
+
+  // MAPPINGS END
+
+  
+
+  private $id;
+  public function id() { return $this->id; }
+
+  private $columnCount;
+  public function columnCount() { return $this->columnCount; }
+  
+  private $maxColumnWidthInPx;
+  public function maxColumnWidthInPx() { return $this->maxColumnWidthInPx; }
+  
+  private $columnGapInPx;
+  public function columnGapInPx() { return $this->columnGapInPx; }
+  
+  private $oneColumnToResponsiveBreakpointInPx;
+  public function oneColumnToResponsiveBreakpointInPx() { return $this->oneColumnToResponsiveBreakpointInPx; }
+  
+  private $rowGap;
+  public function rowGap() { return $this->rowGap; }
+
+  private $columnGapsCount;
+  public function columnGapsCount() { return $this->columnGapsCount; }
+  
+  private $responsiveToStaticBreakpointInPx;
+  public function responsiveToStaticBreakpointInPx() { return $this->responsiveToStaticBreakpointInPx; }
+
   private $gridColumnDefaultPreset;
   private $gridColumnSitePresets;
 
   public function __construct(Structure $grid_column_presets = NULL) {
 
-    $this->gridPreset = new GridPreset();
+    $gridPreset = new GridPreset();
 
-    $this->setGridColumnDefaultPreset();
+    $this->id = $gridPreset->id;
+    $this->columnCount = $gridPreset->columnCount;
+    $this->maxColumnWidthInPx = $gridPreset->maxColumnWidthInPx;
+    $this->columnGapInPx = $gridPreset->columnGapInPx;
+    $this->oneColumnToResponsiveBreakpointInPx = $gridPreset->oneColumnToResponsiveBreakpointInPx;
+    $this->rowGap = $gridPreset->rowGap;
+    $this->columnGapsCount = $gridPreset->columnGapsCount;
+    $this->responsiveToStaticBreakpointInPx = $gridPreset->responsiveToStaticBreakpointInPx;
+
+    $this->gridColumnDefaultPreset = new GridColumnPreset( 
+      $gridColumnClass = 'grid__column--default',
+      $gridColumnStartColumnClass = 'grid__column--start-1',
+      $gridColumnEndColumnClass = 'grid__column--end-12',
+      $gridColumnLabel = 'Default'
+    );
 
     if($grid_column_presets) {
       $this->gridColumnSitePresets  = $grid_column_presets;
@@ -101,24 +154,8 @@ class Grid {
 
   }
 
-  public function gridPreset() { 
-    return $this->gridPreset; 
-  }
   public function gridColumnDefaultPreset() { 
     return $this->gridColumnDefaultPreset; 
-  }
-
-  public function setGridColumnDefaultPreset() {
-    return $this->gridColumnDefaultPreset = new GridColumnPreset( 
-      $gridColumnDefaultClass = 'grid__column--default',
-      $gridColumnDefaultStartColumnClass = 'grid__column--start-1',
-      $gridColumnDefaultEndColumnClass = 'grid__column--end-12',
-      $gridColumnDefaultLabel = 'Default'
-    );
-  }
-
-  public function getGridColumnDefaultPreset() {
-    return $this->gridColumnDefaultPreset;
   }
 
   public function getGridColumnSitePresets() {
@@ -129,19 +166,16 @@ class Grid {
     if($columnPresets = $this->getGridColumnSitePresets()) {
       $preset = $columnPresets->findBy('grid_column_class', $grid_column_class);
     }
-    return $preset ? $preset : $this->getGridColumnDefaultPreset();
+    return $preset ? $preset : $this->gridColumnDefaultPreset();
   }
 
-  public function getGridColumnSpanByPreset(string $grid_column_class = '') {
+  public function getColumnSpanByPreset(string $grid_column_class = '') {
     $preset = $this->getGridColumnPresetByColumnClass($grid_column_class);
-    return $this->getGridColumnSpanByStartAndEndColumnClasses($preset->grid_column_start_class(), $preset->grid_column_end_class());
+    return $this->getColumnSpanByStartAndEndColumnClasses($preset->grid_column_start_class(), $preset->grid_column_end_class());
   }
 
-  public function getGridColumnSpanWidthInPx($columnSpan) {
-    return (
-      $columnSpan * $this->gridPreset()->maxColumnWidthInPx() + 
-      ($columnSpan - 1) * $this->gridPreset()->columnGapInPx()
-    );
+  public function getColumnSpanWidthInPx($columnSpan) {
+    return ($columnSpan * $this->maxColumnWidthInPx() + ($columnSpan - 1) * $this->columnGapInPx());
   }
 
   static function getGridColumnStartEndType($gridColumnStartEndValue = NULL) {
@@ -183,7 +217,7 @@ class Grid {
     return (int) str_replace('grid__column--span-', '', $gridColumnStartEndValue);
   }
 
-  public function getGridColumnSpanByStartAndEndColumnClasses(
+  public function getColumnSpanByStartAndEndColumnClasses(
 
     string $gridColumnStart = 'grid__column--start-1', 
     string $gridColumnEnd   = 'grid__column--end-12',
@@ -192,7 +226,7 @@ class Grid {
     ) {
       
     if($gridTotalColumns === NULL) {
-      $gridTotalColumns = $this->gridPreset()->columnCount();
+      $gridTotalColumns = $this->columnCount();
     }
     $startType = Grid::getGridColumnStartEndType($gridColumnStart);
     $endType   = Grid::getGridColumnStartEndType($gridColumnEnd);
@@ -200,6 +234,7 @@ class Grid {
     $gridColumnDefaultStartClass = $this->gridColumnDefaultPreset()->gridColumnStartClass();
     $gridColumnDefaultEndClass = $this->gridColumnDefaultPreset()->gridColumnEndClass();
 
+    # AUTO
     if($startType === 'auto' && $endType === 'auto') {
       return Grid::getGridColumnNumber($gridColumnDefaultEndClass) - Grid::getGridColumnNumber($gridColumnDefaultStartClass) + 1;
     }
@@ -217,6 +252,7 @@ class Grid {
         Grid::getGridColumnNumber($gridColumnDefaultEndClass) - 
         Grid::getGridColumnNumber($gridColumnDefaultStartClass) + 1 + 1;
     }
+    # COLS
     if($startType === 'col' && $endType === 'auto') {
       return 
         Grid::getGridColumnNumber($gridColumnDefaultEndClass) - 
@@ -236,8 +272,7 @@ class Grid {
     if($startType === 'col' && $endType === 'margin-right') {
       return $gridTotalColumns - (Grid::getGridColumnNumber($gridColumnStart) - 1) + 1;
     }
-
-
+    # MARGIN-LEFT
     if($startType === 'margin-left' && $endType === 'auto') {
       return Grid::getGridColumnSpanNumber($gridColumnEnd) + 1;
     }
@@ -253,12 +288,11 @@ class Grid {
     if($startType === 'margin-left' && $endType === 'margin-left') {
       return 1;
     }
+    # MARGIN-RIGHT
     if($startType === 'margin-right' && $endType === 'margin-right') {
       return 1;
     }
   }
-
-
 
 
   // --------------------------------------

@@ -1,0 +1,24 @@
+  /* ============================== */
+  /* Inline-Grid */
+  /* ============================== */
+
+  .inline-grid {
+    --grid-row-gap: var(--grid-column-gap);
+    display: inline-grid;
+    grid-template-columns: repeat(var(--grid-column-count), 
+      [col-start] minmax(0, var(--grid-column-max-width)) [col-end]);
+    grid-column-gap: var(--grid-column-gap);
+    grid-row-gap: var(--grid-row-gap);
+  }
+  .inline-grid > * {
+    margin-top: initial;
+  }
+  .grid > .inline-grid {
+    grid-column-start: margin-left-end;
+    grid-column-end: margin-right-start;
+  }
+
+  .grid__column--full.inline-grid { 
+    grid-template-columns: repeat(var(--grid-column-count), 
+    [col-start] 1fr [col-end]);
+  }

@@ -2,11 +2,14 @@
 
 namespace auf;
 use auf\Grid;
+use Kirby\Cms\File;
+
+
 
 class GridCss extends Grid {
 
   public function headerCss() {
-    $responsiveToStaticBreakpoint = $this->gridPreset()->responsiveToStaticBreakpointInPx() . 'px';
+    $responsiveToStaticBreakpoint = $this->responsiveToStaticBreakpointInPx() . 'px';
     return ('
 .grid {
   max-width: '. $responsiveToStaticBreakpoint.';
@@ -27,30 +30,29 @@ class GridCss extends Grid {
   }
 
   public function gridPresetCss() {
-    $gridPreset = $this->gridPreset();
-    $gridPresetClass = $gridPreset->uid();
-    $gridPresetColumnWidth = $gridPreset->maxColumnWidthInPx() . 'px';
-    $gridPresetColumnGap = $gridPreset->columnGapInPx() . 'px';
-    $gridPresetColumnCount = $gridPreset->columnCount();
-    $gridPresetRowGap = $gridPreset->rowGap();
-    $oneColumnToResponsiveBreakpointInPx = $gridPreset->oneColumnToResponsiveBreakpointInPx() . 'px';
+    $gridPresetClass = 'grid--default';
+    $gridPresetColumnWidth = $this->maxColumnWidthInPx() . 'px';
+    $gridPresetColumnGap = $this->columnGapInPx() . 'px';
+    $gridPresetColumnCount = $this->columnCount();
+    $gridPresetRowGap = $this->rowGap();
+    $oneColumnToResponsiveBreakpointInPx = $this->oneColumnToResponsiveBreakpointInPx() . 'px';
     return ('
   /* =========================== */
-  /* GRID Presets / Default GRID */
+  /* GRID                        */
   /* =========================== */
 
   :root {
-    --grid-column-count: '.$gridPresetColumnCount.';
-    --grid-column-width: '.$gridPresetColumnWidth.';
-    --grid-column-gap: '  .$gridPresetColumnGap.';
-    --grid-row-gap: '     .$gridPresetRowGap.';
+    --grid-column-count: ' . $gridPresetColumnCount . ';
+    --grid-column-max-width: ' . $gridPresetColumnWidth . ';
+    --grid-column-gap: '   . $gridPresetColumnGap . ';
+    --grid-row-gap: '. $gridPresetRowGap . ';
   }
 
   .grid {
     display: grid;
     grid-template-columns: 
       [margin-left-start] 1fr [margin-left-end]
-      repeat(var(--grid-column-count), [col-start] minmax(0, var(--grid-column-width)) [col-end]) 
+      repeat(var(--grid-column-count), [col-start] minmax(0, var(--grid-column-max-width)) [col-end]) 
       [margin-right-start] 1fr [margin-right-end];
     grid-column-gap: var(--grid-column-gap);
     column-gap: var(--grid-column-gap);
@@ -58,30 +60,16 @@ class GridCss extends Grid {
     row-gap: var(--grid-row-gap);
   }
 
-  .'.$gridPresetClass.' {
-    --grid-column-count: ' . $gridPresetColumnCount . ';
-    --grid-column-width: ' . $gridPresetColumnWidth . ';
-    --grid-column-gap: '   . $gridPresetColumnGap . ';
-    --grid-row-gap: '. $gridPresetRowGap . ';
-  }
-
   .grid > * {
     grid-column-start: col-start 1; 
-    grid-column-end: col-end 12;
+    grid-column-end: col-end '.$gridPresetColumnCount.';
   }
 
   .grid > .grid {
     grid-column-start: 1; 
     grid-column-end: -1;
   }
-
-  @media screen and (max-width: '.$oneColumnToResponsiveBreakpointInPx.') {
-    .grid {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-    ');
+');
   }
 
   public function gridColumnPresetsCss() {
@@ -123,15 +111,15 @@ class GridCss extends Grid {
 
     
     $css = ('
-  /* =========================== */
+  /* ====================================== */
   /* GRID: Column Column Start-/End-Classes */
-  /* =========================== */
+  /* ====================================== */
 ');
 
     # ---------- Start Classes: START ----------------------------
     $startClassesCss = ('
   /* ------------------------- */
-  /* grid__column--start */
+  /* grid__column--start-#     */
   /* ------------------------- */
 '); 
     foreach($startClasses as $class => $value) {
@@ -147,7 +135,7 @@ class GridCss extends Grid {
     # ---------- End Classes: START ----------------------------
     $endClassesCss = ('
   /* ------------------------- */
-  /* grid__column--end */
+  /* grid__column--end-#       */
   /* ------------------------- */
 '); 
     foreach($endClasses as $class => $value) {
@@ -159,25 +147,116 @@ class GridCss extends Grid {
       $endClassesCss = $endClassesCss . $endClass;
     }
     # ---------- span classes  (secondary end-classes)----------------------------
-    $i = 1;
+    $spanClassesCss = ('
+    /* ------------------------- */
+    /* grid__column--span-#      */
+    /* ------------------------- */
+  '); 
     foreach($spanClasses as $class => $value) {
       $spanClass = ('
-  .grid--items--span-'.$i++.' > *,
   .'.$class. ' {
       grid-column-end: ' . $value. ';
   }
 ');
-      $endClassesCss = $endClassesCss . $spanClass;
+      $spanClassesCss = $spanClassesCss . $spanClass;
     }
     # ---------- End Classes: END ----------------------------
 
     return 
       $css . 
       $startClassesCss .
-      $endClassesCss;
+      $endClassesCss .
+      $spanClassesCss;
   }
 
+  public function inlineGridCss() {
+
+    $inlineGridCss = file_get_contents('css/inline-grid.css', true);
+
+    # --------------------------------------------------------------
+    $inlineGridItemsSpanClassesCss = '
   
+  /* ------------------------------- */
+  /* inline-grid--items--span-#       */  
+  /* ------------------------------- */
+    ';
+    for($i = 1; $i <= $this->columnCount(); $i++) {
+      $classCss = ('
+  .' . Grid::$inlineGridItemsSpanClassPrefix . $i .' > * {
+    grid-column-end: span '. $i .';
+  }
+      ');
+      $inlineGridItemsSpanClassesCss = $inlineGridItemsSpanClassesCss . $classCss;
+    }
+    return $inlineGridCss . $inlineGridItemsSpanClassesCss;
+
+  }
+
+  public function inlineGridColumnPresetsCss() {
+    $gridColumnPresets = $this->getGridColumnSitePresets();
+
+    if(!$gridColumnPresets) {
+      return;
+    }
+
+    $css = ('
+  /* =========================== */
+  /* INLINE-GRID Column Presets */
+  /* =========================== */
+    ');
+    foreach($gridColumnPresets as $preset) {
+      $gridColumnClass = $preset->grid_column_class();
+      $gridColumnStartClass = $preset->grid_column_start_class();
+      $gridColumnEndClass = $preset->grid_column_end_class();
+      $gridColumnStartCss = Grid::getCssValueForGridColumnStartEndClass($gridColumnStartClass);
+      $gridColumnEndCss = Grid::getCssValueForGridColumnStartEndClass($gridColumnEndClass);
+      $presetColumnSpan = $this->getColumnSpanByPreset($gridColumnClass);
+      $presetCss = '';
+      if($gridColumnClass != 'grid__column--full') {
+        $presetCss = ('
+  .'.$gridColumnClass.'.inline-grid {
+    --grid-column-count: '.$presetColumnSpan.';
+    grid-column-start: '. $gridColumnStartCss .';
+    grid-column-end: '. $gridColumnEndCss . ';
+  }
+        ');
+      } else {
+        $presetCss = ('
+  .grid__column--full.inline-grid {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+        ');
+
+      }
+      $css = $css . $presetCss;
+    }
+    return $css;
+  }
+
+  public function alignJustifyHelpersCss() {
+
+    return file_get_contents('css/grid-helpers.css', true);
+
+  }
+
+
+  public function mediaQueriesCss() {
+    return ('
+  
+  /* ============================== */
+  /* MEDIA-QUERIES */
+  /* ============================== */
+
+  @media screen and (max-width: '.$this->oneColumnToResponsiveBreakpointInPx().'px) {
+    .grid,
+    .inline-grid {
+      display: flex;
+      flex-direction: column;
+    }
+  }    
+');
+  }
 
   public function footerCss() {
     return ('
@@ -193,6 +272,10 @@ class GridCss extends Grid {
       $this->gridPresetCss() . 
       $this->gridColumnPresetsCss() . 
       $this->gridColumnStartEndClassesCss() .
+      $this->inlineGridCss() .
+      $this->inlineGridColumnPresetsCss() .
+      $this->alignJustifyHelpersCss() .
+      $this->mediaQueriesCss() .
       $this->footerCss();
   }
 
