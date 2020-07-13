@@ -85,13 +85,47 @@ class Grid {
     return $classes[(string)$class];
   }
   
+
+  // MAPPINGS END
+
+  // OLD STUFF START
   private $gridPreset;
   private $gridColumnDefaultPreset;
   private $gridColumnSitePresets;
+  // OLD STUFF END
+
+  private $columnCount;
+  public function columnCount() { return $this->columnCount; }
+  
+  private $maxColumnWidthInPx;
+  public function maxColumnWidthInPx() { return $this->maxColumnWidthInPx; }
+  
+  private $columnGapInPx;
+  public function columnGapInPx() { return $this->columnGapInPx; }
+  
+  private $oneColumnToResponsiveBreakpointInPx;
+  public function oneColumnToResponsiveBreakpointInPx() { return $this->oneColumnToResponsiveBreakpointInPx; }
+  
+  private $rowGap;
+  public function rowGap() { return $this->rowGap; }
+
+  private $columnGapsCount;
+  public function columnGapsCount() { return $this->columnGapsCount; }
+  
+  private $responsiveToStaticBreakpointInPx;
+  public function responsiveToStaticBreakpointInPx() { return $this->responsiveToStaticBreakpointInPx; }
 
   public function __construct(Structure $grid_column_presets = NULL) {
 
-    $this->gridPreset = new GridPreset();
+    $this->gridPreset = $gridPreset = new GridPreset();
+
+    $this->columnCount = $gridPreset->columnCount;
+    $this->maxColumnWidthInPx = $gridPreset->maxColumnWidthInPx;
+    $this->columnGapInPx = $gridPreset->columnGapInPx;
+    $this->oneColumnToResponsiveBreakpointInPx = $gridPreset->oneColumnToResponsiveBreakpointInPx;
+    $this->rowGap = $gridPreset->rowGap;
+    $this->columnGapsCount = $gridPreset->columnGapsCount;
+    $this->responsiveToStaticBreakpointInPx = $gridPreset->responsiveToStaticBreakpointInPx;
 
     $this->setGridColumnDefaultPreset();
 

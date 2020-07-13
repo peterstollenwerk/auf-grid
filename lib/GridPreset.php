@@ -42,9 +42,9 @@ class GridPreset extends StructureObject {
     $this->maxColumnWidthInPx = $settings->maxColumnWidthInPx;
     $this->columnGapInPx = $settings->columnGapInPx;
     $this->oneColumnToResponsiveBreakpointInPx = $settings->oneColumnToResponsiveBreakpointInPx;
+    $this->rowGap = $settings->rowGap;
     $this->columnGapsCount = $columnGapsCount = $settings->columnCount - 1;
     $this->responsiveToStaticBreakpointInPx = $settings->columnCount * $settings->maxColumnWidthInPx + $columnGapsCount * $settings->columnGapInPx;
-    $this->rowGap = $settings->rowGap;
     
   }
 

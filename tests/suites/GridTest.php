@@ -105,4 +105,15 @@ final class GridTest extends TestCase {
     $this->assertEquals($columnSpan, 12);
   }
 
+  public function testDefaultGetters() {
+    $grid = new Grid();
+    $this->assertEquals($grid->columnCount(), option('auf.grid.settings.columnCount'));
+    $this->assertEquals($grid->maxColumnWidthInPx(), option('auf.grid.settings.maxColumnWidthInPx'));
+    $this->assertEquals($grid->columnGapInPx(), option('auf.grid.settings.columnGapInPx'));
+    $this->assertEquals($grid->oneColumnToResponsiveBreakpointInPx(), option('auf.grid.settings.oneColumnToResponsiveBreakpointInPx'));
+    $this->assertEquals($grid->rowGap(), option('auf.grid.settings.rowGap'));
+    $this->assertEquals($grid->columnGapsCount(), (option('auf.grid.settings.columnCount') - 1));
+    $this->assertEquals($grid->responsiveToStaticBreakpointInPx(), 12 * 90 + 11 * 16);
+  }
+
 }
