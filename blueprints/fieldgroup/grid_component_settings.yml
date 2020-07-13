@@ -20,6 +20,15 @@ fields:
     when:
       grid_column_preset: grid__column--custom
 
+  grid_align_self_class:
+    label: Align Self (vertical)
+    type: grid_align_self
+    width: 1/2
+  
+  grid_justify_self_class:
+    label: Justify Self (vertical)
+    type: grid_justify_self
+    width: 1/2
 
   container_grid_settings:
     type: headline

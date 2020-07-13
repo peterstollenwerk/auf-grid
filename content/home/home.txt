@@ -26,6 +26,14 @@ Container-justify-items-class:
 
 ----
 
+Grid-align-self-class: 
+
+----
+
+Grid-justify-self-class: 
+
+----
+
 Grid-type: 
 
 ----
