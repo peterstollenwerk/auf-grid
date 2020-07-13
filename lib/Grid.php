@@ -4,7 +4,6 @@ namespace auf;
 
 use auf\GridPreset;
 use auf\GridColumnPreset;
-use Kirby\Cms\File;
 use Kirby\Cms\Structure;
 use Kirby\Data\Json;
 use Kirby\Data\Yaml;
@@ -218,8 +217,6 @@ class Grid {
         Grid::getGridColumnNumber($gridColumnDefaultEndClass) - 
         Grid::getGridColumnNumber($gridColumnDefaultStartClass) + 1 + 1;
     }
-
-
     if($startType === 'col' && $endType === 'auto') {
       return 
         Grid::getGridColumnNumber($gridColumnDefaultEndClass) - 

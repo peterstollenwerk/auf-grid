@@ -110,6 +110,8 @@ template.php
 
 * [X] ~~*Create Grid Overlay Snippet*~~ [2020-07-12]
 
+* [ ] Refactor grid to a nice interface
+
 * [ ] Implement Inline Grid Classes
 
 * [ ] Implement justify and align classes

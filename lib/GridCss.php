@@ -190,7 +190,6 @@ class GridCss extends Grid {
   public function css() {
     return 
       $this->headerCss() . 
-      # GRID
       $this->gridPresetCss() . 
       $this->gridColumnPresetsCss() . 
       $this->gridColumnStartEndClassesCss() .
