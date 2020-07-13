@@ -115,12 +115,35 @@
     </div>
     <h3>.items--span-3 .align-items--end .justify-items--start</h3>
     <div class="inline-grid inline-grid--items--span-3 align-items--end justify-items--start">
-      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?>
-      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(2)); ?>
-      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(3)); ?>
-      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?>
+      <div><?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?></div>
+      <div><?php echo $asset->resize($grid->getColumnSpanWidthInPx(2)); ?></div>
+      <div><?php echo $asset->resize($grid->getColumnSpanWidthInPx(3)); ?></div>
+      <div><?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?></div>
+      <div class="align-self--center justify-self--center"><?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?></div>
+      <div><?php echo $asset->resize($grid->getColumnSpanWidthInPx(3)); ?></div>
     </div>
 
+</section>
+<!-- ============================================= -->
+<section class="grid">
+  <h2>Inline Grid Breakpoint Test</h2>
+  <section class="inline-grid inline-grid--items--span-4 boxes">
+    <article>
+      <h2>Article 1</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quaerat, provident beatae, assumenda nulla quidem, eius dolorum temporibus vel iure natus aut delectus? Alias placeat quis maxime repellat qui odit?</p>
+      <button><a href="#">Read Article 1</a></button>
+    </article>
+    <article>
+      <h2>Article 2</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quaerat, provident beatae, assumenda nulla quidem, eius dolorum temporibus vel iure natus aut delectus? Alias placeat quis maxime repellat qui odit?</p>
+      <button><a href="#">Read Article 2</a></button>
+    </article>
+    <article>
+      <h2>Article 3</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores quaerat, provident beatae, assumenda nulla quidem, eius dolorum temporibus vel iure natus aut delectus? Alias placeat quis maxime repellat qui odit?</p>
+      <button><a href="#">Read Article 3</a></button>
+    </article>
+  </section>
 </section>
 <!-- ============================================= -->
 <section>

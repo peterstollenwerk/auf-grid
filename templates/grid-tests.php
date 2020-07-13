@@ -6,6 +6,11 @@
     <title><?= $page->title() ?></title>
     <?= css('assets/css/auf-grid.css') ?>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       * + * {
         margin-top: 1rem;
       }

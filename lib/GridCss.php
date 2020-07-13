@@ -249,7 +249,8 @@ class GridCss extends Grid {
   /* ============================== */
 
   @media screen and (max-width: '.$this->oneColumnToResponsiveBreakpointInPx().'px) {
-    .grid {
+    .grid,
+    .inline-grid {
       display: flex;
       flex-direction: column;
     }

@@ -4,7 +4,6 @@
 
 use auf\Grid;
 use Kirby\Cms\Page;
-use Kirby\Data\Json;
 
 Kirby::plugin('auf/grid', [
     'options' => [
