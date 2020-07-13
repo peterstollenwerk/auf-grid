@@ -1,7 +1,7 @@
 <?php
   use auf\Grid;
   $grid = new Grid();
-  $columns = $grid->gridPreset()->columnCount;
+  $columns = $grid->columnCount();
   $i = 1;
 ?>
 

@@ -90,10 +90,8 @@
   <h2>Grid Presets Preview</h2>
   <?php
     $columnPresets = $grid->getGridColumnSitePresets();
-    $gridPreset = $grid->gridPreset();
   ?>
-  <h3>Grid Preset: .<?= $gridPreset->uid() ?></h3>
-  <div class="grid <?= $gridPreset->uid() ?>">
+  <div class="grid">
     <?php foreach($columnPresets as $columnPreset): ?>
 
       <?php

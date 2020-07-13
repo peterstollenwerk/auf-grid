@@ -10,11 +10,6 @@ use auf\Grid;
 
 final class GridTest extends TestCase {
 
-  public function testConstructsGridPreset() {
-    $grid = new Grid();
-    $this->assertEquals($grid->gridPreset()->uid, 'grid--default');
-  }
-
   public function testConstructsGridColumnDefaultPreset() {
     $grid = new Grid();
     $this->assertEquals(get_parent_class($grid->getGridColumnDefaultPreset()), 'Kirby\Cms\StructureObject');

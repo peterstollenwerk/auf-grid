@@ -6,7 +6,7 @@ use auf\Grid;
 class GridCss extends Grid {
 
   public function headerCss() {
-    $responsiveToStaticBreakpoint = $this->gridPreset()->responsiveToStaticBreakpointInPx() . 'px';
+    $responsiveToStaticBreakpoint = $this->responsiveToStaticBreakpointInPx() . 'px';
     return ('
 .grid {
   max-width: '. $responsiveToStaticBreakpoint.';
@@ -27,13 +27,12 @@ class GridCss extends Grid {
   }
 
   public function gridPresetCss() {
-    $gridPreset = $this->gridPreset();
-    $gridPresetClass = $gridPreset->uid();
-    $gridPresetColumnWidth = $gridPreset->maxColumnWidthInPx() . 'px';
-    $gridPresetColumnGap = $gridPreset->columnGapInPx() . 'px';
-    $gridPresetColumnCount = $gridPreset->columnCount();
-    $gridPresetRowGap = $gridPreset->rowGap();
-    $oneColumnToResponsiveBreakpointInPx = $gridPreset->oneColumnToResponsiveBreakpointInPx() . 'px';
+    $gridPresetClass = 'grid--default';
+    $gridPresetColumnWidth = $this->maxColumnWidthInPx() . 'px';
+    $gridPresetColumnGap = $this->columnGapInPx() . 'px';
+    $gridPresetColumnCount = $this->columnCount();
+    $gridPresetRowGap = $this->rowGap();
+    $oneColumnToResponsiveBreakpointInPx = $this->oneColumnToResponsiveBreakpointInPx() . 'px';
     return ('
   /* =========================== */
   /* GRID Presets / Default GRID */
