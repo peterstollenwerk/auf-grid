@@ -30,3 +30,19 @@
   .justify-items--center  { justify-items: center; }
   .justify-items--end     { justify-items: end; }
   .justify-items--stretch { justify-items: stretch; }
+
+  /* outset */
+
+  .outset,
+  .outset--items > * {
+    margin-left: calc(var(--grid-column-gap) * -1);
+    margin-right: calc(var(--grid-column-gap) * -1);
+  }
+  .outset--left,
+  .outset--items--left > * {
+    margin-left: calc(var(--grid-column-gap) * -1);
+  }
+  .outset--right,
+  .outset--items--right > * {
+    margin-right: calc(var(--grid-column-gap) * -1);
+  }

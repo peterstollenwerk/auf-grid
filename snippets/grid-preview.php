@@ -146,6 +146,31 @@
   </section>
 </section>
 <!-- ============================================= -->
+<section class="grid boxes">
+  <h2>outset helper test</h2>
+  <h3 class="outset">outset</h3>
+  <h3 class="outset--left">outset--left</h3>
+  <h3 class="outset--right">outset--right</h3>
+  <section class="inline-grid outset--items boxes" style="padding: initial; border: none;">
+    <h4>inline-grid outset--items</h4>
+    <div class="grid__column--start-3">1</div>
+    <div class="grid__column--start-5">2</div>
+    <div class="grid__column--start-7">3</div>
+  </section>
+  <section class="inline-grid outset--items--left boxes" style="padding: initial; border: none;">
+    <h4>inline-grid outset--items--left</h4>
+    <div class="grid__column--start-3">1</div>
+    <div class="grid__column--start-5">2</div>
+    <div class="grid__column--start-7">3</div>
+  </section>
+  <section class="inline-grid outset--items--right boxes" style="padding: initial; border: none;">
+    <h4>inline-grid outset--items--right</h4>
+    <div class="grid__column--start-3">1</div>
+    <div class="grid__column--start-5">2</div>
+    <div class="grid__column--start-7">3</div>
+  </section>
+</section>
+<!-- ============================================= -->
 <section>
   <h2>Grid Images</h2>
   <style>

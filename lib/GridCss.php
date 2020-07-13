@@ -236,7 +236,7 @@ class GridCss extends Grid {
 
   public function alignJustifyHelpersCss() {
 
-    return file_get_contents('css/align-justify-helpers.css', true);
+    return file_get_contents('css/grid-helpers.css', true);
 
   }
 
