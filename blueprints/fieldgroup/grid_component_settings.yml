@@ -43,3 +43,8 @@ fields:
     label: Align Items (vertical)
     type: grid_align_items
     width: 1/2
+  
+  container_justify_items_class:
+    label: Justify Items (horizontal)
+    type: grid_justify_items
+    width: 1/2

@@ -10,7 +10,7 @@
     <k-input
       v-model="value"
       :options="options"
-      name="inline_grid_items_span_class"
+      name="justify_items_class"
       type="select"
       theme="field"
       @input="onChange"
@@ -38,10 +38,10 @@ export default {
       activeImagePath: '/media/plugins/auf/grid/images/' + this.value + '.svg',
       active: this.value,
       options: [
-        {value: 'align-items--start',   text: '.align-items--start (TOP)'},
-        {value: 'align-items--center',  text: '.align-items--center'},
-        {value: 'align-items--end',     text: '.align-items--end (BOTTOM)'},
-        {value: 'align-items--stretch', text: '.align-items--stretch'}
+        {value: 'justify-items--start',   text: '.justify-items--start (LEFT)'},
+        {value: 'justify-items--center',  text: '.justify-items--center'},
+        {value: 'justify-items--end',     text: '.justify-items--end (RIGHT)'},
+        {value: 'justify-items--stretch', text: '.justify-items--stretch'}
       ],
     }
   },
