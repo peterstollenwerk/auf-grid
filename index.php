@@ -37,6 +37,7 @@ Kirby::plugin('auf/grid', [
                 }
             ]
         ],
+        'grid_align_items' => [],
     ],
     'siteMethods' => [
         'getGridColumnPresets' => function () { return site()->grid_column_presets(); }

@@ -14,7 +14,11 @@ Grid-column-end-class:
 
 ----
 
-Container-grid-type: inline-grid
+Container-grid-class: 
+
+----
+
+Container-align-items-class: align-items--start
 
 ----
 

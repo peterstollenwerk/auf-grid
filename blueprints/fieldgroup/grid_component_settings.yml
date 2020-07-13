@@ -25,7 +25,7 @@ fields:
     type: headline
     label: Container Component Grid Settings
 
-  container_grid_type:
+  container_grid_class:
     type: select
     label: Sub-Grid Type
     default: grid
@@ -33,8 +33,12 @@ fields:
       grid: grid
       inline-grid: inline-grid
 
-  container_inline_grid_items_span: 
+  container_inline_grid_items_span_class: 
     label: Inline Grid Items Span Class
     type: inline_grid_items_span_classes
     when: 
       container_grid_type: inline-grid
+
+  container_align_items_class:
+    label: Align Items (vertical)
+    type: grid_align_items
