@@ -102,6 +102,7 @@ final class GridTest extends TestCase {
 
   public function testDefaultGetters() {
     $grid = new Grid();
+    $this->assertEquals($grid->id(), 'grid--default');
     $this->assertEquals($grid->columnCount(), option('auf.grid.settings.columnCount'));
     $this->assertEquals($grid->maxColumnWidthInPx(), option('auf.grid.settings.maxColumnWidthInPx'));
     $this->assertEquals($grid->columnGapInPx(), option('auf.grid.settings.columnGapInPx'));

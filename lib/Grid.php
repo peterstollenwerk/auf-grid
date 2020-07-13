@@ -93,6 +93,9 @@ class Grid {
   private $gridColumnSitePresets;
   // OLD STUFF END
 
+  private $id;
+  public function id() { return $this->id; }
+
   private $columnCount;
   public function columnCount() { return $this->columnCount; }
   
@@ -118,6 +121,7 @@ class Grid {
 
     $gridPreset = new GridPreset();
 
+    $this->id = $gridPreset->id;
     $this->columnCount = $gridPreset->columnCount;
     $this->maxColumnWidthInPx = $gridPreset->maxColumnWidthInPx;
     $this->columnGapInPx = $gridPreset->columnGapInPx;
@@ -289,8 +293,6 @@ class Grid {
       return 1;
     }
   }
-
-
 
 
   // --------------------------------------
