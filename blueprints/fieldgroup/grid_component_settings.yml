@@ -2,13 +2,11 @@ type: group
 fields:
   grid_section_headline:
     type: headline
-    label: Grid System
+    label: Component Grid Settings
 
   grid_column_preset:
     label: Grid Column Preset
     extends: grid_column_preset  
-
-
 
   grid_column_start_class:
     extends: auf_grid/fields/grid_column_start_class
@@ -22,7 +20,12 @@ fields:
     when:
       grid_column_preset: grid__column--custom
 
-  grid_type:
+
+  container_grid_settings:
+    type: headline
+    label: Container Component Grid Settings
+
+  container_grid_type:
     type: select
     label: Sub-Grid Type
     default: grid
@@ -30,8 +33,8 @@ fields:
       grid: grid
       inline-grid: inline-grid
 
-  inline_grid_items_span: 
+  container_inline_grid_items_span: 
     label: Inline Grid Items Span Class
     type: inline_grid_items_span_classes
     when: 
-      grid_type: inline-grid
+      container_grid_type: inline-grid

@@ -14,11 +14,11 @@ Grid-column-end-class:
 
 ----
 
-Grid-type: inline-grid
+Grid-type: 
 
 ----
 
-Inline-grid-items-span: inline-grid--items--span-2
+Inline-grid-items-span: 
 
 ----
 

@@ -175,10 +175,7 @@ class Grid {
   }
 
   public function getColumnSpanWidthInPx($columnSpan) {
-    return (
-      $columnSpan * $this->maxColumnWidthInPx() + 
-      ($columnSpan - 1) * $this->columnGapInPx()
-    );
+    return ($columnSpan * $this->maxColumnWidthInPx() + ($columnSpan - 1) * $this->columnGapInPx());
   }
 
   static function getGridColumnStartEndType($gridColumnStartEndValue = NULL) {
