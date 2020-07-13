@@ -7,8 +7,6 @@
     :required="required"
   >
 
-    <k-image src="/media/plugins/auf/grid/images/icons_align-items_align-items--center.svg" />
-
     <k-input
       v-model="value"
       :options="options"
@@ -18,10 +16,9 @@
       @input="onChange"
     />
 
-    <k-icon :type="active" size="large" />
+    <k-image v-if="active" :src="activeImagePath" ratio="3/1" />
 
   </k-field>
-
 
 </template>
 
@@ -38,6 +35,7 @@ export default {
   },
   data: function() {
     return {
+      activeImagePath: '/media/plugins/auf/grid/images/' + this.value + '.svg',
       active: this.value,
       options: [
         {value: 'align-items--start',   text: '.align-items--start (TOP)'},
@@ -49,7 +47,8 @@ export default {
   },
   methods: {
     onChange(value) {
-      this.active = value;
+      this.active = this.value;
+      this.activeImagePath = '/media/plugins/auf/grid/images/' + this.value + '.svg';
       this.$emit("input", value);
     }
   }
@@ -57,11 +56,11 @@ export default {
 </script>
 
 <style>
-.k-icon {
-  justify-content: initial;
+/* .k-image span {
+  margin-top: 1rem;
+  padding: initial !important;
 }
-.k-icon[data-size=large] svg {
-    width: 10rem;
-    height: 10rem;
-}
+.k-image img {
+  max-width: 50%;
+} */
 </style>

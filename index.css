@@ -1,10 +1,10 @@
-/* optional scoped styles for the component *//* optional scoped styles for the component */.k-icon {
-  justify-content: initial;
+/* optional scoped styles for the component *//* optional scoped styles for the component *//* .k-image span {
+  margin-top: 1rem;
+  padding: initial !important;
 }
-.k-icon[data-size=large] svg {
-    width: 10rem;
-    height: 10rem;
-}.auf-grid-button {
+.k-image img {
+  max-width: 50%;
+} */.auf-grid-button {
   padding: 0.5rem;
   border: 2px solid black;
 }

@@ -9223,9 +9223,6 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
 var _default = {
   props: {
     after: String,
@@ -9238,6 +9235,7 @@ var _default = {
   },
   data: function data() {
     return {
+      activeImagePath: '/media/plugins/auf/grid/images/' + this.value + '.svg',
       active: this.value,
       options: [{
         value: 'align-items--start',
@@ -9256,7 +9254,8 @@ var _default = {
   },
   methods: {
     onChange: function onChange(value) {
-      this.active = value;
+      this.active = this.value;
+      this.activeImagePath = '/media/plugins/auf/grid/images/' + this.value + '.svg';
       this.$emit("input", value);
     }
   }
@@ -9286,13 +9285,6 @@ exports.default = _default;
       }
     },
     [
-      _c("k-image", {
-        attrs: {
-          src:
-            "/media/plugins/auf/grid/images/icons_align-items_align-items--center.svg"
-        }
-      }),
-      _vm._v(" "),
       _c("k-input", {
         attrs: {
           options: _vm.options,
@@ -9310,7 +9302,9 @@ exports.default = _default;
         }
       }),
       _vm._v(" "),
-      _c("k-icon", { attrs: { type: _vm.active, size: "large" } })
+      _vm.active
+        ? _c("k-image", { attrs: { src: _vm.activeImagePath, ratio: "3/1" } })
+        : _vm._e()
     ],
     1
   )

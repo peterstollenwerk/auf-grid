@@ -42,3 +42,4 @@ fields:
   container_align_items_class:
     label: Align Items (vertical)
     type: grid_align_items
+    width: 1/2
