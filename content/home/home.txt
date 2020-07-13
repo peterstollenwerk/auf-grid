@@ -2,7 +2,7 @@ Title: AUF Grid
 
 ----
 
-Grid-column-preset: 
+Grid-column-preset: grid__column--full
 
 ----
 
@@ -14,32 +14,12 @@ Grid-column-end-class:
 
 ----
 
+Grid-align-show-fields: false
+
+----
+
 Container-grid-class: 
 
 ----
 
-Container-align-items-class: 
-
-----
-
-Container-justify-items-class: 
-
-----
-
-Grid-align-self-class: 
-
-----
-
-Grid-justify-self-class: 
-
-----
-
-Grid-type: 
-
-----
-
-Inline-grid-items-span: 
-
-----
-
-Grid-column: 
+Container-show-align-and-justify-items-classes: false

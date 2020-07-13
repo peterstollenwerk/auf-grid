@@ -20,15 +20,33 @@ fields:
     when:
       grid_column_preset: grid__column--custom
 
+
+  # ALIGN & JUSTIF SELF
+
+  grid_align_show_fields:
+    label: Align & Justify Self
+    type: toggle
+    width: 2/6
+    text:
+      - hide
+      - show
+
   grid_align_self_class:
     label: Align Self (vertical)
     type: grid_align_self
-    width: 1/2
+    width: 2/6
+    when:
+      grid_align_show_fields: true
   
   grid_justify_self_class:
     label: Justify Self (vertical)
     type: grid_justify_self
-    width: 1/2
+    width: 2/6
+    when:
+      grid_align_show_fields: true
+
+
+  # CONTAINER GRID CLASSES FOR ITEMS
 
   container_grid_settings:
     type: headline
@@ -48,12 +66,26 @@ fields:
     when: 
       container_grid_type: inline-grid
 
+
+  container_show_align_and_justify_items_classes:
+    label: Align & Justify Items
+    type: toggle
+    width: 2/6
+    text:
+      - hide
+      - show
+
+
   container_align_items_class:
     label: Align Items (vertical)
     type: grid_align_items
-    width: 1/2
+    width: 2/6
+    when:
+      container_show_align_and_justify_items_classes: true
   
   container_justify_items_class:
     label: Justify Items (horizontal)
     type: grid_justify_items
-    width: 1/2
+    width: 2/6
+    when:
+      container_show_align_and_justify_items_classes: true
