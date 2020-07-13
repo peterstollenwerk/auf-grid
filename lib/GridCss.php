@@ -234,6 +234,13 @@ class GridCss extends Grid {
     return $css;
   }
 
+  public function alignJustifyHelpersCss() {
+
+    return file_get_contents('css/align-justify-helpers.css', true);
+
+  }
+
+
   public function mediaQueriesCss() {
     return ('
   
@@ -266,6 +273,7 @@ class GridCss extends Grid {
       $this->gridColumnStartEndClassesCss() .
       $this->inlineGridCss() .
       $this->inlineGridColumnPresetsCss() .
+      $this->alignJustifyHelpersCss() .
       $this->mediaQueriesCss() .
       $this->footerCss();
   }

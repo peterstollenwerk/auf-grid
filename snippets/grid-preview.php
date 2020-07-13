@@ -17,13 +17,13 @@
 </section>
 <!-- ============================================= -->
 <section class="grid">
+  <h2>Inline Grids Tests</h2>
   <style>
     .boxes > * {
       padding: 1rem;
       border: 1px solid black;
     }
   </style>
-  <h2>Inline Grids Tests</h2>
   <div class="inline-grid boxes">
     <div>1</div>
     <div>2</div>
@@ -92,19 +92,49 @@
 
 </section>
 <!-- ============================================= -->
+<section class="grid">
+  <h2>Align & Justify Helpers</h2>
+  <?php
+    $grid = new Grid();
+    $asset = new Asset("assets/images/grid-test-2.jpg");
+
+    ?>
+    <h3>.items--span-3 inline-grid inline-grid--items--span-3 boxes align-items--center justify-items--center</h3>
+    <div class="inline-grid inline-grid--items--span-3 align-items--center justify-items--center">
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(2)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(3)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?>
+    </div>
+    <h3>.items--span-3 .align-items--start .justify-items--end</h3>
+    <div class="inline-grid inline-grid--items--span-3 align-items--start justify-items--end">
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(2)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(3)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?>
+    </div>
+    <h3>.items--span-3 .align-items--end .justify-items--start</h3>
+    <div class="inline-grid inline-grid--items--span-3 align-items--end justify-items--start">
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(2)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(3)); ?>
+      <?php echo $asset->resize($grid->getColumnSpanWidthInPx(1)); ?>
+    </div>
+
+</section>
+<!-- ============================================= -->
 <section>
   <h2>Grid Images</h2>
   <style>
     img { display: block; }
     </style>
   <?php
-    
-    
     $grid = new Grid();
     $columns = 12;
     $asset = new Asset("assets/images/grid-test-1.jpg");
 
     for ($i=1; $i <= $columns; $i++) { 
+      echo '<h3>span '.$i.'</h3>';
       echo $asset->resize($grid->getColumnSpanWidthInPx($i));
     }
   ?>

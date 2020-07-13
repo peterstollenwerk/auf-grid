@@ -381,6 +381,37 @@
     grid-column-end: span 7;
   }
         
+  /* ============================ */
+  /* Grid Helpers */
+  /* ============================ */
+
+  /* align-self */
+
+  .align-self--start   { align-self: start; }
+  .align-self--center  { align-self: center; }
+  .align-self--end     { align-self: end; }
+  .align-self--stretch { align-self: stretch; }
+
+  /* justify-self */
+
+  .justify-self--start   { justify-self: start; }
+  .justify-self--center  { justify-self: center; }
+  .justify-self--end     { justify-self: end; }
+  .justify-self--stretch { justify-self: stretch; }
+
+  /* align items */
+
+  .align-items--start   { align-items: start; }
+  .align-items--center  { align-items: center; }
+  .align-items--end     { align-items: end; }
+  .align-items--stretch { align-items: stretch; }
+
+  /* justify items */
+
+  .justify-items--start   { justify-items: start; }
+  .justify-items--center  { justify-items: center; }
+  .justify-items--end     { justify-items: end; }
+  .justify-items--stretch { justify-items: stretch; }
   
   /* ============================== */
   /* MEDIA-QUERIES */
