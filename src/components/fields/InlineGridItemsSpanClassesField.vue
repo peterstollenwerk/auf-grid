@@ -49,7 +49,7 @@ export default {
       const classesCount = this.classes.length;
       let i = 1;
       this.classes.forEach(item => {
-        options.push({value: item, text: 'span ' + i++ });
+        options.push({value: item, text: '.' + item });
       });
       this.options = options;
       // this.$api.site.get()

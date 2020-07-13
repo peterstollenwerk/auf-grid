@@ -2,19 +2,23 @@ Title: AUF Grid
 
 ----
 
-Grid-column-preset: grid__column--full
+Grid-column-preset: 
 
 ----
 
-Grid-column-start-class: grid__column--start-7
+Grid-column-start-class: 
 
 ----
 
-Grid-column-end-class: grid__column--end-5
+Grid-column-end-class: 
 
 ----
 
-Inline-grid-items-span: inline-grid--items--span-3
+Grid-type: inline-grid
+
+----
+
+Inline-grid-items-span: inline-grid--items--span-2
 
 ----
 

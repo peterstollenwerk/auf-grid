@@ -3,9 +3,12 @@ fields:
   grid_section_headline:
     type: headline
     label: Grid System
-  
+
   grid_column_preset:
-    extends: grid_column_preset
+    label: Grid Column Preset
+    extends: grid_column_preset  
+
+
 
   grid_column_start_class:
     extends: auf_grid/fields/grid_column_start_class
@@ -18,3 +21,17 @@ fields:
     width: 1/2
     when:
       grid_column_preset: grid__column--custom
+
+  grid_type:
+    type: select
+    label: Sub-Grid Type
+    default: grid
+    options:
+      grid: grid
+      inline-grid: inline-grid
+
+  inline_grid_items_span: 
+    label: Inline Grid Items Span Class
+    type: inline_grid_items_span_classes
+    when: 
+      grid_type: inline-grid
