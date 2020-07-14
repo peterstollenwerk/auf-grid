@@ -4,19 +4,30 @@
 
 ### CSS Setup
 
-Login to your panel, open the »grid«-panel and hit the »generate CSS«-Button at the bottom.
+1. Login to your panel, open the »grid«-panel and hit the »generate CSS«-Button at the bottom.
 
 ![Grid Settings Screenshot](documentation/grid-settings-screenshot.png)
 
-Include the generated grid styles in the head of your document:
+2. Include the generated grid styles in the head of your document:
 
 ```php
-<style>
-  <?= css('assets/css/auf-grid.css') ?>
-</style>
+<html>
+  <head>
+    <?= css('assets/css/auf-grid.css') ?>
+  </head>
+  <body></body>
+</html>
 ```
+
 ***Important!***
-After you changed any grid setting, you have to generate the grid CSS grid panel again!
+
+After you changed any grid setting, you have to generate CSS in the grid-panel again!
+
+3. Copy 'grid-test-2.jpg' from plugin assets/images folder to your sites assets folder:
+
+```{{your-site}}/assets/images/grid-test-2.jpg```
+
+4. Go to our test page```http://{your-kirby-site}/grid-test```and check if everyting is working.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
