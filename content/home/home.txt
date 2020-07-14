@@ -2,11 +2,4 @@ Title: AUF Grid
 
 ----
 
-Grid-settings:
-
-{
- "grid_outset": true,
- "grid_outset_left": false,
- "grid_outset_right": false,
- "grid_column_preset": "grid__column--medium"
-}
+Grid-settings: {}
