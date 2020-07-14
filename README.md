@@ -58,9 +58,7 @@ Add »grid__column--full« to the presets, if you want use the full page width. 
 
 ![grid-column-site-presets-screenshot.png](documentation/grid-column-site-presets-screenshot.png)
 
-***Important***
-
-3. (Re-)Generate the grid CSS in the grid-panel to create the new preset css classes!!!!
+3. ***Important***: (Re-)Generate the grid CSS in the grid-panel to create the new preset css classes!!!! 
 
 ### Setup your component blueprint (i.e. builder-block)
 
