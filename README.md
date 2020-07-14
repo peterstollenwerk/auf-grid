@@ -27,7 +27,7 @@ After you changed any grid setting, you have to generate CSS in the grid-panel a
 
 ```{{your-site}}/assets/images/grid-test-2.jpg```
 
-4. Go to our test page ```http://{your-kirby-site}/grid-test``` and check if everyting is working. It should look like this [Complete Test Page PDF](documentation/grid-tests.pdf):
+4. Go to our test page ```http://{your-kirby-site}/grid-test``` and check if everyting is working. It should look like this [Complete Test Page Screenshot](documentation/grid-tests-full.png):
 
 ![Grid Tests Screenshot](documentation/grid-tests.png)
 
