@@ -60,31 +60,36 @@ Add »grid__column--full« to the presets, if you want use the full page width. 
 
 3. ***Important***: (Re-)Generate the grid CSS in the grid-panel to create the new preset css classes!!!! 
 
-### Setup your component blueprint (i.e. builder-block)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-```
+### Setup Grid Fields
+
+Setup your component blueprint (i.e. builder-block) with the grid-fields found in
+[blueprints/fieldgroup/grid_component_settings.yml](blueprints/fieldgroup/grid_component_settings.yml)
+
+```blueprints/fieldgroup/grid_component_settings.yml
+
 fields:
   grid_section_headline:
     type: headline
-    label: Grid System
-  
+    label: Component Grid Settings
+
   grid_column_preset:
-    extends: grid_column_preset
+    label: Grid Column Preset
+    extends: grid_column_preset  
 
   grid_column_start_class:
     extends: auf_grid/fields/grid_column_start_class
     width: 1/2
     when:
       grid_column_preset: grid__column--custom
-  
-  grid_column_end_class:
-    extends: auf_grid/fields/grid_column_end_class
-    width: 1/2
-    when:
-      grid_column_preset: grid__column--custom
+
+  (...)
 ```
 
-### use in your snippet
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+### Use the Grid in your snippets
 
 ```php
 
@@ -92,34 +97,39 @@ use auf\Grid;
 
 $grid = new Grid();
 
-$columnSpan = $grid->getGridColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-3');
+$columnSpan = $grid->getColumnSpanByStartAndEndColumnClasses('grid__column--start-1', 'grid__column--end-3');
 
-$spanWidthInPx = $grid->getGridColumnSpanWidthInPx(3);
+$spanWidthInPx = $grid->getColumnSpanWidthInPx(3);
 ```
 
-If you use grid_column_presets in your site configuration, you can pass the structure field as an argument
+If you use grid_column_presets in your site configuration, you can pass the structure field as an argument:
 
 ```php
 
 $grid = new Grid($site->grid_column_presets()->toStructure());
 
-$columnSpan = $grid->getGridColumnSpanByPreset('grid__column--aside');
+$columnSpan = $grid->getColumnSpanByPreset('grid__column--aside');
 
 ```
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ### Test the grid
 
 The plugin sets up a custom route with a virtual testpage at:
 
-http://yourdomain.com/grid-tests
+```http://yourdomain.com/grid-tests```
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ### Grid--Overlay
 
 To check if everything is in perfect grid-condition you can show a little grid-overlay by adding the hash '#grid' behind your url.
+
+```http://yourdomain.com/grid-tests#grid```
+
 For this to work, you need to include the grid-overlay-snippet before the body-tag.
 
-template.php
 ```php
 <body class="grid">
   <h1><?= $page->title() ?></h1>
@@ -128,8 +138,7 @@ template.php
 </body>
 ```
 
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ## Todos
 
@@ -143,10 +152,8 @@ template.php
 
 * [X] ~~*Create Grid Overlay Snippet*~~ [2020-07-12]
 
-* [ ] Refactor grid to a nice interface
+* [X] ~~*Implement Inline Grid Classes*~~ [2020-07-14]
 
-* [ ] Implement Inline Grid Classes
-
-* [ ] Implement justify and align classes
+* [X] ~~*Implement justify and align classes*~~ [2020-07-14]
 
 * [ ] grid_start/end_column_classes should be created dynamically in a custom field
