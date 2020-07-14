@@ -40,7 +40,8 @@ After you changed any grid setting, you have to generate CSS in the grid-panel a
 ### Grid Column Presets Site Setup
 
 If you want to create custom column presets you can do so.
-Implement our grid_settings section somewhere in your site.yml:
+
+1. Implement our grid_settings section somewhere in your site.yml:
 
 ```site.yml
 title: Site
@@ -51,7 +52,7 @@ tabs:
       grid_settings: auf_grid/grid_settings
 ```
 
-Add some meaningfull presets.
+2. Add some meaningfull presets.
 
 Add »grid__column--full« to the presets, if you want use the full page width. This preset will be handled a little differently for you.
 
@@ -59,7 +60,7 @@ Add »grid__column--full« to the presets, if you want use the full page width. 
 
 ***Important***
 
-(Re-)Generate the grid CSS in the grid-panel to create the new preset css classes!!!!
+3. (Re-)Generate the grid CSS in the grid-panel to create the new preset css classes!!!!
 
 ### Setup your component blueprint (i.e. builder-block)
 
