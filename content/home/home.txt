@@ -5,9 +5,8 @@ Title: AUF Grid
 Grid-settings:
 
 {
- "grid_column_preset": "grid__column--large",
- "grid_justify_self_class": "justify-self--center",
- "grid_align_self_class": "align-self--center",
- "grid_column_start_class": "grid__column--start-2",
- "grid_column_end_class": "grid__column--end-7"
+ "grid_outset": true,
+ "grid_outset_left": false,
+ "grid_outset_right": false,
+ "grid_column_preset": "grid__column--medium"
 }
