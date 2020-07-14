@@ -4,6 +4,10 @@
 
 ### CSS Setup
 
+Login to your panel, open the »grid«-panel and hit the »generate CSS«-Button at the bottom.
+
+![Grid Settings Screenshot](documentation/grid-settings-screenshot.png)
+
 Include the generated grid styles in the head of your document:
 
 ```php
@@ -11,7 +15,8 @@ Include the generated grid styles in the head of your document:
   <?= css('assets/css/auf-grid.css') ?>
 </style>
 ```
-After you changed the grid settings, you have to regenerate the file in the Grid dedicated panel view;
+*Important!*
+After you changed the grid settings, you have to regenerate the file in the Grid dedicated panel view!
 
 ### Grid Column Presets Site Setup
 
