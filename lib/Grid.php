@@ -29,16 +29,16 @@ class Grid {
     
     $startClasses = [
       'grid__column--start-margin-left', 
-      ' ', 
+      '-', 
     ];
     $classes = [];
     for($i = 1; $i <= $this->columnCount(); $i++) {
       array_push($classes, ($prefix.$i));
     }
     $endClasses = [
-      ' ',
+      '-',
       'grid__column--start-margin-right',
-      ' ',
+      '-',
       'grid__column--start-auto',
     ];
     return $classes = array_merge($startClasses, $classes, $endClasses);

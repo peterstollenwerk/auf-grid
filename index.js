@@ -9199,7 +9199,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/fields/GridColumnStartClassesField.vue":[function(require,module,exports) {
+},{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/fields/GridColumnStartClassField.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9268,14 +9268,14 @@ var _default = {
   }
 };
 exports.default = _default;
-        var $4e2398 = exports.default || module.exports;
+        var $bcd355 = exports.default || module.exports;
       
-      if (typeof $4e2398 === 'function') {
-        $4e2398 = $4e2398.options;
+      if (typeof $bcd355 === 'function') {
+        $bcd355 = $bcd355.options;
       }
     
         /* template */
-        Object.assign($4e2398, (function () {
+        Object.assign($bcd355, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9332,9 +9332,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$4e2398', $4e2398);
+            api.createRecord('$bcd355', $bcd355);
           } else {
-            api.reload('$4e2398', $4e2398);
+            api.reload('$bcd355', $bcd355);
           }
         }
 
@@ -10113,6 +10113,9 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
 var _default = {
   props: {
     start_classes: Array,
@@ -10126,9 +10129,7 @@ var _default = {
   },
   data: function data() {
     return {
-      grid_settings: {
-        grid_column_start_classes: null
-      }
+      grid_settings: {}
     };
   },
   created: function created() {
@@ -10141,9 +10142,13 @@ var _default = {
       }
     },
     input: function input() {
+      console.log(this.grid_settings);
       this.$emit("input", JSON.stringify(this.grid_settings, function (key, value) {
         // only store actual values
-        // if (value.length < 1) { return undefined; }
+        if (value.length < 1) {
+          return undefined;
+        }
+
         return value;
       }, ' '));
     }
@@ -10172,10 +10177,13 @@ exports.default = _default;
               label: "Grid Item Column Preset",
               type: "grid_column_preset"
             },
-            grid_column_start_classes: {
-              label: "Grid Item Column Start",
-              type: "grid_column_start_classes",
-              classes: _vm.start_classes
+            grid_column_start_class: {
+              label: "Grid Item Column Start Class",
+              type: "grid_column_start_class",
+              classes: _vm.start_classes,
+              when: {
+                grid_column_preset: "grid__column--custom"
+              }
             },
             grid_justify_self_class: {
               label: "Grid Item Justify Self Class",
@@ -10238,7 +10246,7 @@ var _GridSettingsView = _interopRequireDefault(require("./components/views/GridS
 
 var _GridColumnPresetField = _interopRequireDefault(require("./components/fields/GridColumnPresetField.vue"));
 
-var _GridColumnStartClassesField = _interopRequireDefault(require("./components/fields/GridColumnStartClassesField.vue"));
+var _GridColumnStartClassField = _interopRequireDefault(require("./components/fields/GridColumnStartClassField.vue"));
 
 var _GridAlignSelfField = _interopRequireDefault(require("./components/fields/GridAlignSelfField.vue"));
 
@@ -10268,7 +10276,7 @@ panel.plugin('auf/grid', {
   },
   fields: {
     grid_column_preset: _GridColumnPresetField.default,
-    grid_column_start_classes: _GridColumnStartClassesField.default,
+    grid_column_start_class: _GridColumnStartClassField.default,
     inline_grid_items_span_classes: _InlineGridItemsSpanClassesField.default,
     grid_align_items: _GridAlignItemsField.default,
     grid_justify_items: _GridJustifyItemsField.default,
@@ -10277,7 +10285,7 @@ panel.plugin('auf/grid', {
     grid_settings: _GridSettingsField.default
   }
 });
-},{"./components/views/GridSettingsView.vue":"components/views/GridSettingsView.vue","./components/fields/GridColumnPresetField.vue":"components/fields/GridColumnPresetField.vue","./components/fields/GridColumnStartClassesField.vue":"components/fields/GridColumnStartClassesField.vue","./components/fields/GridAlignSelfField.vue":"components/fields/GridAlignSelfField.vue","./components/fields/GridJustifySelfField.vue":"components/fields/GridJustifySelfField.vue","./components/fields/InlineGridItemsSpanClassesField.vue":"components/fields/InlineGridItemsSpanClassesField.vue","./components/fields/GridAlignItemsField.vue":"components/fields/GridAlignItemsField.vue","./components/fields/GridJustifyItemsField.vue":"components/fields/GridJustifyItemsField.vue","./components/fields/GridSettingsField.vue":"components/fields/GridSettingsField.vue"}],"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/views/GridSettingsView.vue":"components/views/GridSettingsView.vue","./components/fields/GridColumnPresetField.vue":"components/fields/GridColumnPresetField.vue","./components/fields/GridColumnStartClassField.vue":"components/fields/GridColumnStartClassField.vue","./components/fields/GridAlignSelfField.vue":"components/fields/GridAlignSelfField.vue","./components/fields/GridJustifySelfField.vue":"components/fields/GridJustifySelfField.vue","./components/fields/InlineGridItemsSpanClassesField.vue":"components/fields/InlineGridItemsSpanClassesField.vue","./components/fields/GridAlignItemsField.vue":"components/fields/GridAlignItemsField.vue","./components/fields/GridJustifyItemsField.vue":"components/fields/GridJustifyItemsField.vue","./components/fields/GridSettingsField.vue":"components/fields/GridSettingsField.vue"}],"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

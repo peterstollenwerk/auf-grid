@@ -2,9 +2,4 @@ Title: AUF Grid
 
 ----
 
-Grid-settings:
-
-{
- "grid_column_start_classes": null,
- "grid_column_preset": "grid__column--large"
-}
+Grid-settings: {}

@@ -37,7 +37,7 @@ Kirby::plugin('auf/grid', [
                 }
             ]
         ],
-        'grid_column_start_classes' => [
+        'grid_column_start_class' => [
             'props' => [
                 'classes' => function() {
                     $grid = new Grid();

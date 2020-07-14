@@ -1,6 +1,6 @@
 import GridSettingsView from "./components/views/GridSettingsView.vue";
 import GridColumnPresetField from "./components/fields/GridColumnPresetField.vue";
-import GridColumnStartClassesField from "./components/fields/GridColumnStartClassesField.vue";
+import GridColumnStartClassField from "./components/fields/GridColumnStartClassField.vue";
 import GridAlignSelfField from "./components/fields/GridAlignSelfField.vue";
 import GridJustifySelfField from "./components/fields/GridJustifySelfField.vue";
 import InlineGridItemsSpanClassesField from "./components/fields/InlineGridItemsSpanClassesField.vue";
@@ -23,7 +23,7 @@ panel.plugin('auf/grid', {
   },
   fields: {
     grid_column_preset: GridColumnPresetField,
-    grid_column_start_classes: GridColumnStartClassesField,
+    grid_column_start_class: GridColumnStartClassField,
     inline_grid_items_span_classes: InlineGridItemsSpanClassesField,
     grid_align_items: GridAlignItemsField,
     grid_justify_items: GridJustifyItemsField,

@@ -29,7 +29,8 @@ fields:
         label: Grid Column Label
         width: 1/4
       grid_column_start_class:
-        extends: auf_grid/fields/grid_column_start_class
+        label: Grid Column Start Class
+        type: grid_column_start_class
         width: 1/4
       grid_column_end_class:
         extends: auf_grid/fields/grid_column_end_class
