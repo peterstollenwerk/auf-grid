@@ -15,8 +15,10 @@ Include the generated grid styles in the head of your document:
   <?= css('assets/css/auf-grid.css') ?>
 </style>
 ```
-*Important!*
-After you changed the grid settings, you have to regenerate the file in the Grid dedicated panel view!
+***Important!***
+After you changed any grid setting, you have to generate the grid CSS grid panel again!
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 ### Grid Column Presets Site Setup
 
