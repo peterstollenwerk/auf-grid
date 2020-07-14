@@ -2,24 +2,9 @@ Title: AUF Grid
 
 ----
 
-Grid-column-preset: grid__column--full
+Grid-settings:
 
-----
-
-Grid-column-start-class: 
-
-----
-
-Grid-column-end-class: 
-
-----
-
-Grid-align-show-fields: false
-
-----
-
-Container-grid-class: 
-
-----
-
-Container-show-align-and-justify-items-classes: false
+{
+ "grid_column_start_classes": null,
+ "grid_column_preset": "grid__column--large"
+}

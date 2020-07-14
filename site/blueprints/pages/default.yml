@@ -1,4 +1,11 @@
 title: Default Page
 preset: page
 fields:
-  grid_component_settings: auf_grid/fieldgroup/grid_component_settings
+  # grid_component_settings: auf_grid/fieldgroup/grid_component_settings
+  grid_settings:
+    label: grid_settings
+    type: grid_settings
+
+  # start:
+  #   label: Grid Column Start Classes
+  #   type: grid_column_start_classes

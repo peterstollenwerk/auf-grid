@@ -37,10 +37,26 @@ Kirby::plugin('auf/grid', [
                 }
             ]
         ],
+        'grid_column_start_classes' => [
+            'props' => [
+                'classes' => function() {
+                    $grid = new Grid();
+                    return $grid->gridColumnStartClasses();
+                }
+            ]
+        ],
         'grid_align_items' => [],
         'grid_justify_items' => [],
         'grid_align_self' => [],
         'grid_justify_self' => [],
+        'grid_settings' => [
+            'props' => [
+                'start_classes' => function() {
+                    $grid = new Grid();
+                    return $grid->gridColumnStartClasses();
+                }
+            ]
+        ],
     ],
     'siteMethods' => [
         'getGridColumnPresets' => function () { return site()->grid_column_presets(); }

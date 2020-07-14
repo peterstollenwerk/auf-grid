@@ -12,7 +12,7 @@ use Kirby\Toolkit\F;
 class Grid {
 
   static $inlineGridItemsSpanClassPrefix = 'inline-grid--items--span-';
-
+  
   public function inlineGridItemsSpanClasses ($prefix = NULL) {
     $prefix = $prefix ?? Grid::$inlineGridItemsSpanClassPrefix;
     $classes = [];
@@ -20,6 +20,28 @@ class Grid {
       array_push($classes, ($prefix.$i));
     }
     return $classes;
+  }
+  
+  static $gridColumnStartClassPrefix = 'grid__column--start-';
+  
+  public function gridColumnStartClasses ($prefix = NULL) {
+    $prefix = $prefix ?? Grid::$gridColumnStartClassPrefix;
+    
+    $startClasses = [
+      'grid__column--start-margin-left', 
+      ' ', 
+    ];
+    $classes = [];
+    for($i = 1; $i <= $this->columnCount(); $i++) {
+      array_push($classes, ($prefix.$i));
+    }
+    $endClasses = [
+      ' ',
+      'grid__column--start-margin-right',
+      ' ',
+      'grid__column--start-auto',
+    ];
+    return $classes = array_merge($startClasses, $classes, $endClasses);
   }
 
   static $gridColumnCustomClass = 'grid__column--custom';

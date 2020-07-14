@@ -10,7 +10,7 @@
     <k-input
       v-model="value"
       :options="options"
-      name="inline_grid_items_span_class"
+      name="grid_column_start_classes"
       type="select"
       theme="field"
       @input="onChange"
@@ -48,19 +48,9 @@ export default {
       const classesCount = this.classes.length;
       let i = 1;
       this.classes.forEach(item => {
-        options.push({value: item, text: '.' + item });
+        options.push({value: item, text: item });
       });
       this.options = options;
-      // this.$api.site.get()
-      //   .then(res => {
-      //     const gridColumnPresets = res.content.grid_column_presets;
-      //     gridColumnPresets.push(this.gridColumnCustomPreset);
-      //     const options = [];
-      //     gridColumnPresets.forEach(preset => {
-      //       options.push({value: preset.grid_column_class, text: preset.grid_column_label});
-      //     });
-      //     this.options = options;
-      //   });
     },
     onChange(value) {
       this.$emit("input", value);

@@ -122,5 +122,12 @@ final class GridTest extends TestCase {
     $classes = $grid->inlineGridItemsSpanClasses();
     $this->assertEquals($classes[$columnCount-1], 'inline-grid--items--span-'.$columnCount);
   }
+  public function testGridColumnStartClasses() {
+    $grid = new Grid();
+    $classes = $grid->gridColumnStartClasses();
+    $this->assertEquals('grid__column--start-margin-left', $classes[0]);
+    $this->assertEquals(' ', $classes[1]);
+    $this->assertEquals('grid__column--start-1', $classes[2]);
+  }
 
 }
