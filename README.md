@@ -23,11 +23,14 @@
 
 After you changed any grid setting, you have to generate CSS in the grid-panel again!
 
-3. Copy 'grid-test-2.jpg' from plugin assets/images folder to your sites assets folder:
+3. Copy the test images from ```auf-grid/assets/images``` folder to your sites assets folder:
 
 ```{{your-site}}/assets/images/grid-test-2.jpg```
 
-4. Go to our test page```http://{your-kirby-site}/grid-test```and check if everyting is working.
+4. Go to our test page ```http://{your-kirby-site}/grid-test``` and check if everyting is working. It should look like this [Complete Test Page PDF](documentation/grid-tests.pdf):
+
+![Grid Tests Screenshot](documentation/grid-tests.png)
+
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
