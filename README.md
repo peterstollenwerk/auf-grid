@@ -31,6 +31,9 @@ After you changed any grid setting, you have to generate CSS in the grid-panel a
 
 ![Grid Tests Screenshot](documentation/grid-tests.png)
 
+5. Add the hash '#grid' to any page url and you get a grid overlay to check your settings
+
+6. Please read the [auf-grid.css](assets/css/auf-grid.css) for all available classes which you can use in your components.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
