@@ -29,19 +29,49 @@ class Grid {
     
     $startClasses = [
       'grid__column--start-margin-left', 
-      '-', 
+      '-----------', 
     ];
     $classes = [];
     for($i = 1; $i <= $this->columnCount(); $i++) {
       array_push($classes, ($prefix.$i));
     }
     $endClasses = [
-      '-',
+      '-----------',
       'grid__column--start-margin-right',
-      '-',
+      '-----------',
       'grid__column--start-auto',
     ];
     return $classes = array_merge($startClasses, $classes, $endClasses);
+  }
+  
+  static $gridColumnEndClassPrefix = 'grid__column--end-';
+  static $gridColumnSpanClassPrefix = 'grid__column--span-';
+  
+  public function gridColumnEndClasses ($prefix = NULL, $spanPrefix = NULL) {
+    $prefix = $prefix ?? Grid::$gridColumnEndClassPrefix;
+    $spanPrefix = $spanPrefix ?? Grid::$gridColumnSpanClassPrefix;
+    
+    $startClasses = [
+      'grid__column--end-margin-left',
+      '-----------', 
+    ];
+    $classes = [];
+    for($i = 1; $i <= $this->columnCount(); $i++) {
+      array_push($classes, ($prefix.$i));
+    }
+    $endClasses = [
+      '-----------',
+      'grid__column--end-margin-right',
+      '-----------',
+      'grid__column--end-auto',
+      '-----------',
+    ];
+
+    $spanClasses = [];
+    for($i = 1; $i <= $this->columnCount(); $i++) {
+      array_push($spanClasses, ($spanPrefix.$i));
+    }
+    return $classes = array_merge($startClasses, $classes, $endClasses, $spanClasses);
   }
 
   static $gridColumnCustomClass = 'grid__column--custom';

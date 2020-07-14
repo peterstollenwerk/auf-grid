@@ -1,7 +1,0 @@
-label: Grid Column Preset
-type: select
-options: query
-query:
-  fetch: site.grid_column_presets.toStructure
-  text: "{{ structureItem.label }}"
-  value: "{{ structureItem.uid }}"

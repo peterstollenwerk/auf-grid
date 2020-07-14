@@ -8,6 +8,7 @@ fields:
   grid_column_presets:
     label: Grid Column Presets
     type: structure
+    help: please use 'grid__column--full' for full width preset!
     columns:
       grid_column_class:
         width: 1/4
@@ -33,6 +34,6 @@ fields:
         type: grid_column_start_class
         width: 1/4
       grid_column_end_class:
-        extends: auf_grid/fields/grid_column_end_class
+        label: Grid Column End Class
+        type: grid_column_end_class
         width: 1/4
-        # before: span

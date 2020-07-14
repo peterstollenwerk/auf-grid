@@ -126,8 +126,14 @@ final class GridTest extends TestCase {
     $grid = new Grid();
     $classes = $grid->gridColumnStartClasses();
     $this->assertEquals('grid__column--start-margin-left', $classes[0]);
-    $this->assertEquals(' ', $classes[1]);
     $this->assertEquals('grid__column--start-1', $classes[2]);
+  }
+  public function testGridColumnEndClasses() {
+    $grid = new Grid();
+    $classes = $grid->gridColumnEndClasses();
+    $this->assertEquals('grid__column--end-margin-left', $classes[0]);
+    $this->assertEquals('grid__column--end-1', $classes[2]);
+    $this->assertEquals('grid__column--span-2', $classes[20]);
   }
 
 }

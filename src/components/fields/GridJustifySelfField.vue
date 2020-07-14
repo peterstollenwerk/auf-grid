@@ -34,10 +34,10 @@ export default {
   data: function() {
     return {
       options: [
-        {value: 'justify-self--start',   text: '.justify-self--start (TOP)'},
-        {value: 'justify-self--center',  text: '.justify-self--center'},
-        {value: 'justify-self--end',     text: '.justify-self--end (BOTTOM)'},
-        {value: 'justify-self--stretch', text: '.justify-self--stretch'}
+        {value: 'justify-self--start',   text: 'justify-self--start (LEFT)'},
+        {value: 'justify-self--center',  text: 'justify-self--center'},
+        {value: 'justify-self--end',     text: 'justify-self--end (RIGHT)'},
+        {value: 'justify-self--stretch', text: 'justify-self--stretch'}
       ],
     }
   },

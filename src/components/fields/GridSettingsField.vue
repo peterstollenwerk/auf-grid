@@ -1,15 +1,30 @@
 <template>
 
   <div>
+
+  <k-headline-field label="Grid Settings" />
+  <k-line-field />
+
   <k-fieldset v-model="grid_settings" @input="input" :fields="{
     grid_column_preset: {
       label: 'Grid Item Column Preset',
-      type: 'grid_column_preset'
+      type: 'grid_column_preset',
+      help: 'select »custom...«-preset for custom start- and end-column'
     },
     grid_column_start_class: {
       label: 'Grid Item Column Start Class',
       type: 'grid_column_start_class',
       classes: start_classes,
+      width: '1/2',
+      when: {
+        grid_column_preset: 'grid__column--custom'
+      }
+    },
+    grid_column_end_class: {
+      label: 'Grid Item Column End Class',
+      type: 'grid_column_end_class',
+      classes: end_classes,
+      width: '1/2',
       when: {
         grid_column_preset: 'grid__column--custom'
       }
@@ -18,10 +33,15 @@
       label: 'Grid Item Justify Self Class',
       type: 'grid_justify_self',
       width: '1/2',
+      help: 'horizontal alignment'
+    },
+    grid_align_self_class: {
+      label: 'Grid Item Align Self Class',
+      type: 'grid_align_self',
+      width: '1/2',
+      help: 'vertical alignment'
     }
   }" />
-
-    Value: {{value}}
 
   </div>
 
@@ -31,6 +51,7 @@
 export default {
   props: {
     start_classes: Array,
+    end_classes: Array,
     help: String,
     label: String,
     after: String,

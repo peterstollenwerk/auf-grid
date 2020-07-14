@@ -10,19 +10,22 @@
     <k-input
       v-model="value"
       :options="options"
-      name="align_self_class"
+      name="grid_column_end_class"
       type="select"
       theme="field"
       @input="onChange"
+
     />
 
   </k-field>
+
 
 </template>
 
 <script>
 export default {
   props: {
+    classes: Array,
     after: String,
     before: String,
     disabled: Boolean,
@@ -33,15 +36,22 @@ export default {
   },
   data: function() {
     return {
-      options: [
-        {value: 'align-self--start',   text: 'align-self--start (TOP)'},
-        {value: 'align-self--center',  text: 'align-self--center'},
-        {value: 'align-self--end',     text: 'align-self--end (BOTTOM)'},
-        {value: 'align-self--stretch', text: 'align-self--stretch'}
-      ],
+      options: []
     }
   },
+  created() {
+    this.load();
+  },
   methods: {
+    load() {
+      const options = [];
+      const classesCount = this.classes.length;
+      let i = 1;
+      this.classes.forEach(item => {
+        options.push({value: item, text: item });
+      });
+      this.options = options;
+    },
     onChange(value) {
       this.$emit("input", value);
     }
@@ -50,4 +60,5 @@ export default {
 </script>
 
 <style>
+  /* optional scoped styles for the component */
 </style>

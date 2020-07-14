@@ -9345,6 +9345,152 @@ render._withStripped = true
       
       }
     })();
+},{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/fields/GridColumnEndClassField.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  props: {
+    classes: Array,
+    after: String,
+    before: String,
+    disabled: Boolean,
+    help: String,
+    label: String,
+    required: Boolean,
+    value: String
+  },
+  data: function data() {
+    return {
+      options: []
+    };
+  },
+  created: function created() {
+    this.load();
+  },
+  methods: {
+    load: function load() {
+      var options = [];
+      var classesCount = this.classes.length;
+      var i = 1;
+      this.classes.forEach(function (item) {
+        options.push({
+          value: item,
+          text: item
+        });
+      });
+      this.options = options;
+    },
+    onChange: function onChange(value) {
+      this.$emit("input", value);
+    }
+  }
+};
+exports.default = _default;
+        var $dc77d5 = exports.default || module.exports;
+      
+      if (typeof $dc77d5 === 'function') {
+        $dc77d5 = $dc77d5.options;
+      }
+    
+        /* template */
+        Object.assign($dc77d5, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "k-field",
+    {
+      staticClass: "k-grid-field",
+      attrs: {
+        disabled: _vm.disabled,
+        help: _vm.help,
+        label: _vm.label,
+        required: _vm.required
+      }
+    },
+    [
+      _c("k-input", {
+        attrs: {
+          options: _vm.options,
+          name: "grid_column_end_class",
+          type: "select",
+          theme: "field"
+        },
+        on: { input: _vm.onChange },
+        model: {
+          value: _vm.value,
+          callback: function($$v) {
+            _vm.value = $$v
+          },
+          expression: "value"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$dc77d5', $dc77d5);
+          } else {
+            api.reload('$dc77d5', $dc77d5);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
 },{"_css_loader":"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/fields/GridAlignSelfField.vue":[function(require,module,exports) {
 "use strict";
 
@@ -9388,16 +9534,16 @@ var _default = {
     return {
       options: [{
         value: 'align-self--start',
-        text: '.align-self--start (TOP)'
+        text: 'align-self--start (TOP)'
       }, {
         value: 'align-self--center',
-        text: '.align-self--center'
+        text: 'align-self--center'
       }, {
         value: 'align-self--end',
-        text: '.align-self--end (BOTTOM)'
+        text: 'align-self--end (BOTTOM)'
       }, {
         value: 'align-self--stretch',
-        text: '.align-self--stretch'
+        text: 'align-self--stretch'
       }]
     };
   },
@@ -9528,16 +9674,16 @@ var _default = {
     return {
       options: [{
         value: 'justify-self--start',
-        text: '.justify-self--start (TOP)'
+        text: 'justify-self--start (LEFT)'
       }, {
         value: 'justify-self--center',
-        text: '.justify-self--center'
+        text: 'justify-self--center'
       }, {
         value: 'justify-self--end',
-        text: '.justify-self--end (BOTTOM)'
+        text: 'justify-self--end (RIGHT)'
       }, {
         value: 'justify-self--stretch',
-        text: '.justify-self--stretch'
+        text: 'justify-self--stretch'
       }]
     };
   },
@@ -10116,9 +10262,30 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   props: {
     start_classes: Array,
+    end_classes: Array,
     help: String,
     label: String,
     after: String,
@@ -10170,17 +10337,32 @@ exports.default = _default;
   return _c(
     "div",
     [
+      _c("k-headline-field", { attrs: { label: "Grid Settings" } }),
+      _vm._v(" "),
+      _c("k-line-field"),
+      _vm._v(" "),
       _c("k-fieldset", {
         attrs: {
           fields: {
             grid_column_preset: {
               label: "Grid Item Column Preset",
-              type: "grid_column_preset"
+              type: "grid_column_preset",
+              help: "select »custom...«-preset for custom start- and end-column"
             },
             grid_column_start_class: {
               label: "Grid Item Column Start Class",
               type: "grid_column_start_class",
               classes: _vm.start_classes,
+              width: "1/2",
+              when: {
+                grid_column_preset: "grid__column--custom"
+              }
+            },
+            grid_column_end_class: {
+              label: "Grid Item Column End Class",
+              type: "grid_column_end_class",
+              classes: _vm.end_classes,
+              width: "1/2",
               when: {
                 grid_column_preset: "grid__column--custom"
               }
@@ -10188,7 +10370,14 @@ exports.default = _default;
             grid_justify_self_class: {
               label: "Grid Item Justify Self Class",
               type: "grid_justify_self",
-              width: "1/2"
+              width: "1/2",
+              help: "horizontal alignment"
+            },
+            grid_align_self_class: {
+              label: "Grid Item Align Self Class",
+              type: "grid_align_self",
+              width: "1/2",
+              help: "vertical alignment"
             }
           }
         },
@@ -10200,8 +10389,7 @@ exports.default = _default;
           },
           expression: "grid_settings"
         }
-      }),
-      _vm._v("\n\n  Value: " + _vm._s(_vm.value) + "\n\n")
+      })
     ],
     1
   )
@@ -10248,6 +10436,8 @@ var _GridColumnPresetField = _interopRequireDefault(require("./components/fields
 
 var _GridColumnStartClassField = _interopRequireDefault(require("./components/fields/GridColumnStartClassField.vue"));
 
+var _GridColumnEndClassField = _interopRequireDefault(require("./components/fields/GridColumnEndClassField.vue"));
+
 var _GridAlignSelfField = _interopRequireDefault(require("./components/fields/GridAlignSelfField.vue"));
 
 var _GridJustifySelfField = _interopRequireDefault(require("./components/fields/GridJustifySelfField.vue"));
@@ -10277,6 +10467,7 @@ panel.plugin('auf/grid', {
   fields: {
     grid_column_preset: _GridColumnPresetField.default,
     grid_column_start_class: _GridColumnStartClassField.default,
+    grid_column_end_class: _GridColumnEndClassField.default,
     inline_grid_items_span_classes: _InlineGridItemsSpanClassesField.default,
     grid_align_items: _GridAlignItemsField.default,
     grid_justify_items: _GridJustifyItemsField.default,
@@ -10285,7 +10476,7 @@ panel.plugin('auf/grid', {
     grid_settings: _GridSettingsField.default
   }
 });
-},{"./components/views/GridSettingsView.vue":"components/views/GridSettingsView.vue","./components/fields/GridColumnPresetField.vue":"components/fields/GridColumnPresetField.vue","./components/fields/GridColumnStartClassField.vue":"components/fields/GridColumnStartClassField.vue","./components/fields/GridAlignSelfField.vue":"components/fields/GridAlignSelfField.vue","./components/fields/GridJustifySelfField.vue":"components/fields/GridJustifySelfField.vue","./components/fields/InlineGridItemsSpanClassesField.vue":"components/fields/InlineGridItemsSpanClassesField.vue","./components/fields/GridAlignItemsField.vue":"components/fields/GridAlignItemsField.vue","./components/fields/GridJustifyItemsField.vue":"components/fields/GridJustifyItemsField.vue","./components/fields/GridSettingsField.vue":"components/fields/GridSettingsField.vue"}],"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/views/GridSettingsView.vue":"components/views/GridSettingsView.vue","./components/fields/GridColumnPresetField.vue":"components/fields/GridColumnPresetField.vue","./components/fields/GridColumnStartClassField.vue":"components/fields/GridColumnStartClassField.vue","./components/fields/GridColumnEndClassField.vue":"components/fields/GridColumnEndClassField.vue","./components/fields/GridAlignSelfField.vue":"components/fields/GridAlignSelfField.vue","./components/fields/GridJustifySelfField.vue":"components/fields/GridJustifySelfField.vue","./components/fields/InlineGridItemsSpanClassesField.vue":"components/fields/InlineGridItemsSpanClassesField.vue","./components/fields/GridAlignItemsField.vue":"components/fields/GridAlignItemsField.vue","./components/fields/GridJustifyItemsField.vue":"components/fields/GridJustifyItemsField.vue","./components/fields/GridSettingsField.vue":"components/fields/GridSettingsField.vue"}],"../../../../../../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -10313,7 +10504,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61684" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58099" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
