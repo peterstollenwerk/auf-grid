@@ -5,13 +5,13 @@ options:
   grid__column--end-margin-left
   -----------
   grid__column--end-1
+  grid__column--end-2
   grid__column--end-3
   grid__column--end-4
   grid__column--end-5
   grid__column--end-6
   grid__column--end-7
   grid__column--end-8
-  grid__column--end-2
   grid__column--end-9
   grid__column--end-10
   grid__column--end-11
