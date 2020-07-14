@@ -27,7 +27,7 @@ After you changed any grid setting, you have to generate CSS in the grid-panel a
 
 ```{{your-site}}/assets/images/grid-test-2.jpg```
 
-4. Go to our test page ```http://{your-kirby-site}/grid-test``` and check if everyting is working. It should look like this [Complete Test Page Screenshot](documentation/grid-tests-full.png):
+4. Go to our test page ```http://{{your-site}}/grid-test``` and check if everyting is working. It should look like this [Complete Test Page Screenshot](documentation/grid-tests-full.png):
 
 ![Grid Tests Screenshot](documentation/grid-tests.png)
 
@@ -118,7 +118,7 @@ $columnSpan = $grid->getColumnSpanByPreset('grid__column--aside');
 
 The plugin sets up a custom route with a virtual testpage at:
 
-```http://yourdomain.com/grid-tests```
+```http://{{your-site}}/grid-tests```
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -126,7 +126,7 @@ The plugin sets up a custom route with a virtual testpage at:
 
 To check if everything is in perfect grid-condition you can show a little grid-overlay by adding the hash '#grid' behind your url.
 
-```http://yourdomain.com/grid-tests#grid```
+```http://{{your-site}}/grid-tests#grid```
 
 For this to work, you need to include the grid-overlay-snippet before the body-tag.
 
