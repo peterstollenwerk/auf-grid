@@ -51,6 +51,16 @@ tabs:
       grid_settings: auf_grid/grid_settings
 ```
 
+Add some meaningfull presets.
+
+Add »grid__column--full« to the presets, if you want use the full page width. This preset will be handled a little differently for you.
+
+![grid-column-site-presets-screenshot.png](documentation/grid-column-site-presets-screenshot.png)
+
+***Important***
+
+(Re-)Generate the grid CSS in the grid-panel to create the new preset css classes!!!!
+
 ### Setup your component blueprint (i.e. builder-block)
 
 ```
