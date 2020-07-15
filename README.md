@@ -156,4 +156,4 @@ For this to work, you need to include the grid-overlay-snippet before the body-t
 
 * [X] ~~*Implement justify and align classes*~~ [2020-07-14]
 
-* [ ] grid_start/end_column_classes should be created dynamically in a custom field
+* [X] ~~*grid_start/end_column_classes should be created dynamically in a custom field*~~ [2020-07-15]
