@@ -51,16 +51,6 @@ export default {
         options.push({value: item, text: '.' + item });
       });
       this.options = options;
-      // this.$api.site.get()
-      //   .then(res => {
-      //     const gridColumnPresets = res.content.grid_column_presets;
-      //     gridColumnPresets.push(this.gridColumnCustomPreset);
-      //     const options = [];
-      //     gridColumnPresets.forEach(preset => {
-      //       options.push({value: preset.grid_column_class, text: preset.grid_column_label});
-      //     });
-      //     this.options = options;
-      //   });
     },
     onChange(value) {
       this.$emit("input", value);

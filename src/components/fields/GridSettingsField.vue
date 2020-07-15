@@ -26,7 +26,7 @@
         grid_column_preset: 'grid__column--custom' 
       }
     },
-    grid_settings_devider_1: {
+    grid_settings_divider: {
       type: 'line',
       when: { 
         grid_column_preset: 'grid__column--custom' 
@@ -114,8 +114,6 @@ export default {
       }
     },
     input() {
-      console.log(this.grid_settings);
-
       if(this.grid_settings.grid_expert_mode_toggle === false) {
         this.grid_settings = {}
       }

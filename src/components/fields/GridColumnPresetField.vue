@@ -10,7 +10,7 @@
     <k-input
       v-model="value"
       :options="options"
-      name="grid__column__class"
+      name="grid_column_preset"
       type="select"
       theme="field"
       @input="onChange"

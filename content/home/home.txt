@@ -2,4 +2,17 @@ Title: AUF Grid
 
 ----
 
-Grid-settings: {}
+Grid-settings:
+
+{
+ "grid_expert_mode_toggle": true,
+ "grid_justify_self_class": "justify-self--start",
+ "grid_align_self_class": "align-self--stretch",
+ "grid_outset_right": true,
+ "grid_margin_top": 4,
+ "grid_margin_bottom": -4,
+ "grid_outset_left": true,
+ "grid_column_preset": "grid__column--custom",
+ "grid_column_start_class": "grid__column--start-5",
+ "grid_column_end_class": "grid__column--end-11"
+}
