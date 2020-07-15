@@ -122,7 +122,7 @@ export default {
         // only store actual values
         if (value.length < 1) { return undefined; }
         return value;
-      }, ' '));
+      }));
     },
   }
 }
