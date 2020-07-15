@@ -2,9 +2,6 @@
 
   <div>
 
-  <k-headline-field label="Grid Settings" />
-  <k-line-field />
-
   <k-fieldset v-model="grid_settings" @input="input" :fields="{
     grid_column_preset: {
       label: 'Column Preset',
@@ -82,9 +79,6 @@
       after: 'rem',
       help: '... use negative margins to make them overlap',
       when: { grid_expert_mode_toggle: true }
-    },
-    grid_settings_devider: {
-      type: 'line'
     }
   }" />
 
