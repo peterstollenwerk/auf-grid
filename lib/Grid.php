@@ -271,8 +271,8 @@ class Grid {
 
   public function getColumnSpanByStartAndEndColumnClasses(
 
-    string $gridColumnStart = 'grid__column--start-1', 
-    string $gridColumnEnd   = 'grid__column--end-12',
+    $gridColumnStart = 'grid__column--start-1', 
+    $gridColumnEnd   = 'grid__column--end-12',
     $gridTotalColumns = NULL
 
     ) {
