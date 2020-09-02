@@ -2,4 +2,4 @@ Title: AUF Grid
 
 ----
 
-Grid-settings: {"grid_outset_left":false,"grid_outset_right":false}
+Grid-settings: {"grid_outset_left":false,"grid_outset_right":false,"pro_settings":false,"show_pro_settings":false}
