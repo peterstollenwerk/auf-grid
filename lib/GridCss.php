@@ -172,6 +172,8 @@ class GridCss extends Grid {
   public function inlineGridCss() {
 
     $inlineGridCss = file_get_contents('css/inline-grid.css', true);
+    
+    $inlineGridCss = file_get_contents('css/inline-grid.css', true);
 
     # --------------------------------------------------------------
     $inlineGridItemsSpanClassesCss = '

@@ -9,8 +9,8 @@ Kirby::plugin('auf/grid', [
     'options' => [
         'settings' => [
             'columnCount' => 12,
-            'maxColumnWidthInPx' => 90,
-            'columnGapInPx' => 16,
+            'maxColumnWidthInPx' => 80,
+            'columnGapInPx' => 26,
             'oneColumnToResponsiveBreakpointInPx' => 600,
             'rowGap' => '0',
         ],
