@@ -9,6 +9,7 @@ fields:
     label: Grid Column Presets
     type: structure
     help: please use 'grid__column--full' for full width preset!
+    translate: false
     columns:
       grid_column_class:
         width: 1/4
